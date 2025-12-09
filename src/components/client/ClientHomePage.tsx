@@ -9,52 +9,82 @@ import { PageLayout } from "../layout/PageLayout";
 
 // Ленивая загрузка тяжёлых секций (с анимациями)
 const YouAreCodeSection = dynamic(
-  () => import("../sections/you-are-code/YouAreCodeSection").then(mod => ({ default: mod.YouAreCodeSection })),
+  () =>
+    import("../sections/you-are-code/YouAreCodeSection").then((mod) => ({
+      default: mod.YouAreCodeSection,
+    })),
   { ssr: true }
 );
 
 const CoursesSection = dynamic(
-  () => import("../sections/courses/CoursesSection").then(mod => ({ default: mod.CoursesSection })),
+  () =>
+    import("../sections/courses/CoursesSection").then((mod) => ({
+      default: mod.CoursesSection,
+    })),
   { ssr: true }
 );
 
 const ApproachSection = dynamic(
-  () => import("../sections/approach/ApproachSection").then(mod => ({ default: mod.ApproachSection })),
+  () =>
+    import("../sections/approach/ApproachSection").then((mod) => ({
+      default: mod.ApproachSection,
+    })),
   { ssr: true }
 );
 
 const AdvantagesSection = dynamic(
-  () => import("../sections/advantages/AdvantagesSection").then(mod => ({ default: mod.AdvantagesSection })),
+  () =>
+    import("../sections/advantages/AdvantagesSection").then((mod) => ({
+      default: mod.AdvantagesSection,
+    })),
   { ssr: true }
 );
 
 const PlatformSection = dynamic(
-  () => import("../sections/platform/PlatformSection").then(mod => ({ default: mod.PlatformSection })),
+  () =>
+    import("../sections/platform/PlatformSection").then((mod) => ({
+      default: mod.PlatformSection,
+    })),
   { ssr: true }
 );
 
 const EarningSection = dynamic(
-  () => import("../sections/earning/EarningSection").then(mod => ({ default: mod.EarningSection })),
+  () =>
+    import("../sections/earning/EarningSection").then((mod) => ({
+      default: mod.EarningSection,
+    })),
   { ssr: true }
 );
 
 const StudentsSection = dynamic(
-  () => import("../sections/students/StudentsSection").then(mod => ({ default: mod.StudentsSection })),
+  () =>
+    import("../sections/students/StudentsSection").then((mod) => ({
+      default: mod.StudentsSection,
+    })),
   { ssr: true }
 );
 
 const ShopSection = dynamic(
-  () => import("../sections/shop/ShopSection").then(mod => ({ default: mod.ShopSection })),
+  () =>
+    import("../../../shop/ShopSection").then((mod) => ({
+      default: mod.ShopSection,
+    })),
   { ssr: true }
 );
 
 const FAQSection = dynamic(
-  () => import("../sections/faq/FAQSection").then(mod => ({ default: mod.FAQSection })),
+  () =>
+    import("../sections/faq/FAQSection").then((mod) => ({
+      default: mod.FAQSection,
+    })),
   { ssr: true }
 );
 
 const ConsultationSection = dynamic(
-  () => import("../sections/consultation/ConsultationSection").then(mod => ({ default: mod.ConsultationSection })),
+  () =>
+    import("../sections/consultation/ConsultationSection").then((mod) => ({
+      default: mod.ConsultationSection,
+    })),
   { ssr: true }
 );
 

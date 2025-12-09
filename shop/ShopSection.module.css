@@ -1,5 +1,5 @@
 .shopSection {
-  background: linear-gradient(135deg, #00B18F 0%, #008B74 100%);
+  background: linear-gradient(135deg, #00b18f 0%, #008b74 100%);
   padding: 80px 0;
   overflow: hidden;
   position: relative;
@@ -41,8 +41,7 @@
   display: flex;
   gap: 24px;
   width: max-content;
-  animation: scroll 30s linear infinite;
-  animation-delay: 1.2s;
+  /* Remove animation from default state, will be added when visible */
   padding: 10px 0;
 }
 
@@ -100,8 +99,13 @@
 .points {
   font-size: 18px;
   font-weight: 700;
-  color: #00B18F;
+  color: #00b18f;
   margin-top: auto;
+}
+
+/* Add animation only when startAnimation class is applied */
+.startAnimation {
+  animation: scroll 60s linear infinite;
 }
 
 /* Animation */
@@ -110,7 +114,8 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-280px * 8 - 24px * 8)); /* Width of one set of products */
+    /* Scroll exactly one set (27 products) so the loop is seamless */
+    transform: translateX(calc(-280px * 27 - 24px * 27));
   }
 }
 
@@ -124,11 +129,11 @@
   .productCard {
     flex: 0 0 240px;
   }
-  
+
   .title {
     font-size: 36px;
   }
-  
+
   .description {
     font-size: 16px;
     padding: 0 20px;
@@ -139,31 +144,32 @@
   .shopSection {
     padding: 60px 0;
   }
-  
+
   .productsContainer {
     gap: 16px;
   }
-  
+
   .productCard {
     flex: 0 0 200px;
   }
-  
+
   .title {
     font-size: 32px;
     margin-bottom: 16px;
   }
-  
+
   .description {
     font-size: 15px;
     margin-bottom: 32px;
   }
-  
+
+  /* Update responsive animation */
   @keyframes scroll {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-200px * 8 - 16px * 8));
+      transform: translateX(calc(-200px * 27 - 16px * 27));
     }
   }
 }
@@ -172,34 +178,35 @@
   .shopSection {
     padding: 48px 0;
   }
-  
+
   .title {
     font-size: 28px;
   }
-  
+
   .description {
     font-size: 14px;
     margin-bottom: 24px;
   }
-  
+
   .productCard {
     flex: 0 0 180px;
   }
-  
+
   .productName {
     font-size: 14px;
   }
-  
+
   .points {
     font-size: 16px;
   }
-  
+
+  /* Update responsive animation */
   @keyframes scroll {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-180px * 8 - 16px * 8));
+      transform: translateX(calc(-180px * 27 - 16px * 27));
     }
   }
 }
