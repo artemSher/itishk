@@ -41,86 +41,6 @@
   margin: 0 auto;
 }
 
-/* Оптимизированные стили для FAQ Item с GPU-ускорением */
-.faqItem {
-  background: white;
-  border-radius: 12px;
-  margin-bottom: 16px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.2s ease;
-  /* GPU-ускорение для всего элемента */
-  transform: translateZ(0);
-  will-change: auto;
-}
-
-.faqItem:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.faqQuestion {
-  width: 100%;
-  padding: 24px;
-  background: transparent;
-  border: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  cursor: pointer;
-  text-align: left;
-  transition: background-color 0.2s ease;
-}
-
-.faqQuestion:hover {
-  background-color: #f8fafc;
-}
-
-.questionText {
-  font-size: 18px;
-  font-weight: 600;
-  color: #1e293b;
-  line-height: 1.4;
-  flex: 1;
-}
-
-.icon {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  color: #00b18f;
-  /* Увеличено время анимации до 0.4s с более плавной easing функцией */
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transform: translateZ(0);
-  will-change: transform;
-}
-
-.iconOpen {
-  transform: rotate(180deg) translateZ(0);
-}
-
-.faqAnswer {
-  max-height: 0;
-  overflow: hidden;
-  /* Более быстрый transition для закрытия */
-  transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  /* GPU-ускорение */
-  transform: translateZ(0);
-  will-change: max-height;
-}
-
-.faqAnswerOpen {
-  max-height: 500px;
-  /* Более медленный transition для открытия - теперь такой же как закрытие */
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.answerContent {
-  padding: 0 24px 24px;
-  font-size: 16px;
-  color: #64748b;
-  line-height: 1.7;
-}
-
 /* Decorative elements */
 .faqSection::before {
   content: "";
@@ -179,31 +99,6 @@
     font-size: 16px;
   }
 
-  .faqQuestion {
-    padding: 20px;
-  }
-
-  .questionText {
-    font-size: 16px;
-  }
-
-  .answerContent {
-    padding: 0 20px 20px;
-    font-size: 15px;
-  }
-
-  .icon {
-    width: 20px;
-    height: 20px;
-  }
-
-  /* Увеличено время анимации на мобильных до 0.4s для более плавного эффекта */
-  .faqAnswer {
-    transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-  .faqAnswerOpen {
-    transition: max-height 1s cubic-bezier(0.4, 0, 0.2, 1);
-  }
   .faqSection::before,
   .faqSection::after {
     display: none;
@@ -225,18 +120,5 @@
 
   .subtitle {
     font-size: 15px;
-  }
-
-  .faqQuestion {
-    padding: 18px;
-  }
-
-  .questionText {
-    font-size: 15px;
-  }
-
-  .answerContent {
-    padding: 0 18px 18px;
-    font-size: 14px;
   }
 }

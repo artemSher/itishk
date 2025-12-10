@@ -1,5 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
-import styles from './FAQItem.module.css';
+"use client";
+
+import type React from "react";
+
+import styles from "./FAQItem.module.css";
 
 interface FAQItemProps {
   question: string;
@@ -14,17 +17,8 @@ export const FAQItem: React.FC<FAQItemProps> = ({
   isOpen,
   onClick,
 }) => {
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState(0);
-
-  useEffect(() => {
-    if (contentRef.current) {
-      setHeight(isOpen ? contentRef.current.scrollHeight : 0);
-    }
-  }, [isOpen]);
-
   return (
-    <div className={`${styles.faqItem} ${isOpen ? styles.isOpen : ''}`}>
+    <div className={`${styles.faqItem} ${isOpen ? styles.isOpen : ""}`}>
       <button
         className={styles.questionButton}
         onClick={onClick}
@@ -33,18 +27,17 @@ export const FAQItem: React.FC<FAQItemProps> = ({
         <span className={styles.questionText}>{question}</span>
         <span className={styles.icon} aria-hidden="true">
           <div className={`${styles.iconLine} ${styles.horizontal}`} />
-          <div className={`${styles.iconLine} ${styles.vertical} ${isOpen ? styles.rotated : ''}`} />
+          <div
+            className={`${styles.iconLine} ${styles.vertical} ${
+              isOpen ? styles.rotated : ""
+            }`}
+          />
         </span>
       </button>
-      
-      <div 
-        ref={contentRef}
-        className={styles.answer}
-        style={{ height: `${height}px` }}
-        aria-hidden={!isOpen}
-      >
+
+      <div className={styles.answer} aria-hidden={!isOpen}>
         <div className={styles.answerContent}>
-          {answer.split('\n\n').map((paragraph, index) => (
+          {answer.split("\n\n").map((paragraph, index) => (
             <p key={index} className={styles.answerParagraph}>
               {paragraph}
             </p>
@@ -54,5 +47,3 @@ export const FAQItem: React.FC<FAQItemProps> = ({
     </div>
   );
 };
-
-

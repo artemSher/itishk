@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import styles from './ConsultationSection.module.css';
-import { Send } from 'lucide-react';
-import { InputMask } from '@react-input/mask';
-import { useForm, Controller } from 'react-hook-form';
+import { useState } from "react";
+import styles from "./ConsultationSection.module.css";
+import { Send } from "lucide-react";
+import { InputMask } from "@react-input/mask";
+import { useForm, Controller } from "react-hook-form";
 
 interface IFormData {
   name: string;
@@ -13,29 +13,36 @@ interface IFormData {
 }
 
 export const ConsultationSection = () => {
-  const { control, handleSubmit: handleFormSubmit, formState: { errors } } = useForm<IFormData>();
+  const {
+    control,
+    handleSubmit: handleFormSubmit,
+    formState: { errors },
+  } = useForm<IFormData>();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data: IFormData) => {
     setIsLoading(true);
 
-    const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSeno1cq1rKAAuW3ZtZpr_9DFUBu_zo0LShKAWZkj4TL3rQ6eA/formResponse';
+    const googleFormUrl =
+      "https://docs.google.com/forms/d/e/1FAIpQLSeno1cq1rKAAuW3ZtZpr_9DFUBu_zo0LShKAWZkj4TL3rQ6eA/formResponse";
     const formDataToSubmit = new FormData();
-    formDataToSubmit.append('entry.907660670', data.name);
-    formDataToSubmit.append('entry.805562166', data.phone);
-    formDataToSubmit.append('entry.1544142625', data.email);
+    formDataToSubmit.append("entry.907660670", data.name);
+    formDataToSubmit.append("entry.805562166", data.phone);
+    formDataToSubmit.append("entry.1544142625", data.email);
 
     try {
       await fetch(googleFormUrl, {
-        method: 'POST',
+        method: "POST",
         body: formDataToSubmit,
-        mode: 'no-cors',
+        mode: "no-cors",
       });
 
       setIsSubmitted(true);
     } catch {
-      alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.');
+      alert(
+        "Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -46,12 +53,24 @@ export const ConsultationSection = () => {
       <div className={styles.successContainer}>
         <div className={styles.successContent}>
           <div className={styles.successIcon}>
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 6L9 17L4 12"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </div>
           <h2 className={styles.successTitle}>Заявка отправлена!</h2>
-          <p className={styles.successText}>Мы свяжемся с вами в течение 10 минут</p>
+          <p className={styles.successText}>
+            Мы свяжемся с вами в течение 10 минут
+          </p>
         </div>
       </div>
     );
@@ -62,11 +81,13 @@ export const ConsultationSection = () => {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.pattern} aria-hidden="true" />
-          
+
           <div className={styles.header}>
             <h2 className={styles.title}>Запишитесь на консультацию</h2>
             <p className={styles.subtitle}>
-              Оставьте заявку, и наш менеджер свяжется с вами в течение 10 минут, чтобы обсудить детали обучения и ответить на все ваши вопросы
+              Оставьте заявку, и наш менеджер свяжется с вами в течение 10
+              минут, чтобы обсудить детали обучения и ответить на все ваши
+              вопросы
             </p>
           </div>
 
@@ -77,7 +98,7 @@ export const ConsultationSection = () => {
                   name="name"
                   control={control}
                   defaultValue=""
-                  rules={{ required: 'Пожалуйста, введите ваше имя' }}
+                  rules={{ required: "Пожалуйста, введите ваше имя" }}
                   render={({ field }) => (
                     <input
                       {...field}
@@ -87,15 +108,19 @@ export const ConsultationSection = () => {
                     />
                   )}
                 />
-                {errors.name && <span className={styles.error}>{errors.name.message as string}</span>}
+                {errors.name && (
+                  <span className={styles.error}>
+                    {errors.name.message as string}
+                  </span>
+                )}
               </div>
-              
+
               <div className={styles.formGroup}>
                 <Controller
                   name="phone"
                   control={control}
                   defaultValue=""
-                  rules={{ required: 'Пожалуйста, введите ваш телефон' }}
+                  rules={{ required: "Пожалуйста, введите ваш телефон" }}
                   render={({ field }) => (
                     <InputMask
                       mask="+_ (___) ___-__-__"
@@ -106,20 +131,24 @@ export const ConsultationSection = () => {
                     />
                   )}
                 />
-                {errors.phone && <span className={styles.error}>{errors.phone.message as string}</span>}
+                {errors.phone && (
+                  <span className={styles.error}>
+                    {errors.phone.message as string}
+                  </span>
+                )}
               </div>
-              
+
               <div className={styles.formGroup}>
                 <Controller
                   name="email"
                   control={control}
                   defaultValue=""
                   rules={{
-                    required: 'Пожалуйста, введите ваш email',
+                    required: "Пожалуйста, введите ваш email",
                     pattern: {
                       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: 'Пожалуйста, введите корректный email'
-                    }
+                      message: "Пожалуйста, введите корректный email",
+                    },
                   }}
                   render={({ field }) => (
                     <input
@@ -130,25 +159,31 @@ export const ConsultationSection = () => {
                     />
                   )}
                 />
-                {errors.email && <span className={styles.error}>{errors.email.message as string}</span>}
+                {errors.email && (
+                  <span className={styles.error}>
+                    {errors.email.message as string}
+                  </span>
+                )}
               </div>
             </div>
-            
+
             <div className={styles.formFooter}>
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className={styles.submitButton}
                 disabled={isLoading}
               >
-                {isLoading ? 'Отправка...' : 'Отправить заявку'}
+                {isLoading ? "Отправка..." : "Отправить заявку"}
                 {!isLoading && <Send size={18} />}
               </button>
-              
+
               <p className={styles.privacyText}>
-                Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь с{' '}
+                Нажимая на кнопку, вы даете согласие на обработку персональных
+                данных и соглашаетесь с{" "}
                 <a href="/privacy" className={styles.privacyLink}>
                   политикой конфиденциальности
                 </a>
+                .
               </p>
             </div>
           </form>
@@ -157,5 +192,3 @@ export const ConsultationSection = () => {
     </section>
   );
 };
-
-

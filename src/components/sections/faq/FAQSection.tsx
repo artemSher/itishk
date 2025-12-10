@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, memo } from "react";
-import { ChevronDown } from "lucide-react";
+import { useState } from "react";
+import { FAQItem } from "@/components/ui/FAQItem/FAQItem";
 import styles from "./FAQSection.module.css";
 
 interface FAQItemType {
@@ -54,44 +54,6 @@ const faqData: FAQItemType[] = [
       "У каждого ученика есть личный кабинет в нашей электронной образовательной платформе. Там можно видеть успеваемость, посещаемость, пройденные темы и портфолио с проектами ученика. Кроме того, два раза в год проходит защита проектов (открытые занятия), где каждый ученик выступает со своим проектом.",
   },
 ];
-
-const FAQItem = memo(
-  ({
-    question,
-    answer,
-    isOpen,
-    onClick,
-  }: {
-    question: string;
-    answer: string;
-    isOpen: boolean;
-    onClick: () => void;
-  }) => {
-    return (
-      <div className={`${styles.faqItem} ${isOpen ? styles.faqItemOpen : ""}`}>
-        <button
-          className={styles.faqQuestion}
-          onClick={onClick}
-          aria-expanded={isOpen}
-        >
-          <span className={styles.questionText}>{question}</span>
-          <ChevronDown
-            className={`${styles.icon} ${isOpen ? styles.iconOpen : ""}`}
-          />
-        </button>
-        <div
-          className={`${styles.faqAnswer} ${
-            isOpen ? styles.faqAnswerOpen : ""
-          }`}
-        >
-          <div className={styles.answerContent}>{answer}</div>
-        </div>
-      </div>
-    );
-  }
-);
-
-FAQItem.displayName = "FAQItem";
 
 export const FAQSection = () => {
   const [openItemId, setOpenItemId] = useState<number | null>(null);

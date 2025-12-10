@@ -4,7 +4,7 @@
   overflow: hidden;
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .faqItem:hover {
@@ -27,7 +27,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   color: #1f2937;
   font-size: 18px;
   font-weight: 600;
@@ -59,7 +59,7 @@
   transform: translate(-50%, -50%);
   background-color: #4b5563;
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .horizontal {
@@ -80,16 +80,29 @@
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
+/* Using CSS Grid for smooth animation without JavaScript height calculation */
 .answer {
-  overflow: hidden;
-  transition: height 0.3s ease;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: grid-template-rows;
+}
+
+.faqItem.isOpen .answer {
+  grid-template-rows: 1fr;
 }
 
 .answerContent {
-  padding: 0 24px 24px;
+  overflow: hidden;
+  padding: 0 24px;
   color: #4b5563;
   font-size: 16px;
   line-height: 1.6;
+  transition: padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faqItem.isOpen .answerContent {
+  padding: 0 24px 24px;
 }
 
 .answerParagraph {
@@ -108,20 +121,23 @@
     padding: 16px 20px;
     font-size: 16px;
   }
-  
+
   .questionText {
     font-size: 16px;
   }
-  
+
   .answerContent {
-    padding: 0 20px 20px;
-    font-size: 15px;
+    padding: 0 20px;
   }
-  
+
+  .faqItem.isOpen .answerContent {
+    padding: 0 20px 20px;
+  }
+
   .answerParagraph {
     font-size: 15px;
   }
-  
+
   .icon {
     width: 22px;
     height: 22px;
@@ -133,20 +149,23 @@
     padding: 14px 18px;
     font-size: 15px;
   }
-  
+
   .questionText {
     font-size: 15px;
   }
-  
+
   .answerContent {
-    padding: 0 18px 18px;
-    font-size: 14px;
+    padding: 0 18px;
   }
-  
+
+  .faqItem.isOpen .answerContent {
+    padding: 0 18px 18px;
+  }
+
   .answerParagraph {
     font-size: 14px;
   }
-  
+
   .icon {
     width: 20px;
     height: 20px;
