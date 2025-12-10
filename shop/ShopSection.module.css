@@ -124,6 +124,13 @@
   animation-play-state: paused;
 }
 
+/* Отменяем паузу на мобильных устройствах - анимация продолжается даже при касании */
+@media (max-width: 768px) {
+  .pauseAnimation {
+    animation-play-state: running !important;
+  }
+}
+
 /* Responsive styles */
 @media (max-width: 1024px) {
   .productCard {
