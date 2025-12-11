@@ -66,7 +66,7 @@ const StudentsSection = dynamic(
 
 const ShopSection = dynamic(
   () =>
-    import("../../../shop/ShopSection").then((mod) => ({
+    import("../sections/shop/ShopSection").then((mod) => ({
       default: mod.ShopSection,
     })),
   { ssr: true }

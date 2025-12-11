@@ -24,20 +24,10 @@ const products: Product[] = [
   { id: 11, name: "Mi Band 10", type: "accessory", points: 1000 },
   { id: 12, name: "Мышь", type: "accessory", points: 450 },
   { id: 13, name: "Брелки", type: "merch", points: 30 },
-  { id: 14, name: "Ручки", type: "merch", points: 30 },
-  { id: 15, name: "Магфия", type: "merch", points: 200 },
-  { id: 16, name: "Майнфия", type: "merch", points: 200 },
-  { id: 17, name: "Кружка", type: "merch", points: 350 },
-  { id: 18, name: "Детский фотоаппарат", type: "gadget", points: 600 },
-  { id: 19, name: "Роббо лаборатория", type: "gadget", points: 1500 },
-  { id: 20, name: "Оплатить месяц курса", type: "course", points: 1000 },
-  { id: 21, name: "Сквиж", type: "merch", points: 250 },
-  { id: 22, name: "Попрыгунчик", type: "merch", points: 10 },
-  { id: 23, name: "Набор стикеров", type: "merch", points: 50 },
-  { id: 24, name: "Кубик Рубика Майнкрафт", type: "merch", points: 250 },
-  { id: 25, name: "Браслет", type: "accessory", points: 40 },
-  { id: 26, name: "Ночник Майнкрафт", type: "gadget", points: 500 },
-  { id: 27, name: "PowerBank", type: "accessory", points: 700 },
+  { id: 14, name: "Кружка", type: "merch", points: 350 },
+  { id: 15, name: "Набор стикеров", type: "merch", points: 50 },
+  { id: 16, name: "Ночник Майнкрафт", type: "gadget", points: 500 },
+  { id: 17, name: "PowerBank", type: "accessory", points: 700 },
 ];
 
 // Map product names to gift image filenames in public/images/gifts/
@@ -56,20 +46,9 @@ const giftImageByName: Record<string, string> = {
   Мышь: "mouse.jpg",
   Брелки: "brelok.jpg",
   "Набор стикеров": "stickers.jpg",
-  "Кубик Рубика Майнкрафт": "mine.jpg",
   "Ночник Майнкрафт": "mine.jpg",
-  // The following products currently have no exact image file in gifts folder:
-  // 'Ручки': undefined,
-  // 'Магфия': undefined,
-  // 'Майнфия': undefined,
-  // 'Кружка': undefined,
-  // 'Детский фотоаппарат': undefined,
-  // 'Роббо лаборатория': undefined,
-  // 'Оплатить месяц курса': undefined,
-  // 'Сквиж': undefined,
-  // 'Попрыгунчик': undefined,
-  // 'Браслет': undefined,
-  // 'PowerBank': undefined,
+  PowerBank: "powerbank.jpg",
+  Кружка: "cap.jpg",
 };
 
 function getGiftImageSrc(name: string): string | undefined {
