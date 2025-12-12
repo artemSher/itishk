@@ -1,7 +1,10 @@
 "use client";
 
+import type React from "react";
+
 import { useEffect, useState, useRef, memo } from "react";
 import dynamic from "next/dynamic";
+import type { LottieRefCurrentProps } from "lottie-react";
 
 // Динамический импорт Lottie только когда нужен
 const Lottie = dynamic(() => import("lottie-react"), {
@@ -37,7 +40,17 @@ const LazyLottie = memo(function LazyLottie({
 }: LazyLottieProps) {
   const [animationData, setAnimationData] = useState<object | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const lottieRef = useRef<LottieRefCurrentProps | null>(null);
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   // Intersection Observer для определения видимости
   useEffect(() => {
@@ -46,7 +59,7 @@ const LazyLottie = memo(function LazyLottie({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && isMountedRef.current) {
           setIsVisible(true);
           observer.disconnect();
         }
@@ -58,13 +71,14 @@ const LazyLottie = memo(function LazyLottie({
     return () => observer.disconnect();
   }, [threshold]);
 
-  // Загрузка анимации через fetch из public папки
   useEffect(() => {
-    if (!isVisible || animationData) return;
+    if (!isVisible || animationData || hasError) return;
 
     // Проверяем кэш
     if (animationCache.has(animationPath)) {
-      setAnimationData(animationCache.get(animationPath)!);
+      if (isMountedRef.current) {
+        setAnimationData(animationCache.get(animationPath)!);
+      }
       return;
     }
 
@@ -73,24 +87,63 @@ const LazyLottie = memo(function LazyLottie({
         const response = await fetch(`/animations/${animationPath}`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
+
+        // Validate animation data
+        if (!data || typeof data !== "object" || !data.v) {
+          throw new Error("Invalid animation data");
+        }
+
         animationCache.set(animationPath, data);
-        setAnimationData(data);
+        if (isMountedRef.current) {
+          setAnimationData(data);
+        }
       } catch (error) {
         console.error(`Failed to load animation: ${animationPath}`, error);
+        if (isMountedRef.current) {
+          setHasError(true);
+        }
       }
     };
 
     loadAnimation();
-  }, [isVisible, animationPath, animationData]);
+  }, [isVisible, animationPath, animationData, hasError]);
+
+  useEffect(() => {
+    return () => {
+      if (lottieRef.current) {
+        try {
+          lottieRef.current.destroy();
+        } catch (error) {
+          console.error("Error destroying lottie animation:", error);
+        }
+      }
+    };
+  }, []);
+
+  if (hasError) {
+    return <div ref={containerRef} className={className} style={style} />;
+  }
 
   return (
     <div ref={containerRef} className={className} style={style}>
       {animationData && (
         <Lottie
+          lottieRef={lottieRef}
           animationData={animationData}
           loop={loop}
           autoplay={autoplay}
           style={{ width: "100%", height: "100%" }}
+          rendererSettings={{
+            preserveAspectRatio: "xMidYMid slice",
+            progressiveLoad: true,
+            hideOnTransparent: true,
+          }}
+          onError={(error) => {
+            console.error("Lottie animation error:", error);
+            if (isMountedRef.current) {
+              setHasError(true);
+            }
+          }}
         />
       )}
     </div>
