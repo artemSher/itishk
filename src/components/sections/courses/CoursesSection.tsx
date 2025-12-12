@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import styles from "./CoursesSection.module.css";
 import { CourseCard } from "@/components/ui/CourseCard/CourseCard";
@@ -12,19 +14,7 @@ interface Course {
   outcomes: string[];
 }
 
-import {
-  BrainCircuit,
-  Gamepad2,
-  Code,
-  Cpu,
-  Bot,
-  Puzzle,
-  CpuIcon,
-  Brain,
-  Globe,
-  Smartphone,
-  Cloud,
-} from "lucide-react";
+import { BrainCircuit, Gamepad2, Cpu, Bot, Puzzle, Globe } from "lucide-react";
 
 // Иконки для курсов
 const CourseIcons = {

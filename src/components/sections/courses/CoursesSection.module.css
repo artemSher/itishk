@@ -29,8 +29,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   justify-content: center;
-  align-items: stretch;
-  grid-auto-rows: 1fr;
+  /* align-items: start чтобы карточки не растягивались при раскрытии одной из них */
+  align-items: start;
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
@@ -199,6 +199,16 @@
   .coursesGrid {
     grid-template-columns: repeat(2, 1fr);
     max-width: 960px;
+  }
+}
+
+/* Костыль для диапазона 768-826px чтобы выровнять высоту карточек */
+@media (min-width: 768px) and (max-width: 826px) {
+  .coursesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 960px;
+    /* align-items: start - каждая карточка имеет свою высоту */
+    align-items: start;
   }
 }
 
