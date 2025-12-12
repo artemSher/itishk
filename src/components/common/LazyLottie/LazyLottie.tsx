@@ -207,7 +207,7 @@ const LazyLottie = memo(function LazyLottie({
               maxHeight: "100%",
               aspectRatio: aspectRatio ? `${aspectRatio}` : "auto",
             }}
-            renderer={(isMobile ? "canvas" : "svg") as LottieRenderer}
+            renderer={(isMobile ? "canvas" : "svg") as any}
             rendererSettings={{
               preserveAspectRatio: "xMidYMid meet",
               progressiveLoad: !isMobile,
