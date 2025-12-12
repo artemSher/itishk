@@ -1,20 +1,16 @@
 "use client";
 
 import type React from "react";
-
 import { useEffect, useState, useRef, memo, useCallback } from "react";
 import dynamic from "next/dynamic";
 import type { LottieRefCurrentProps } from "lottie-react";
 
-// Динамический импорт Lottie только когда нужен
 const Lottie = dynamic(() => import("lottie-react"), {
   ssr: false,
   loading: () => null,
 });
 
-// Кэш для загруженных анимаций
 const animationCache = new Map<string, object>();
-
 const activeAnimations = new Set<string>();
 const MAX_MOBILE_ANIMATIONS = 2;
 
@@ -34,8 +30,6 @@ interface LazyLottieProps {
   autoplay?: boolean;
   threshold?: number;
 }
-
-type LottieRenderer = "svg" | "canvas" | "html";
 
 const LazyLottie = memo(function LazyLottie({
   animationPath,
@@ -61,11 +55,9 @@ const LazyLottie = memo(function LazyLottie({
 
   useEffect(() => {
     setIsMobile(isMobileDevice());
-
     const handleResize = () => {
       setIsMobile(isMobileDevice());
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -84,7 +76,7 @@ const LazyLottie = memo(function LazyLottie({
         lottieRef.current.stop();
         lottieRef.current.destroy();
       } catch (error) {
-        // Игнорируем ошибки при уничтожении
+        // Ignore
       }
       lottieRef.current = null;
     }
@@ -101,7 +93,6 @@ const LazyLottie = memo(function LazyLottie({
 
         if (entry.isIntersecting) {
           setIsVisible(true);
-
           if (isMobile && activeAnimations.size >= MAX_MOBILE_ANIMATIONS) {
             setShouldRender(false);
           } else {
@@ -129,15 +120,46 @@ const LazyLottie = memo(function LazyLottie({
   }, [threshold, isMobile, destroyAnimation]);
 
   useEffect(() => {
+    if (animationCache.has(animationPath)) {
+      const cached = animationCache.get(animationPath)!;
+      if ((cached as any).w && (cached as any).h) {
+        setAnimationSize({ w: (cached as any).w, h: (cached as any).h });
+      }
+      return;
+    }
+
+    const loadAnimationMetadata = async () => {
+      try {
+        const response = await fetch(`/animations/${animationPath}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+
+        if (!data || typeof data !== "object" || !data.v) {
+          throw new Error("Invalid animation data");
+        }
+
+        animationCache.set(animationPath, data);
+        if (isMountedRef.current && data.w && data.h) {
+          setAnimationSize({ w: data.w, h: data.h });
+        }
+      } catch (error) {
+        console.error(
+          `Failed to load animation metadata: ${animationPath}`,
+          error
+        );
+      }
+    };
+
+    loadAnimationMetadata();
+  }, [animationPath]);
+
+  useEffect(() => {
     if (!isVisible || animationData || hasError) return;
 
     if (animationCache.has(animationPath)) {
       const cached = animationCache.get(animationPath)!;
       if (isMountedRef.current) {
         setAnimationData(cached);
-        if ((cached as any).w && (cached as any).h) {
-          setAnimationSize({ w: (cached as any).w, h: (cached as any).h });
-        }
       }
       return;
     }
@@ -155,9 +177,6 @@ const LazyLottie = memo(function LazyLottie({
         animationCache.set(animationPath, data);
         if (isMountedRef.current) {
           setAnimationData(data);
-          if (data.w && data.h) {
-            setAnimationSize({ w: data.w, h: data.h });
-          }
         }
       } catch (error) {
         console.error(`Failed to load animation: ${animationPath}`, error);
@@ -180,12 +199,19 @@ const LazyLottie = memo(function LazyLottie({
     return <div ref={containerRef} className={className} style={style} />;
   }
 
-  const aspectRatio = animationSize
-    ? animationSize.w / animationSize.h
-    : undefined;
+  const aspectRatio = animationSize ? animationSize.w / animationSize.h : 1;
 
   return (
-    <div ref={containerRef} className={className} style={style}>
+    <div
+      ref={containerRef}
+      className={className}
+      style={{
+        ...style,
+        aspectRatio: `${aspectRatio}`,
+        minHeight: "200px",
+        position: "relative",
+      }}
+    >
       {animationData && shouldRender && (
         <div
           style={{
@@ -194,6 +220,9 @@ const LazyLottie = memo(function LazyLottie({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            position: "absolute",
+            top: 0,
+            left: 0,
           }}
         >
           <Lottie
@@ -205,7 +234,7 @@ const LazyLottie = memo(function LazyLottie({
               width: "100%",
               height: "auto",
               maxHeight: "100%",
-              aspectRatio: aspectRatio ? `${aspectRatio}` : "auto",
+              aspectRatio: `${aspectRatio}`,
             }}
             renderer={(isMobile ? "canvas" : "svg") as any}
             rendererSettings={{
