@@ -61,7 +61,6 @@
   width: 100%;
   max-width: 600px;
   margin: 0 auto 1.5rem;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,7 +75,7 @@
 }
 
 .highlight {
-  color: #00B18F;
+  color: #00b18f;
   display: block;
   margin-top: 8px;
 }
@@ -99,28 +98,29 @@
   }
 
   .animationContainer {
-    max-width: 50%;
+    max-width: 60%;
   }
 }
 
 @media (max-width: 768px) {
   .animationContainer {
     margin: 0 auto 1rem;
-    max-width: 100%;
+    max-width: 90%;
   }
-  
+
   .animation {
-    max-width: 320px;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .animationContainer {
     margin: 0 auto 0.75rem;
+    max-width: 95%;
   }
-  
+
   .animation {
-    max-width: 280px;
+    max-width: 100%;
   }
 }
 
@@ -139,13 +139,13 @@
     align-items: center;
     gap: 3rem;
   }
-  
+
   .animationContainer {
     order: 2;
     width: 50%;
     margin-bottom: 0;
   }
-  
+
   .textContent {
     order: 1;
     padding-right: 3rem;
@@ -197,7 +197,7 @@
 }
 
 .button {
-  background-color: #00B18F;
+  background-color: #00b18f;
   color: white;
   font-weight: 500;
   padding: 14px 24px;

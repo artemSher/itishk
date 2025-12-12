@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './YouAreCodeSection.module.css';
-import LazyLottie from '@/components/common/LazyLottie/LazyLottie';
+import React from "react";
+import styles from "./YouAreCodeSection.module.css";
+import LazyLottie from "@/components/common/LazyLottie/LazyLottie";
 
 export const YouAreCodeSection = () => {
   return (
@@ -12,19 +12,21 @@ export const YouAreCodeSection = () => {
             <LazyLottie
               animationPath="secondblock.json"
               className={styles.animation}
-              style={{ width: '100%', height: '100%' }}
+              style={{ width: "100%", height: "100%" }}
             />
           </div>
-          
+
           {/* Text content */}
           <div className={styles.textContent}>
             <h2 className={styles.title}>
-            Готовьтесь
+              Готовьтесь
               <span className={styles.highlight}>к настоящему и будущему!</span>
-
             </h2>
             <p className={styles.description}>
-            В Айтишкино мы развиваем ребенка как личность, прокачивая не только технические навыки, но и soft скиллы. Дети с нами учатся работать в команде и не боятся ошибок, чтобы быть востребованными абсолютно в любой сфере!
+              В Айтишкино мы развиваем ребенка как личность, прокачивая не
+              только технические навыки, но и soft скиллы. Дети с нами учатся
+              работать в команде и не боятся ошибок, чтобы быть востребованными
+              абсолютно в любой сфере!
             </p>
           </div>
         </div>

@@ -33,7 +33,7 @@
   width: 100%;
   max-width: 800px;
   margin: 0 auto 2rem;
-  overflow: hidden;
+  /* removed overflow: hidden to prevent clipping */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,21 +52,25 @@
 @media (max-width: 768px) {
   .animationContainer {
     margin: 0 auto 1.5rem;
-    max-width: 100%;
+    /* increased max-width for mobile */
+    max-width: 90%;
   }
-  
+
   .animation {
-    max-width: 320px;
+    /* removed restrictive max-width */
+    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .animationContainer {
     margin: 0 auto 1rem;
+    max-width: 95%;
   }
-  
+
   .animation {
-    max-width: 280px;
+    /* removed restrictive max-width */
+    max-width: 100%;
   }
 }
 
@@ -85,13 +89,13 @@
     align-items: center;
     gap: 3rem;
   }
-  
+
   .animationContainer {
     order: 2;
     width: 50%;
     margin-bottom: 0;
   }
-  
+
   .textContent {
     order: 1;
     padding-right: 3rem;
@@ -116,7 +120,7 @@
 }
 
 .highlight {
-  color: #00B18F;
+  color: #00b18f;
   display: block;
   margin-top: 8px;
 }
