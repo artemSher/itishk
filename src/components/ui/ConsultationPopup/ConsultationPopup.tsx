@@ -3,10 +3,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { IMaskInput } from "react-imask";
 import styles from "./ConsultationPopup.module.css";
+import emailjs from "@emailjs/browser";
 
 export default function ConsultationPopup() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isDesktop, setIsDesktop] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
   // Храним форматированную строку, например "+7 (999) 123-45-67"
   const [phone, setPhone] = useState<string>("");
@@ -39,7 +42,7 @@ export default function ConsultationPopup() {
     return digits;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const name = nameRef.current?.value ?? "";
@@ -47,17 +50,35 @@ export default function ConsultationPopup() {
     const raw = getRawPhone(phone); // например "79991234567"
 
     if (raw.length !== 11) {
-      // Можно заменить на UI-ошибку
       alert("Введите полный номер телефона в формате +7 (xxx) xxx-xx-xx");
       return;
     }
 
-    // TODO: отправка на сервер
-    console.log({ name, email, phone: raw });
+    if (!name || !email) {
+      alert("Пожалуйста, заполните все поля");
+      return;
+    }
 
-    // Очистим и закроем
-    setPhone("");
-    setIsOpen(false);
+    setIsLoading(true);
+
+    try {
+      await emailjs.send(
+        "service_herbt8q",
+        "template_pudxx63",
+        {
+          name,
+          phone: raw,
+          email,
+        },
+        "4NGKAgHHT5_Xo9_LN"
+      );
+
+      setIsSubmitted(true);
+    } catch {
+      alert("Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -80,6 +101,24 @@ export default function ConsultationPopup() {
                 свяжется с Вами в ближайшее время!
               </p>
 
+              {isSubmitted ? (
+                <div className={styles.successMessage}>
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#22c55e"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M20 6L9 17L4 12" />
+                  </svg>
+                  <h2>Заявка отправлена!</h2>
+                  <p>Мы свяжемся с вами в ближайшее время</p>
+                </div>
+              ) : (
               <form className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                   <label htmlFor="name" className={styles.label}>
@@ -127,7 +166,7 @@ export default function ConsultationPopup() {
                   />
                 </div>
 
-                <button type="submit" className={styles.submitButton}>
+                <button type="submit" className={styles.submitButton} disabled={isLoading}>
                   <svg
                     width="20"
                     height="20"
@@ -141,9 +180,10 @@ export default function ConsultationPopup() {
                     <line x1="22" y1="2" x2="11" y2="13" />
                     <polygon points="22 2 15 22 11 13 2 9 22 2" />
                   </svg>
-                  Получить консультацию
+                  {isLoading ? "Отправка..." : "Получить консультацию"}
                 </button>
               </form>
+              )}
 
               <p className={styles.privacy}>
                 Нажимая кнопку, вы соглашаетесь с обработкой персональных данных

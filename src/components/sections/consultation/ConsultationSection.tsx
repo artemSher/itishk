@@ -5,6 +5,7 @@ import styles from "./ConsultationSection.module.css";
 import { Send } from "lucide-react";
 import { InputMask } from "@react-input/mask";
 import { useForm, Controller } from "react-hook-form";
+import emailjs from "@emailjs/browser";
 
 interface IFormData {
   name: string;
@@ -24,19 +25,17 @@ export const ConsultationSection = () => {
   const onSubmit = async (data: IFormData) => {
     setIsLoading(true);
 
-    const googleFormUrl =
-      "https://docs.google.com/forms/d/e/1FAIpQLSeno1cq1rKAAuW3ZtZpr_9DFUBu_zo0LShKAWZkj4TL3rQ6eA/formResponse";
-    const formDataToSubmit = new FormData();
-    formDataToSubmit.append("entry.907660670", data.name);
-    formDataToSubmit.append("entry.805562166", data.phone);
-    formDataToSubmit.append("entry.1544142625", data.email);
-
     try {
-      await fetch(googleFormUrl, {
-        method: "POST",
-        body: formDataToSubmit,
-        mode: "no-cors",
-      });
+      await emailjs.send(
+        "service_herbt8q",
+        "template_pudxx63",
+        {
+          name: data.name,
+          phone: data.phone,
+          email: data.email,
+        },
+        "4NGKAgHHT5_Xo9_LN"
+      );
 
       setIsSubmitted(true);
     } catch {
