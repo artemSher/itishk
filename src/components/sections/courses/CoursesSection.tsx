@@ -51,25 +51,7 @@ const COURSES = [
       "Знакомство с визуальным программированием и основами работы за ПК",
     ],
   },
-  {
-    title: "Middle: “Учебник программиста”",
-    age: "8-11 лет",
-    modules: 7,
-    icon: CourseIcons.gameDev,
-    modulesList: [
-      "Kodu game Lab",
-      "Aseprite",
-      "Scratch",
-      "Презентации PowerPoint",
-      "Construct 2",
-      "Google Blockly",
-      "Minecraft Education",
-    ],
-    outcomes: [
-      "Создание простых игр и интерактивных проектов",
-      "Укрепление базовых навыков программирования",
-    ],
-  },
+
   {
     title: "Senior: ”Энциклопедия разработчика”",
     age: "12-15 лет",
@@ -88,9 +70,6 @@ const COURSES = [
       "Погружение в разработку игр, приложений и 3D-моделирование",
     ],
   },
-];
-
-const ROBOTICS_COURSES: Course[] = [
   {
     title: "Junior: “Букварь изобретателя”",
     age: "5-7 лет",
@@ -165,82 +144,95 @@ const ROBOTICS_COURSES: Course[] = [
   },
 ];
 
+const ROBOTICS_COURSES: Course[] = [
+  {
+    title: "Middle: “Учебник программиста”",
+    age: "8-11 лет",
+    modules: 7,
+    icon: CourseIcons.gameDev,
+    modulesList: [
+      "Kodu game Lab",
+      "Aseprite",
+      "Scratch",
+      "Презентации PowerPoint",
+      "Construct 2",
+      "Google Blockly",
+      "Minecraft Education",
+    ],
+    outcomes: [
+      "Создание простых игр и интерактивных проектов",
+      "Укрепление базовых навыков программирования",
+    ],
+  },
+];
+
 export const CoursesSection = () => {
+  const [activeTab, setActiveTab] = useState<"offline" | "online">("offline");
   const [expandedCourseId, setExpandedCourseId] = useState<string | null>(null);
-  const [expandedRoboticsCourseId, setExpandedRoboticsCourseId] = useState<
-    string | null
-  >(null);
+
+  const handleTabChange = (tab: "offline" | "online") => {
+    setActiveTab(tab);
+    setExpandedCourseId(null);
+  };
 
   const handleToggleExpand = React.useCallback((id: string) => {
     setExpandedCourseId((prevId) => (prevId === id ? null : id));
   }, []);
 
-  const handleToggleRoboticsExpand = React.useCallback((id: string) => {
-    setExpandedRoboticsCourseId((prevId) => (prevId === id ? null : id));
-  }, []);
+  const displayedCourses = activeTab === "offline" ? COURSES : ROBOTICS_COURSES;
 
   return (
-    <>
-      <section className={styles.section} id="programming-courses">
-        <div className={styles.container}>
-          <h2 className={styles.title}>
-            Курсы по Программированию в «Айтишкино»
-          </h2>
-          <div className={styles.coursesGrid}>
-            {COURSES.map((course) => {
-              const courseId = `programming-${course.title
-                .toLowerCase()
-                .replace(/\s+/g, "-")}`;
-              return (
-                <CourseCard
-                  key={courseId}
-                  id={courseId}
-                  title={course.title}
-                  age={course.age}
-                  modules={course.modules}
-                  icon={course.icon}
-                  modulesList={course.modulesList}
-                  outcomes={course.outcomes}
-                  isExpanded={expandedCourseId === courseId}
-                  onToggleExpand={handleToggleExpand}
-                />
-              );
-            })}
-          </div>
-        </div>
-      </section>
+    <section className={styles.section} id="courses">
+      <div className={styles.container}>
+        <div className="flex flex-col items-center mb-[45.6px]">
+          <h2 className={styles.title}>Наши курсы</h2>
+          <p className={styles.subtitle}>
+            В "Айтишкино" мы не просто учим — мы создаём юных инноваторов! Наши
+            два ключевых направления идеально дополняют друг друга:
+          </p>
 
-      <section className={styles.section} id="robotics-courses">
-        <div className={styles.container}>
-          <h2 className={styles.title}>
-            Робототехника в «Айтишкино»: <br />
-            <span className={styles.subtitle}>
-              от первых механизмов до умных гаджетов
-            </span>
-          </h2>
-          <div className={styles.coursesGrid}>
-            {ROBOTICS_COURSES.map((course) => {
-              const courseId = `robotics-${course.title
-                .toLowerCase()
-                .replace(/\s+/g, "-")}`;
-              return (
-                <CourseCard
-                  key={courseId}
-                  id={courseId}
-                  title={course.title}
-                  age={course.age}
-                  modules={course.modules}
-                  icon={course.icon}
-                  modulesList={course.modulesList}
-                  outcomes={course.outcomes}
-                  isExpanded={expandedRoboticsCourseId === courseId}
-                  onToggleExpand={handleToggleRoboticsExpand}
-                />
-              );
-            })}
+          <div className={styles.tabsContainer}>
+            <button
+              className={`${styles.tab} ${
+                activeTab === "offline" ? styles.activeTab : styles.inactiveTab
+              }`}
+              onClick={() => handleTabChange("offline")}
+            >
+              Оффлайн
+            </button>
+            <button
+              className={`${styles.tab} ${
+                activeTab === "online" ? styles.activeTab : styles.inactiveTab
+              }`}
+              onClick={() => handleTabChange("online")}
+            >
+              Онлайн
+            </button>
           </div>
         </div>
-      </section>
+
+        <div className={styles.coursesGrid}>
+          {displayedCourses.map((course) => {
+            const courseId = `${activeTab}-${course.title
+              .toLowerCase()
+              .replace(/\s+/g, "-")}`;
+            return (
+              <CourseCard
+                key={courseId}
+                id={courseId}
+                title={course.title}
+                age={course.age}
+                modules={course.modules}
+                icon={course.icon}
+                modulesList={course.modulesList}
+                outcomes={course.outcomes}
+                isExpanded={expandedCourseId === courseId}
+                onToggleExpand={handleToggleExpand}
+              />
+            );
+          })}
+        </div>
+      </div>
 
       {/* Consultation Button */}
       <div className="w-full max-w-[1440px] mx-auto px-5 mt-12 mb-16">
@@ -266,6 +258,6 @@ export const CoursesSection = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };

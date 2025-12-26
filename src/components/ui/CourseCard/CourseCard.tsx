@@ -29,23 +29,56 @@ export const CourseCard: React.FC<CourseCardProps> = React.memo(
   }) => {
     const handleToggle = React.useCallback(() => {
       onToggleExpand(id);
-    }, [id, isExpanded, onToggleExpand]);
+    }, [id, onToggleExpand]);
 
     return (
       <div
         className={`${styles.courseCard} ${isExpanded ? styles.expanded : ""}`}
       >
         <div className={styles.cardContent}>
-          <div className={styles.iconContainer}>{icon}</div>
+          <div className={styles.iconContainer}>
+            <svg
+              width="39"
+              height="56"
+              viewBox="0 0 39 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                opacity="0.3"
+                d="M13.0417 33.8061V52.6522C13.0417 55.0917 16.1512 56.1216 17.6075 54.1645L38.0363 26.7086C39.6725 24.5095 38.103 21.3854 35.362 21.3854H25.657L13.0417 33.8061Z"
+                fill="#00B18F"
+              />
+              <path
+                d="M25.6597 2.53823C25.6597 0.0987582 22.5501 -0.931155 21.0939 1.02597L0.665085 28.4819C-0.97112 30.6809 0.598386 33.805 3.33936 33.805H13.0444L25.6597 21.3843V2.53823Z"
+                fill="#00B18F"
+              />
+            </svg>
+          </div>
+
           <h3 className={styles.courseTitle}>{title}</h3>
-          <p className={styles.courseInfo}>Возраст: {age}</p>
-          <p className={styles.courseInfo}>Модулей: {modules}</p>
+
+          <p className={styles.courseDescription}>
+            Пропс описание — мы создаём условия для раскрытия потенциала каждого
+            ребёнка через инновации.
+          </p>
+
+          <div className={styles.infoRow}>
+            <div className={styles.infoItem}>
+              <span className={styles.infoLabel}>Возраст:</span>
+              <span className={styles.infoValue}>{age}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.infoLabel}>Модулей:</span>
+              <span className={styles.infoValue}>{modules}</span>
+            </div>
+          </div>
+
           <button
             className={styles.detailsButton}
             onClick={handleToggle}
             aria-expanded={isExpanded}
             aria-controls={`course-${id}-content`}
-            aria-label={isExpanded ? "Свернуть детали" : "Показать детали"}
           >
             {isExpanded ? "Свернуть" : "Подробнее"}
           </button>
