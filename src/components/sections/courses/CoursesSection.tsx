@@ -32,45 +32,6 @@ const CourseIcons = {
 // Данные о курсах
 const COURSES = [
   {
-    title: "Junior: “Компьютерная азбука”",
-    age: "5-7 лет",
-    modules: 8,
-    icon: CourseIcons.digitalThinking,
-    modulesList: [
-      "Rodocodo",
-      "Scratch Jr",
-      "Kodu game Lab",
-      "Aseprite",
-      "Code Monkey",
-      "Scratch",
-      "Презентации PowerPoint",
-      "Run Marco",
-    ],
-    outcomes: [
-      "Развитие логики и алгоритмического мышления",
-      "Знакомство с визуальным программированием и основами работы за ПК",
-    ],
-  },
-
-  {
-    title: "Senior: ”Энциклопедия разработчика”",
-    age: "12-15 лет",
-    modules: 6,
-    icon: CourseIcons.webDev,
-    modulesList: [
-      "Construct 2",
-      "Roblox Studio",
-      "Office",
-      "Thunkable",
-      "Tinkercad",
-      "Godot",
-    ],
-    outcomes: [
-      "Проектная работа и портфолио",
-      "Погружение в разработку игр, приложений и 3D-моделирование",
-    ],
-  },
-  {
     title: "Junior: “Букварь изобретателя”",
     age: "5-7 лет",
     modules: 12,
@@ -145,6 +106,45 @@ const COURSES = [
 ];
 
 const ROBOTICS_COURSES: Course[] = [
+  {
+    title: "Junior: “Компьютерная азбука”",
+    age: "5-7 лет",
+    modules: 8,
+    icon: CourseIcons.digitalThinking,
+    modulesList: [
+      "Rodocodo",
+      "Scratch Jr",
+      "Kodu game Lab",
+      "Aseprite",
+      "Code Monkey",
+      "Scratch",
+      "Презентации PowerPoint",
+      "Run Marco",
+    ],
+    outcomes: [
+      "Развитие логики и алгоритмического мышления",
+      "Знакомство с визуальным программированием и основами работы за ПК",
+    ],
+  },
+
+  {
+    title: "Senior: ”Энциклопедия разработчика”",
+    age: "12-15 лет",
+    modules: 6,
+    icon: CourseIcons.webDev,
+    modulesList: [
+      "Construct 2",
+      "Roblox Studio",
+      "Office",
+      "Thunkable",
+      "Tinkercad",
+      "Godot",
+    ],
+    outcomes: [
+      "Проектная работа и портфолио",
+      "Погружение в разработку игр, приложений и 3D-моделирование",
+    ],
+  },
   {
     title: "Middle: “Учебник программиста”",
     age: "8-11 лет",
