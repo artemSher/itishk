@@ -1,3 +1,4 @@
+import type React from "react";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import SchemaScript from "./SchemaScriptNew";
@@ -22,6 +23,10 @@ export const metadata: Metadata = {
     "робототехника для детей",
     "IT-школа для детей",
   ],
+
+  icons: {
+    icon: "/favicon.ico",
+  },
 
   openGraph: {
     title: "Айтишкино",

@@ -6,8 +6,8 @@ import { KeyDirectionsSection } from "../sections/key-directions/KeyDirectionsSe
 import { FullscreenTextSection } from "../sections/fullscreen-text/FullscreenTextSection";
 import { Footer } from "../sections/footer/Footer";
 import { PageLayout } from "../layout/PageLayout";
+import { CookiePopup } from "../ui/CookiePopup/CookiePopup";
 
-// Ленивая загрузка тяжёлых секций (с анимациями)
 const YouAreCodeSection = dynamic(
   () =>
     import("../sections/you-are-code/YouAreCodeSection").then((mod) => ({
@@ -155,6 +155,10 @@ export default function ClientHomePage() {
       {/* Секция: Консультация */}
       <section id="contacts">
         <ConsultationSection />
+      </section>
+
+      <section id="contacts">
+        <CookiePopup />
       </section>
 
       {/* Подвал сайта */}
