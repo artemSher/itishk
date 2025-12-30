@@ -155,6 +155,89 @@
   box-shadow: 0 0 0 3px rgba(0, 177, 143, 0.1);
 }
 
+.select {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1f2937;
+  transition: all 0.2s;
+  background: white;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9L12 15L18 9' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #00b18f;
+  box-shadow: 0 0 0 3px rgba(0, 177, 143, 0.1);
+}
+
+.radioGroup {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.radioLabel {
+  flex: 1;
+  cursor: pointer;
+}
+
+.radioInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radioButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  background: white;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.radioInput:checked + .radioButton {
+  border-color: #00b18f;
+  background: rgba(0, 177, 143, 0.05);
+  color: #00b18f;
+}
+
+.radioButton:hover {
+  border-color: #00b18f;
+}
+
+.onlineNote {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(0, 177, 143, 0.08);
+  border: 1px solid rgba(0, 177, 143, 0.2);
+  border-radius: 8px;
+  font-size: 12px;
+  color: #00997a;
+}
+
+.onlineNoteIcon {
+  font-size: 14px;
+}
+
 .submitButton {
   width: 100%;
   height: 48px;

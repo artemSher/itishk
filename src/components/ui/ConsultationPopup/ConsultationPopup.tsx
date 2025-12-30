@@ -5,6 +5,15 @@ import { IMaskInput } from "react-imask";
 import styles from "./ConsultationPopup.module.css";
 import emailjs from "@emailjs/browser";
 
+type FormatType = "online" | "offline";
+type CourseType = "programming" | "robotics" | "duo";
+
+const courseLabels: Record<CourseType, string> = {
+  programming: "Программирование",
+  robotics: "Робототехника",
+  duo: "Дуо: Программирование + Робототехника",
+};
+
 export default function ConsultationPopup() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isDesktop, setIsDesktop] = useState<boolean>(true);
@@ -13,10 +22,11 @@ export default function ConsultationPopup() {
 
   // Храним форматированную строку, например "+7 (999) 123-45-67"
   const [phone, setPhone] = useState<string>("");
+  const [format, setFormat] = useState<FormatType>("offline");
+  const [course, setCourse] = useState<CourseType>("programming");
 
   // Рефы для полей
   const nameRef = useRef<HTMLInputElement | null>(null);
-  const emailRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsOpen(true), 5000);
@@ -30,6 +40,12 @@ export default function ConsultationPopup() {
       window.removeEventListener("resize", updateViewport);
     };
   }, []);
+
+  useEffect(() => {
+    if (format === "online") {
+      setCourse("programming");
+    }
+  }, [format]);
 
   // Получить "чистые" цифры: +7 (999) 123-45-67 -> 79991234567
   const getRawPhone = (masked?: string): string => {
@@ -46,7 +62,6 @@ export default function ConsultationPopup() {
     e.preventDefault();
 
     const name = nameRef.current?.value ?? "";
-    const email = emailRef.current?.value ?? "";
     const raw = getRawPhone(phone); // например "79991234567"
 
     if (raw.length !== 11) {
@@ -54,10 +69,13 @@ export default function ConsultationPopup() {
       return;
     }
 
-    if (!name || !email) {
-      alert("Пожалуйста, заполните все поля");
+    if (!name) {
+      alert("Пожалуйста, введите ваше имя");
       return;
     }
+
+    const formatLabel = format === "online" ? "Онлайн" : "Офлайн";
+    const courseLabel = courseLabels[course];
 
     setIsLoading(true);
 
@@ -68,7 +86,8 @@ export default function ConsultationPopup() {
         {
           name,
           phone: raw,
-          email,
+          format: formatLabel,
+          course: courseLabel,
         },
         "4NGKAgHHT5_Xo9_LN"
       );
@@ -134,19 +153,6 @@ export default function ConsultationPopup() {
                 </div>
 
                 <div className={styles.formGroup}>
-                  <label htmlFor="email" className={styles.label}>
-                    Email для связи
-                  </label>
-                  <input
-                    id="email"
-                    ref={emailRef}
-                    type="email"
-                    placeholder="example@mail.com"
-                    className={styles.input}
-                  />
-                </div>
-
-                <div className={styles.formGroup}>
                   <label htmlFor="phone" className={styles.label}>
                     Номер телефона
                   </label>
@@ -154,17 +160,66 @@ export default function ConsultationPopup() {
                   <IMaskInput
                     id="phone"
                     className={styles.input}
-                    // Маска: фиксированный +7, далее 10 цифр
                     mask={"+{7} (000) 000-00-00"}
                     value={phone}
-                    // onAccept даёт текущую отформатированную строку
                     onAccept={(value: string) => {
                       setPhone(value);
                     }}
-                    // placeholder отображается, если value пустой
                     placeholder="+7 (___) ___-__-__"
                   />
                 </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Формат обучения</label>
+                  <div className={styles.radioGroup}>
+                    <label className={styles.radioLabel}>
+                      <input
+                        type="radio"
+                        name="format"
+                        value="offline"
+                        checked={format === "offline"}
+                        onChange={() => setFormat("offline")}
+                        className={styles.radioInput}
+                      />
+                      <span className={styles.radioButton}>Офлайн</span>
+                    </label>
+                    <label className={styles.radioLabel}>
+                      <input
+                        type="radio"
+                        name="format"
+                        value="online"
+                        checked={format === "online"}
+                        onChange={() => setFormat("online")}
+                        className={styles.radioInput}
+                      />
+                      <span className={styles.radioButton}>Онлайн</span>
+                    </label>
+                  </div>
+                </div>
+
+                {format === "offline" && (
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Направление</label>
+                    <select
+                      value={course}
+                      onChange={(e) => setCourse(e.target.value as CourseType)}
+                      className={styles.select}
+                    >
+                      <option value="programming">Программирование</option>
+                      <option value="robotics">Робототехника</option>
+                      <option value="duo">Дуо: Программирование + Робототехника</option>
+                    </select>
+                  </div>
+                )}
+
+                {format === "online" && (
+                  <div className={styles.formGroup}>
+                    <div className={styles.onlineNote}>
+                      <span className={styles.onlineNoteIcon}>💻</span>
+                      <span>Онлайн доступно только программирование</span>
+                    </div>
+                  </div>
+                )}
 
                 <button type="submit" className={styles.submitButton} disabled={isLoading}>
                   <svg
