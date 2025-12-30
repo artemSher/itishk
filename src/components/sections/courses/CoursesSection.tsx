@@ -32,32 +32,8 @@ const CourseIcons = {
 // Данные о курсах
 const COURSES = [
   {
-    title: "Junior: “Букварь изобретателя”",
-    age: "5-7 лет",
-    modules: 12,
-    icon: CourseIcons.roboticsBasic,
-    modulesList: [
-      "Введение в робототехнику",
-      "Создание анимаций в Robbo Junior",
-      "3D ручка",
-      "Конструирование",
-      "LEGO WeDo 2.0",
-      "RobboScratch",
-      "Робоплатформа",
-      "Робот Отто",
-      "Схемотехника",
-      "3D моделирование Tinker",
-      "Лаборатория",
-      "Итоговые проекты",
-    ],
-    outcomes: [
-      "Первые инженерные навыки: конструирование, простая схемотехника и визуальное программирование",
-      "Знакомство с 3D‑инструментами и работа с детскими конструкторскими платформами",
-    ],
-  },
-  {
     title: "Middle: “Справочник инженера”",
-    age: "8-11 лет",
+    age: "7-11 лет",
     modules: 12,
     icon: CourseIcons.roboticsAdvanced,
     modulesList: [
@@ -106,6 +82,30 @@ const COURSES = [
 ];
 
 const ROBOTICS_COURSES: Course[] = [
+  {
+    title: "Junior: “Букварь изобретателя”",
+    age: "5-7 лет",
+    modules: 12,
+    icon: CourseIcons.roboticsBasic,
+    modulesList: [
+      "Введение в робототехнику",
+      "Создание анимаций в Robbo Junior",
+      "3D ручка",
+      "Конструирование",
+      "LEGO WeDo 2.0",
+      "RobboScratch",
+      "Робоплатформа",
+      "Робот Отто",
+      "Схемотехника",
+      "3D моделирование Tinker",
+      "Лаборатория",
+      "Итоговые проекты",
+    ],
+    outcomes: [
+      "Первые инженерные навыки: конструирование, простая схемотехника и визуальное программирование",
+      "Знакомство с 3D‑инструментами и работа с детскими конструкторскими платформами",
+    ],
+  },
   {
     title: "Junior: “Компьютерная азбука”",
     age: "5-7 лет",
@@ -185,11 +185,7 @@ export const CoursesSection = () => {
     <section className={styles.section} id="courses">
       <div className={styles.container}>
         <div className="flex flex-col items-center mb-[45.6px]">
-          <h2 className={styles.title}>Наши курсы</h2>
-          <p className={styles.subtitle}>
-            В "Айтишкино" мы не просто учим — мы создаём юных инноваторов! Наши
-            два ключевых направления идеально дополняют друг друга:
-          </p>
+          <h2 className={styles.title}>Курсы в «Айтишкино»</h2>
 
           <div className={styles.tabsContainer}>
             <button
@@ -198,7 +194,7 @@ export const CoursesSection = () => {
               }`}
               onClick={() => handleTabChange("offline")}
             >
-              Оффлайн
+              Очно
             </button>
             <button
               className={`${styles.tab} ${
