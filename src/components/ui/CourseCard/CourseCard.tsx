@@ -13,6 +13,7 @@ interface CourseCardProps {
   outcomes: string[];
   isExpanded: boolean;
   onToggleExpand: (id: string) => void;
+  category?: "programming" | "robotics";
 }
 
 export const CourseCard: React.FC<CourseCardProps> = React.memo(
@@ -26,6 +27,7 @@ export const CourseCard: React.FC<CourseCardProps> = React.memo(
     outcomes,
     isExpanded,
     onToggleExpand,
+    category,
   }) => {
     const handleToggle = React.useCallback(() => {
       onToggleExpand(id);
@@ -35,6 +37,12 @@ export const CourseCard: React.FC<CourseCardProps> = React.memo(
       <div
         className={`${styles.courseCard} ${isExpanded ? styles.expanded : ""}`}
       >
+        {category && (
+          <div className={styles.categoryTag}>
+            {category === "robotics" ? "робототехника" : "программирование"}
+          </div>
+        )}
+
         <div className={styles.cardContent}>
           <div className={styles.iconContainer}>
             <svg
@@ -57,11 +65,6 @@ export const CourseCard: React.FC<CourseCardProps> = React.memo(
           </div>
 
           <h3 className={styles.courseTitle}>{title}</h3>
-
-          <p className={styles.courseDescription}>
-            Пропс описание — мы создаём условия для раскрытия потенциала каждого
-            ребёнка через инновации.
-          </p>
 
           <div className={styles.infoRow}>
             <div className={styles.infoItem}>

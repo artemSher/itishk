@@ -12,6 +12,7 @@ interface Course {
   icon: React.ReactNode;
   modulesList: string[];
   outcomes: string[];
+  category: "programming" | "robotics";
 }
 
 import { BrainCircuit, Gamepad2, Cpu, Bot, Puzzle, Globe } from "lucide-react";
@@ -30,7 +31,7 @@ const CourseIcons = {
 };
 
 // Данные о курсах
-const COURSES = [
+const COURSES: Course[] = [
   {
     title: "Middle: “Справочник инженера”",
     age: "7-11 лет",
@@ -54,6 +55,7 @@ const COURSES = [
       "Систематизация инженерных навыков и практическая работа с оборудованием",
       "Проектная деятельность: от идеи до защиты готового решения",
     ],
+    category: "robotics",
   },
   {
     title: "Senior: ”Мануал архитектора”",
@@ -78,6 +80,7 @@ const COURSES = [
       "Глубокое погружение в инженерные и программные технологии: Python, Arduino, пайка, 3D печать",
       "Как работают законы физики в реальных устройствах: эксперименты и принципы механики, электричества и движения",
     ],
+    category: "robotics",
   },
 ];
 
@@ -105,6 +108,7 @@ const ROBOTICS_COURSES: Course[] = [
       "Первые инженерные навыки: конструирование, простая схемотехника и визуальное программирование",
       "Знакомство с 3D‑инструментами и работа с детскими конструкторскими платформами",
     ],
+    category: "robotics",
   },
   {
     title: "Junior: “Компьютерная азбука”",
@@ -125,8 +129,8 @@ const ROBOTICS_COURSES: Course[] = [
       "Развитие логики и алгоритмического мышления",
       "Знакомство с визуальным программированием и основами работы за ПК",
     ],
+    category: "programming",
   },
-
   {
     title: "Senior: ”Энциклопедия разработчика”",
     age: "12-15 лет",
@@ -144,6 +148,7 @@ const ROBOTICS_COURSES: Course[] = [
       "Проектная работа и портфолио",
       "Погружение в разработку игр, приложений и 3D-моделирование",
     ],
+    category: "programming",
   },
   {
     title: "Middle: “Учебник программиста”",
@@ -163,6 +168,7 @@ const ROBOTICS_COURSES: Course[] = [
       "Создание простых игр и интерактивных проектов",
       "Укрепление базовых навыков программирования",
     ],
+    category: "programming",
   },
 ];
 
@@ -222,6 +228,7 @@ export const CoursesSection = () => {
                 icon={course.icon}
                 modulesList={course.modulesList}
                 outcomes={course.outcomes}
+                category={course.category}
                 isExpanded={expandedCourseId === courseId}
                 onToggleExpand={handleToggleExpand}
               />
@@ -230,7 +237,6 @@ export const CoursesSection = () => {
         </div>
       </div>
 
-      {/* Consultation Button */}
       <div className="w-full max-w-[1440px] mx-auto px-5 mt-12 mb-16">
         <div className="max-w-[1440px] mx-auto px-5">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -244,7 +250,7 @@ export const CoursesSection = () => {
                   }
                 }}
               >
-                <span>Записаться на консультацию</span>
+                <span>Записаться на бесплатное пробное занятие!</span>
                 <ArrowRight
                   className="transition-transform duration-300 group-hover:translate-x-1"
                   size={20}
