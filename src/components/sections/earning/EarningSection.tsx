@@ -1,24 +1,24 @@
-import React from 'react';
-import styles from './EarningSection.module.css';
-import { EarningStepCard } from '@/components/ui/EarningStepCard/EarningStepCard';
-import LazyLottie from '@/components/common/LazyLottie/LazyLottie';
+import React from "react";
+import styles from "./EarningSection.module.css";
+import { EarningStepCard } from "@/components/ui/EarningStepCard/EarningStepCard";
+import LazyLottie from "@/components/common/LazyLottie/LazyLottie";
 
 export const EarningSection = () => {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
         <h2 className={styles.title}>Зарабатывай знаниями!</h2>
-        
+
         <div className={styles.animationContainer}>
           <LazyLottie
             animationPath="EarningSection.json"
             className={styles.animation}
-            style={{ width: '100%', height: '100%' }}
+            style={{ width: "100%", height: "100%" }}
           />
         </div>
-        
+
         <div className={styles.cardsContainer}>
-          <EarningStepCard 
+          <EarningStepCard
             number="01"
             title="Зарабатывай"
             description={
@@ -28,14 +28,14 @@ export const EarningSection = () => {
               </>
             }
           />
-          
-          <EarningStepCard 
+
+          <EarningStepCard
             number="02"
             title="Копи"
             description="Учись планировать бюджет и принимать решения."
           />
-          
-          <EarningStepCard 
+
+          <EarningStepCard
             number="03"
             title="Трать"
             description="В нашем «Айтишопе» на крутые гаджеты, мерч или оплату курсов!"
@@ -45,5 +45,3 @@ export const EarningSection = () => {
     </section>
   );
 };
-
-

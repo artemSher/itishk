@@ -41,33 +41,48 @@ export const Footer = () => {
                 <Phone className={styles.contactIcon} size={20} />
                 <a href="tel:+74951233585">+7 (495) 123 35-85</a>
               </li>
+
               <li className={styles.contactItem}>
                 <Mail className={styles.contactIcon} size={20} />
                 <a href="mailto:itishkino@yandex.ru">itishkino@yandex.ru</a>
               </li>
               <li className={styles.contactItem}>
                 <MapPin className={styles.contactIcon} size={20} />
-                <a
-                  href="https://yandex.ru/maps/?text=%D0%B3.%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9C%D0%B0%D1%80%D1%8C%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D0%B1%D1%83%D0%BB%D1%8C%D0%B2%D0%B0%D1%80%2C%204"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.contactLink}
-                >
-                  г. Москва, Марьинский бульвар, 4
-                </a>
+                <div className="contactTexts">
+                  <a
+                    href="https://yandex.ru/maps/-/CLHTYZyw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.contactLink}
+                  >
+                    г. Москва, Марьинский бульвар, 4
+                  </a>{" "}
+                  <br />
+                  <a
+                    href="https://yandex.ru/maps/-/CLHTY4yO"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.contactLink}
+                  >
+                    г. Люберцы, ул. 3-е почтовое отделение, д. 82
+                  </a>
+                </div>
               </li>
+
+              {/* Вторая точка */}
+              <li className={styles.contactItem}></li>
+
               <li className={styles.contactItem}>
                 <Clock className={styles.contactIcon} size={20} />
-                Ежедневно: 10:00-19:00
+                Ежедневно: 10:00–19:00
               </li>
             </ul>
           </div>
 
-          {/* Map */}
           <div className={styles.mapColumn}>
             <div className={styles.mapContainer}>
               <iframe
-                src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=151609639415"
+                src="https://yandex.ru/map-widget/v1/?um=constructor%3A50634a1040010f4e04ea1d364536c47fccc4cd4dbcf6d54d48c617bbbee2662b&amp;source=constructor"
                 width="100%"
                 height="100%"
                 frameBorder="0"

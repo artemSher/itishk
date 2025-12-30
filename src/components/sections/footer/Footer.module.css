@@ -53,7 +53,7 @@
 
 .contactItem {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 15px;
   color: #a0a0a0;
   font-size: 14px;
@@ -62,9 +62,12 @@
 
 .contactIcon {
   margin-right: 12px;
-  color: #00B199;
+  color: #00b199;
   flex-shrink: 0;
+  display: flex;
+
   margin-top: 3px;
+  align-items: center;
 }
 
 .contactLink {
@@ -124,7 +127,7 @@
 
 .socialLink:hover {
   color: #ffffff;
-  background-color: #00B199;
+  background-color: #00b199;
 }
 
 @media (max-width: 768px) {
@@ -132,11 +135,11 @@
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  
+
   .mapContainer {
     height: 250px;
   }
-  
+
   .bottomBar {
     flex-direction: column;
     text-align: center;

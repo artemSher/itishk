@@ -6,8 +6,9 @@ import { KeyDirectionsSection } from "../sections/key-directions/KeyDirectionsSe
 import { FullscreenTextSection } from "../sections/fullscreen-text/FullscreenTextSection";
 import { Footer } from "../sections/footer/Footer";
 import { PageLayout } from "../layout/PageLayout";
+import { CookiePopup } from "../ui/CookiePopup/CookiePopup";
+import { OnlineClassesSection } from "../sections/online-сlasses/OnlineClassesSection";
 
-// Ленивая загрузка тяжёлых секций (с анимациями)
 const YouAreCodeSection = dynamic(
   () =>
     import("../sections/you-are-code/YouAreCodeSection").then((mod) => ({
@@ -111,7 +112,9 @@ export default function ClientHomePage() {
         <KeyDirectionsSection />
         <CoursesSection />
       </section>
-
+      <section id="online classes">
+        <OnlineClassesSection />
+      </section>
       {/* Секция: Почему выбирают Айтишкино? */}
       <section id="why-us">
         <FullscreenTextSection
@@ -155,6 +158,10 @@ export default function ClientHomePage() {
       {/* Секция: Консультация */}
       <section id="contacts">
         <ConsultationSection />
+      </section>
+
+      <section id="contacts">
+        <CookiePopup />
       </section>
 
       {/* Подвал сайта */}

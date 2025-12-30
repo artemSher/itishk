@@ -1,63 +1,79 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import logo from '@/../public/images/logo/logo.png';
-import styles from './Header.module.css';
+import type React from "react";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import logo from "@/../public/images/logo/logo.png";
+import styles from "./Header.module.css";
 
 const navigation = [
-  { name: 'Курсы', href: '#courses' },
-  { name: 'Почему выбирают нас?', href: '#why-us' },
-  { name: 'Проекты учеников', href: '#projects' },
-  { name: 'Контакты', href: '#contacts' },
+  { name: "Курсы", href: "/#courses" },
+  { name: "Почему выбирают нас?", href: "/#why-us" },
+  { name: "Проекты учеников", href: "/#projects" },
+  { name: "Контакты", href: "/#contacts" },
 ];
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   const closeMenu = () => setIsMenuOpen(false);
 
   const handlePhoneClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!window.confirm('Позвонить по номеру +7 (495) 123 35-85?')) {
+    if (!window.confirm("Позвонить по номеру +7 (495) 123 35-85?")) {
       e.preventDefault();
     }
   };
 
   const handleRecordClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const form = document.getElementById('application-form');
+
+    // If not on home page, navigate to home page with contacts anchor
+    if (pathname !== "/") {
+      window.location.href = "/#contacts";
+      return;
+    }
+
+    const form = document.getElementById("application-form");
     if (form) {
       const yOffset = -80;
       const y = form.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      
+
       window.scrollTo({
         top: y,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
-      
-      const firstInput = form.querySelector('input, textarea, select') as HTMLInputElement | null;
+
+      const firstInput = form.querySelector(
+        "input, textarea, select"
+      ) as HTMLInputElement | null;
       if (firstInput) {
         const focusInput = () => {
           firstInput.focus({
-            preventScroll: true
+            preventScroll: true,
           });
         };
-        
+
         const focusTimer = setTimeout(focusInput, 800);
-        
+
         const onScroll = () => {
-          if ((window.pageYOffset >= y - 10 && window.pageYOffset <= y + 10) || 
-              (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 2) {
-            window.removeEventListener('scroll', onScroll);
+          if (
+            (window.pageYOffset >= y - 10 && window.pageYOffset <= y + 10) ||
+            window.innerHeight + window.pageYOffset >=
+              document.body.offsetHeight - 2
+          ) {
+            window.removeEventListener("scroll", onScroll);
             clearTimeout(focusTimer);
             focusInput();
           }
         };
-        
+
         setTimeout(() => {
-          window.addEventListener('scroll', onScroll, { once: true });
+          window.addEventListener("scroll", onScroll, { once: true });
         }, 100);
       }
     }
@@ -71,18 +87,18 @@ export const Header = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [scrolled]);
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.container}>
         <nav className={styles.nav}>
           {/* Логотип */}
           <Link href="/" className={styles.logo} onClick={closeMenu}>
             <Image
-              src={logo}
+              src={logo || "/placeholder.svg"}
               alt="Айтишкино"
               priority
               className={styles.logoImage}
@@ -92,8 +108,8 @@ export const Header = () => {
           {/* Навигация для десктопа */}
           <div className={styles.desktopNav}>
             {navigation.map((item) => (
-              <Link 
-                key={item.name} 
+              <Link
+                key={item.name}
                 href={item.href}
                 className={styles.navLink}
                 onClick={closeMenu}
@@ -101,19 +117,19 @@ export const Header = () => {
                 {item.name}
               </Link>
             ))}
-            
-            <a 
-              href="tel:+74951233585" 
+
+            <a
+              href="tel:+74951233585"
               className={styles.phoneLink}
               onClick={handlePhoneClick}
-            > 
+            >
               +7 (495) 123 35-85
             </a>
           </div>
 
           {/* Кнопки */}
           <div className={styles.buttonsContainer}>
-            <button 
+            <button
               className={styles.recordButton}
               onClick={(e) => {
                 closeMenu();
@@ -122,19 +138,28 @@ export const Header = () => {
             >
               Запись
             </button>
-            <a href="https://itishkino.pro" target="_blank" rel="noopener noreferrer" className={styles.loginButton}>
+            <a
+              href="https://itishkino.pro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.loginButton}
+            >
               Войти
             </a>
           </div>
 
           {/* Кнопка мобильного меню */}
-          <button 
+          <button
             className={styles.menuButton}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
+            aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={isMenuOpen}
           >
-            <span className={`${styles.menuIcon} ${isMenuOpen ? styles.menuIconOpen : ''}`}>
+            <span
+              className={`${styles.menuIcon} ${
+                isMenuOpen ? styles.menuIconOpen : ""
+              }`}
+            >
               <span></span>
               <span></span>
               <span></span>
@@ -148,8 +173,8 @@ export const Header = () => {
         <div className={styles.mobileMenu}>
           <div className={styles.mobileMenuContent}>
             {navigation.map((item) => (
-              <Link 
-                key={item.name} 
+              <Link
+                key={item.name}
                 href={item.href}
                 className={styles.mobileNavLink}
                 onClick={closeMenu}
@@ -157,8 +182,8 @@ export const Header = () => {
                 {item.name}
               </Link>
             ))}
-            <a 
-              href="tel:+74951233585" 
+            <a
+              href="tel:+74951233585"
               className={styles.mobilePhoneLink}
               onClick={(e) => {
                 closeMenu();
@@ -168,7 +193,7 @@ export const Header = () => {
               +7 (495) 123 35-85
             </a>
             <div className={styles.mobileButtons}>
-              <button 
+              <button
                 className={styles.mobileRecordButton}
                 onClick={(e) => {
                   closeMenu();
@@ -177,7 +202,12 @@ export const Header = () => {
               >
                 Запись
               </button>
-              <a href="https://itishkino.pro" target="_blank" rel="noopener noreferrer" className={styles.mobileLoginButton}>
+              <a
+                href="https://itishkino.pro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.mobileLoginButton}
+              >
                 Войти
               </a>
             </div>
@@ -187,4 +217,3 @@ export const Header = () => {
     </header>
   );
 };
-
