@@ -82,9 +82,6 @@ const COURSES: Course[] = [
     ],
     category: "robotics",
   },
-];
-
-const ROBOTICS_COURSES: Course[] = [
   {
     title: "Junior: “Букварь изобретателя”",
     age: "5-7 лет",
@@ -131,6 +128,48 @@ const ROBOTICS_COURSES: Course[] = [
     ],
     category: "programming",
   },
+  {
+    title: "Senior: ”Энциклопедия разработчика”",
+    age: "12-15 лет",
+    modules: 6,
+    icon: CourseIcons.webDev,
+    modulesList: [
+      "Construct 2",
+      "Roblox Studio",
+      "Office",
+      "Thunkable",
+      "Tinkercad",
+      "Godot",
+    ],
+    outcomes: [
+      "Проектная работа и портфолио",
+      "Погружение в разработку игр, приложений и 3D-моделирование",
+    ],
+    category: "programming",
+  },
+  {
+    title: "Middle: “Учебник программиста”",
+    age: "8-11 лет",
+    modules: 7,
+    icon: CourseIcons.gameDev,
+    modulesList: [
+      "Kodu game Lab",
+      "Aseprite",
+      "Scratch",
+      "Презентации PowerPoint",
+      "Construct 2",
+      "Google Blockly",
+      "Minecraft Education",
+    ],
+    outcomes: [
+      "Создание простых игр и интерактивных проектов",
+      "Укрепление базовых навыков программирования",
+    ],
+    category: "programming",
+  },
+];
+
+const ROBOTICS_COURSES: Course[] = [
   {
     title: "Senior: ”Энциклопедия разработчика”",
     age: "12-15 лет",
