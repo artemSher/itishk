@@ -410,6 +410,84 @@
   color: #94a3b8;
 }
 
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #334155;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.radioGroup {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.radioLabel {
+  flex: 1;
+  cursor: pointer;
+}
+
+.radioInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radioButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #334155;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.radioInput:checked + .radioButton {
+  border-color: #00b18f;
+  background: rgba(0, 177, 143, 0.05);
+  color: #00b18f;
+  box-shadow: 0 0 0 3px rgba(0, 177, 143, 0.1);
+}
+
+.radioButton:hover {
+  border-color: #00b18f;
+}
+
+.onlineNote {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: rgba(0, 177, 143, 0.08);
+  border: 1px solid rgba(0, 177, 143, 0.2);
+  border-radius: 10px;
+  font-size: 14px;
+  color: #00997a;
+}
+
+.onlineNoteIcon {
+  font-size: 18px;
+}
+
+.error {
+  display: block;
+  color: #ef4444;
+  font-size: 13px;
+  margin-top: 6px;
+  text-align: left;
+}
+
 .input::placeholder {
   color: #94a3b8;
   opacity: 0.8;

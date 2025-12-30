@@ -1,29 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./ConsultationSection.module.css";
 import { Send } from "lucide-react";
 import { InputMask } from "@react-input/mask";
 import { useForm, Controller } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 
+type FormatType = "online" | "offline";
+type CourseType = "programming" | "robotics" | "duo";
+
 interface IFormData {
   name: string;
   phone: string;
-  email: string;
+  format: FormatType;
+  course: CourseType;
 }
+
+const courseLabels: Record<CourseType, string> = {
+  programming: "Программирование",
+  robotics: "Робототехника",
+  duo: "Дуо: Программирование + Робототехника",
+};
 
 export const ConsultationSection = () => {
   const {
     control,
     handleSubmit: handleFormSubmit,
     formState: { errors },
-  } = useForm<IFormData>();
+    watch,
+    setValue,
+  } = useForm<IFormData>({
+    defaultValues: {
+      format: "offline",
+      course: "programming",
+    },
+  });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const selectedFormat = watch("format");
+
+  useEffect(() => {
+    if (selectedFormat === "online") {
+      setValue("course", "programming");
+    }
+  }, [selectedFormat, setValue]);
+
   const onSubmit = async (data: IFormData) => {
     setIsLoading(true);
+
+    const formatLabel = data.format === "online" ? "Онлайн" : "Офлайн";
+    const courseLabel = courseLabels[data.course];
 
     try {
       await emailjs.send(
@@ -32,7 +60,8 @@ export const ConsultationSection = () => {
         {
           name: data.name,
           phone: data.phone,
-          email: data.email,
+          format: formatLabel,
+          course: courseLabel,
         },
         "4NGKAgHHT5_Xo9_LN"
       );
@@ -138,32 +167,64 @@ export const ConsultationSection = () => {
               </div>
 
               <div className={styles.formGroup}>
+                <label className={styles.label}>Формат обучения</label>
                 <Controller
-                  name="email"
+                  name="format"
                   control={control}
-                  defaultValue=""
-                  rules={{
-                    required: "Пожалуйста, введите ваш email",
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: "Пожалуйста, введите корректный email",
-                    },
-                  }}
                   render={({ field }) => (
-                    <input
-                      {...field}
-                      type="email"
-                      className={styles.input}
-                      placeholder="Email"
-                    />
+                    <div className={styles.radioGroup}>
+                      <label className={styles.radioLabel}>
+                        <input
+                          type="radio"
+                          {...field}
+                          value="offline"
+                          checked={field.value === "offline"}
+                          onChange={() => field.onChange("offline")}
+                          className={styles.radioInput}
+                        />
+                        <span className={styles.radioButton}>Офлайн</span>
+                      </label>
+                      <label className={styles.radioLabel}>
+                        <input
+                          type="radio"
+                          {...field}
+                          value="online"
+                          checked={field.value === "online"}
+                          onChange={() => field.onChange("online")}
+                          className={styles.radioInput}
+                        />
+                        <span className={styles.radioButton}>Онлайн</span>
+                      </label>
+                    </div>
                   )}
                 />
-                {errors.email && (
-                  <span className={styles.error}>
-                    {errors.email.message as string}
-                  </span>
-                )}
               </div>
+
+              {selectedFormat === "offline" && (
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Направление</label>
+                  <Controller
+                    name="course"
+                    control={control}
+                    render={({ field }) => (
+                      <select {...field} className={styles.select}>
+                        <option value="programming">Программирование</option>
+                        <option value="robotics">Робототехника</option>
+                        <option value="duo">Дуо: Программирование + Робототехника</option>
+                      </select>
+                    )}
+                  />
+                </div>
+              )}
+
+              {selectedFormat === "online" && (
+                <div className={styles.formGroup}>
+                  <div className={styles.onlineNote}>
+                    <span className={styles.onlineNoteIcon}>💻</span>
+                    <span>Онлайн доступно только программирование</span>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className={styles.formFooter}>
