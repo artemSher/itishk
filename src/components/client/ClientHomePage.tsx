@@ -7,7 +7,6 @@ import { FullscreenTextSection } from "../sections/fullscreen-text/FullscreenTex
 import { Footer } from "../sections/footer/Footer";
 import { PageLayout } from "../layout/PageLayout";
 import { CookiePopup } from "../ui/CookiePopup/CookiePopup";
-import { OnlineClassesSection } from "../sections/online-сlasses/OnlineClassesSection";
 
 const YouAreCodeSection = dynamic(
   () =>
@@ -107,33 +106,34 @@ export default function ClientHomePage() {
         <YouAreCodeSection />
       </section>
 
+      <section id="why-us">
+        <ApproachSection />
+      </section>
+
       {/* Секция 3: Ключевые направления */}
       <section id="courses">
         <KeyDirectionsSection />
         <CoursesSection />
       </section>
-      <section id="online classes">
+
+      {/* <section id="online classes">
         <OnlineClassesSection />
-      </section>
-      {/* Секция: Почему выбирают Айтишкино? */}
-      <section id="why-us">
-        <FullscreenTextSection
-          line1="Почему выбирают"
-          line2="Айтишкино?"
-          backgroundColor="#f8f9fa"
-        />
-        <ApproachSection />
-      </section>
+      </section> */}
 
       {/* Секция: Преимущества */}
+      <FullscreenTextSection
+        line1="Почему выбирают"
+        line2="Айтишкино?"
+        backgroundColor="#f8f9fa"
+      />
       <section id="advantages">
         <AdvantagesSection />
       </section>
 
       {/* Секция: Платформа */}
-      <section id="platform">
+      {/* <section id="platform">
         <PlatformSection />
-      </section>
+      </section> */}
 
       {/* Секция: Заработок */}
       <section id="earnings" style={{ scrollMarginTop: "80px" }}>
@@ -141,9 +141,9 @@ export default function ClientHomePage() {
       </section>
 
       {/* Секция: Проекты учеников */}
-      <section id="projects" style={{ scrollMarginTop: "80px" }}>
+      {/* <section id="projects" style={{ scrollMarginTop: "80px" }}>
         <StudentsSection />
-      </section>
+      </section> */}
 
       {/* Секция: Магазин */}
       <section id="shop">
@@ -151,9 +151,9 @@ export default function ClientHomePage() {
       </section>
 
       {/* Секция: FAQ */}
-      <section id="faq">
+      {/* <section id="faq">
         <FAQSection />
-      </section>
+      </section> */}
 
       {/* Секция: Консультация */}
       <section id="contacts">

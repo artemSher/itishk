@@ -1,304 +1,75 @@
 "use client";
 
-import React, { useState } from "react";
+import { useMemo, useState } from "react";
 import styles from "./CoursesSection.module.css";
-import { CourseCard } from "@/components/ui/CourseCard/CourseCard";
-import { ArrowRight } from "lucide-react";
+import { CoursesList } from "./CoursesList";
+import { CoursesCTA } from "./CoursesCTA";
+import { COURSES, CourseCategory, CourseFormat } from "./courses.data";
 
-interface Course {
-  title: string;
-  age: string;
-  modules: number;
-  icon: React.ReactNode;
-  modulesList: string[];
-  outcomes: string[];
-  category: "programming" | "robotics";
+interface CoursesSectionProps {
+  withFormatToggle?: boolean;
+  format?: CourseFormat;
+  category?: CourseCategory;
+  title?: string;
 }
 
-import { BrainCircuit, Gamepad2, Cpu, Bot, Puzzle, Globe } from "lucide-react";
+export const CoursesSection = ({
+  withFormatToggle = false,
+  format,
+  category,
+  title = "Курсы",
+}: CoursesSectionProps) => {
+  const [activeFormat, setActiveFormat] = useState<CourseFormat>(
+    format ?? "offline"
+  );
 
-// Иконки для курсов
-const CourseIcons = {
-  // Программирование
-  digitalThinking: <BrainCircuit className="text-[#00B18F]" size={48} />,
-  gameDev: <Gamepad2 className="text-[#00B18F]" size={48} />,
-  webDev: <Globe className="text-[#00B18F]" size={48} />,
+  const effectiveFormat = withFormatToggle ? activeFormat : format;
 
-  // Робототехника
-  roboticsBasic: <Puzzle className="text-[#00B18F]" size={48} />,
-  roboticsAdvanced: <Bot className="text-[#00B18F]" size={48} />,
-  iot: <Cpu className="text-[#00B18F]" size={48} />,
-};
-
-// Данные о курсах
-const COURSES: Course[] = [
-  {
-    title: "Middle: “Справочник инженера”",
-    age: "7-11 лет",
-    modules: 12,
-    icon: CourseIcons.roboticsAdvanced,
-    modulesList: [
-      "Основы программирования",
-      "РоббоЛаборатория",
-      "РоббоПлатформа",
-      "Основы физики",
-      "Основы схемотехники",
-      "3D‑моделирование",
-      "Создание игр с Лабораторией",
-      "Простая математика и геометрия",
-      "Цифровая архитектура — SketchUp",
-      "3D печать",
-      "VR‑технологии",
-      "Итоговые проекты",
-    ],
-    outcomes: [
-      "Систематизация инженерных навыков и практическая работа с оборудованием",
-      "Проектная деятельность: от идеи до защиты готового решения",
-    ],
-    category: "robotics",
-  },
-  {
-    title: "Senior: ”Мануал архитектора”",
-    age: "12-15 лет",
-    modules: 12,
-    icon: CourseIcons.iot,
-    modulesList: [
-      "Python",
-      "РоббоЛаборатория",
-      "РоббоПлатформа",
-      "3D печать",
-      "Основы физики в технологиях",
-      "Arduino Uno",
-      "Пайка",
-      "Инженерное 3D моделирование",
-      "Умный дом",
-      "ИИ в области робототехники",
-      "Создание игр в VR",
-      "Итоговые проекты",
-    ],
-    outcomes: [
-      "Глубокое погружение в инженерные и программные технологии: Python, Arduino, пайка, 3D печать",
-      "Как работают законы физики в реальных устройствах: эксперименты и принципы механики, электричества и движения",
-    ],
-    category: "robotics",
-  },
-  {
-    title: "Junior: “Букварь изобретателя”",
-    age: "5-7 лет",
-    modules: 12,
-    icon: CourseIcons.roboticsBasic,
-    modulesList: [
-      "Введение в робототехнику",
-      "Создание анимаций в Robbo Junior",
-      "3D ручка",
-      "Конструирование",
-      "LEGO WeDo 2.0",
-      "RobboScratch",
-      "Робоплатформа",
-      "Робот Отто",
-      "Схемотехника",
-      "3D моделирование Tinker",
-      "Лаборатория",
-      "Итоговые проекты",
-    ],
-    outcomes: [
-      "Первые инженерные навыки: конструирование, простая схемотехника и визуальное программирование",
-      "Знакомство с 3D‑инструментами и работа с детскими конструкторскими платформами",
-    ],
-    category: "robotics",
-  },
-  {
-    title: "Junior: “Компьютерная азбука”",
-    age: "5-7 лет",
-    modules: 8,
-    icon: CourseIcons.digitalThinking,
-    modulesList: [
-      "Rodocodo",
-      "Scratch Jr",
-      "Kodu game Lab",
-      "Aseprite",
-      "Code Monkey",
-      "Scratch",
-      "Презентации PowerPoint",
-      "Run Marco",
-    ],
-    outcomes: [
-      "Развитие логики и алгоритмического мышления",
-      "Знакомство с визуальным программированием и основами работы за ПК",
-    ],
-    category: "programming",
-  },
-  {
-    title: "Senior: ”Энциклопедия разработчика”",
-    age: "12-15 лет",
-    modules: 6,
-    icon: CourseIcons.webDev,
-    modulesList: [
-      "Construct 2",
-      "Roblox Studio",
-      "Office",
-      "Thunkable",
-      "Tinkercad",
-      "Godot",
-    ],
-    outcomes: [
-      "Проектная работа и портфолио",
-      "Погружение в разработку игр, приложений и 3D-моделирование",
-    ],
-    category: "programming",
-  },
-  {
-    title: "Middle: “Учебник программиста”",
-    age: "8-11 лет",
-    modules: 7,
-    icon: CourseIcons.gameDev,
-    modulesList: [
-      "Kodu game Lab",
-      "Aseprite",
-      "Scratch",
-      "Презентации PowerPoint",
-      "Construct 2",
-      "Google Blockly",
-      "Minecraft Education",
-    ],
-    outcomes: [
-      "Создание простых игр и интерактивных проектов",
-      "Укрепление базовых навыков программирования",
-    ],
-    category: "programming",
-  },
-];
-
-const ROBOTICS_COURSES: Course[] = [
-  {
-    title: "Senior: ”Энциклопедия разработчика”",
-    age: "12-15 лет",
-    modules: 6,
-    icon: CourseIcons.webDev,
-    modulesList: [
-      "Construct 2",
-      "Roblox Studio",
-      "Office",
-      "Thunkable",
-      "Tinkercad",
-      "Godot",
-    ],
-    outcomes: [
-      "Проектная работа и портфолио",
-      "Погружение в разработку игр, приложений и 3D-моделирование",
-    ],
-    category: "programming",
-  },
-  {
-    title: "Middle: “Учебник программиста”",
-    age: "8-11 лет",
-    modules: 7,
-    icon: CourseIcons.gameDev,
-    modulesList: [
-      "Kodu game Lab",
-      "Aseprite",
-      "Scratch",
-      "Презентации PowerPoint",
-      "Construct 2",
-      "Google Blockly",
-      "Minecraft Education",
-    ],
-    outcomes: [
-      "Создание простых игр и интерактивных проектов",
-      "Укрепление базовых навыков программирования",
-    ],
-    category: "programming",
-  },
-];
-
-export const CoursesSection = () => {
-  const [activeTab, setActiveTab] = useState<"offline" | "online">("offline");
-  const [expandedCourseId, setExpandedCourseId] = useState<string | null>(null);
-
-  const handleTabChange = (tab: "offline" | "online") => {
-    setActiveTab(tab);
-    setExpandedCourseId(null);
-  };
-
-  const handleToggleExpand = React.useCallback((id: string) => {
-    setExpandedCourseId((prevId) => (prevId === id ? null : id));
-  }, []);
-
-  const displayedCourses = activeTab === "offline" ? COURSES : ROBOTICS_COURSES;
+  const filteredCourses = useMemo(() => {
+    return COURSES.filter((course) => {
+      if (effectiveFormat && course.format !== effectiveFormat) return false;
+      if (category && course.category !== category) return false;
+      return true;
+    });
+  }, [effectiveFormat, category]);
 
   return (
-    <section className={styles.section} id="courses">
+    <section className={styles.section}>
       <div className={styles.container}>
-        <div className="flex flex-col items-center mb-[45.6px]">
-          <h2 className={styles.title}>Курсы в «Айтишкино»</h2>
+        <h2 className={styles.title}>{title}</h2>
 
+        {withFormatToggle && (
           <div className={styles.tabsContainer}>
             <button
               className={`${styles.tab} ${
-                activeTab === "offline" ? styles.activeTab : styles.inactiveTab
+                activeFormat === "offline"
+                  ? styles.activeTab
+                  : styles.inactiveTab
               }`}
-              onClick={() => handleTabChange("offline")}
+              onClick={() => setActiveFormat("offline")}
             >
               Очно
             </button>
             <button
               className={`${styles.tab} ${
-                activeTab === "online" ? styles.activeTab : styles.inactiveTab
+                activeFormat === "online"
+                  ? styles.activeTab
+                  : styles.inactiveTab
               }`}
-              onClick={() => handleTabChange("online")}
+              onClick={() => setActiveFormat("online")}
             >
               Онлайн
             </button>
           </div>
-        </div>
+        )}
 
-        <div className={styles.coursesGrid}>
-          {displayedCourses.map((course) => {
-            const courseId = `${activeTab}-${course.title
-              .toLowerCase()
-              .replace(/\s+/g, "-")}`;
-            return (
-              <CourseCard
-                key={courseId}
-                id={courseId}
-                title={course.title}
-                age={course.age}
-                modules={course.modules}
-                icon={course.icon}
-                modulesList={course.modulesList}
-                outcomes={course.outcomes}
-                category={course.category}
-                isExpanded={expandedCourseId === courseId}
-                onToggleExpand={handleToggleExpand}
-              />
-            );
-          })}
-        </div>
+        <CoursesList
+          courses={filteredCourses}
+          idPrefix={`${category ?? "all"}-${effectiveFormat ?? "all"}`}
+        />
       </div>
 
-      <div className="w-full max-w-[1440px] mx-auto px-5 mt-12 mb-16">
-        <div className="max-w-[1440px] mx-auto px-5">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="md:col-span-3">
-              <button
-                className="w-full flex items-center justify-center gap-3 bg-[#00B18F] hover:bg-[#00997A] text-white font-medium text-lg md:text-xl py-4 px-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#00B18F] focus:ring-opacity-50"
-                onClick={() => {
-                  const form = document.getElementById("application-form");
-                  if (form) {
-                    form.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              >
-                <span>Записаться на бесплатное пробное занятие!</span>
-                <ArrowRight
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                  size={20}
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <CoursesCTA />
     </section>
   );
 };

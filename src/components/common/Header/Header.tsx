@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -10,18 +10,32 @@ import logo from "@/../public/images/logo/logo.png";
 import styles from "./Header.module.css";
 
 const navigation = [
-  { name: "Курсы", href: "/#courses" },
-  { name: "Почему выбирают нас?", href: "/#why-us" },
-  { name: "Проекты учеников", href: "/#projects" },
+  { name: "Главная", href: "/" },
+  {
+    name: "Курсы",
+    href: "/#courses",
+    dropdown: [
+      { name: "Очные курсы программирования", href: "/offline/programming" },
+      { name: "Очные курсы робототехники", href: "/offline/robotics" },
+      { name: "Онлайн курсы программирования", href: "/online/programming" },
+    ],
+  },
+  { name: "Проекты учеников", href: "/projects" },
   { name: "Контакты", href: "/#contacts" },
 ];
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  const closeMenu = () => setIsMenuOpen(false);
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setMobileCoursesOpen(false);
+  };
 
   const handlePhoneClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!window.confirm("Позвонить по номеру +7 (495) 123 35-85?")) {
@@ -91,6 +105,20 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrolled]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.container}>
@@ -107,16 +135,65 @@ export const Header = () => {
 
           {/* Навигация для десктопа */}
           <div className={styles.desktopNav}>
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={styles.navLink}
-                onClick={closeMenu}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item) =>
+              item.dropdown ? (
+                <div
+                  key={item.name}
+                  className={styles.dropdownContainer}
+                  ref={dropdownRef}
+                  onMouseEnter={() => setDropdownOpen(true)}
+                  onMouseLeave={() => setDropdownOpen(false)}
+                >
+                  <button
+                    className={`${styles.navLink} ${styles.dropdownTrigger}`}
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    aria-expanded={dropdownOpen}
+                  >
+                    {item.name}
+                    <svg
+                      className={`${styles.dropdownArrow} ${
+                        dropdownOpen ? styles.dropdownArrowOpen : ""
+                      }`}
+                      width="10"
+                      height="6"
+                      viewBox="0 0 10 6"
+                      fill="none"
+                    >
+                      <path
+                        d="M1 1L5 5L9 1"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  {dropdownOpen && (
+                    <div className={styles.dropdownMenu}>
+                      {item.dropdown.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          href={subItem.href}
+                          className={styles.dropdownItem}
+                          onClick={() => setDropdownOpen(false)}
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={styles.navLink}
+                  onClick={closeMenu}
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
 
             <a
               href="tel:+74951233585"
@@ -172,16 +249,59 @@ export const Header = () => {
       {isMenuOpen && (
         <div className={styles.mobileMenu}>
           <div className={styles.mobileMenuContent}>
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={styles.mobileNavLink}
-                onClick={closeMenu}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item) =>
+              item.dropdown ? (
+                <div key={item.name} className={styles.mobileDropdown}>
+                  <button
+                    className={styles.mobileDropdownTrigger}
+                    onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
+                    aria-expanded={mobileCoursesOpen}
+                  >
+                    {item.name}
+                    <svg
+                      className={`${styles.mobileDropdownArrow} ${
+                        mobileCoursesOpen ? styles.mobileDropdownArrowOpen : ""
+                      }`}
+                      width="10"
+                      height="6"
+                      viewBox="0 0 10 6"
+                      fill="none"
+                    >
+                      <path
+                        d="M1 1L5 5L9 1"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  {mobileCoursesOpen && (
+                    <div className={styles.mobileDropdownMenu}>
+                      {item.dropdown.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          href={subItem.href}
+                          className={styles.mobileDropdownItem}
+                          onClick={closeMenu}
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={styles.mobileNavLink}
+                  onClick={closeMenu}
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
             <a
               href="tel:+74951233585"
               className={styles.mobilePhoneLink}
