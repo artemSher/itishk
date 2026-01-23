@@ -11,6 +11,10 @@ import { PlatformSection } from "@/components/sections/platform/PlatformSection"
 import { EarningSection } from "@/components/sections/earning/EarningSection";
 import { FAQSection } from "@/components/sections/faq/FAQSection";
 import { SchoolsMapSection } from "@/components/sections/map/SchoolsMapSection";
+import { SchoolSection } from "@/components/sections/school/school";
+import FeaturesSection from "@/components/sections/features/FeaturesSection";
+import { ShopSection } from "@/components/sections/shop/ShopSection";
+import { Reviews } from "@/components/sections/reviews/Reviews";
 
 // консультация
 const ConsultationSection = dynamic(
@@ -18,17 +22,48 @@ const ConsultationSection = dynamic(
     import("@/components/sections/consultation/ConsultationSection").then(
       (mod) => ({
         default: mod.ConsultationSection,
-      })
+      }),
     ),
-  { ssr: true }
+  { ssr: true },
 );
-
+const mockReviews = [
+  {
+    id: "1",
+    name: "Имя",
+    age: 1,
+    avatar: "М",
+    course: "Курс",
+    rating: 4,
+    text: "Текст для отзыва длиной примерно в несколько предложений. Очень понравились занятия, преподаватель объясняет доступно и интересно!",
+    mediaType: "image" as const,
+    mediaUrl: "/reviews/anya.jpg",
+  },
+  {
+    id: "2",
+    name: "Имя",
+    age: 1,
+    avatar: "А",
+    course: "Курс",
+    rating: 5,
+    text: "Текст для отзыва длиной примерно в несколько предложений. Очень понравились занятия, преподаватель объясняет доступно и интересно!",
+    mediaType: "video" as const,
+    mediaUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  },
+];
 export default function OnlineProgrammingPage() {
   return (
     <PageLayout>
+      {/* SchoolSection */}
+      <section id="school">
+        <SchoolSection
+          title={["Школы", "Робототехники", "для детей"]}
+          imageSrc="/images/school/offline-robot.png"
+        />
+      </section>
+
       {/* Hero */}
       <section id="online-classes">
-        <OnlineClassesSection />
+        <OnlineClassesSection showHeader={false} />
       </section>
 
       {/* Почему онлайн */}
@@ -37,6 +72,20 @@ export default function OnlineProgrammingPage() {
         line2="Айтишкино?"
         backgroundColor="#f8f9fa"
       />
+
+      <section id="features">
+        <FeaturesSection />
+      </section>
+
+      {/* Секция: Заработок */}
+      <section id="earnings" style={{ scrollMarginTop: "80px" }}>
+        <EarningSection />
+      </section>
+
+      {/* Секция: Магазин */}
+      <section id="shop">
+        <ShopSection />
+      </section>
 
       <section id="robotics" className="py-20">
         <div className="max-w-[1100px] mx-auto px-5 text-center mb-12">
@@ -48,15 +97,15 @@ export default function OnlineProgrammingPage() {
           </p>
         </div>
 
-        <CoursesSection
-          title="" // 👈 заголовок уже свой
-          format="offline" // или "online", если нужно
-          category="robotics"
-        />
+        <CoursesSection title="" format="offline" category="robotics" />
       </section>
 
       <section id="map" style={{ scrollMarginTop: "80px" }}>
         <SchoolsMapSection />
+      </section>
+
+      <section id="reviews">
+        <Reviews reviews={mockReviews} />{" "}
       </section>
 
       <section id="faq">

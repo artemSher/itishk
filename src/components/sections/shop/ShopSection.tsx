@@ -30,7 +30,6 @@ const products: Product[] = [
   { id: 17, name: "PowerBank", type: "accessory", points: 700 },
 ];
 
-// Map product names to gift image filenames in public/images/gifts/
 const giftImageByName: Record<string, string> = {
   "Mi Band 10": "xiaomi.jpg",
   "Playstation 5": "ps5.jpg",
@@ -82,7 +81,7 @@ export const ShopSection = () => {
       },
       {
         threshold: 0.2, // Trigger when 20% of the section is visible
-      }
+      },
     );
 
     if (sectionRef.current) {

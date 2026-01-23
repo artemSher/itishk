@@ -1,0 +1,65 @@
+"use client";
+
+import { useState } from "react";
+import styles from "./AboutSection.module.css";
+import { VideoPopup } from "@/components/ui/VideoPopup/VideoPopup";
+
+export default function AboutSection() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  return (
+    <>
+      <section className={styles.aboutSection}>
+        <div className={styles.container}>
+          <div className={styles.textContainer}>
+            <h2 className={styles.heading}>О нас</h2>
+            <p className={styles.paragraph}>
+              Школа программирования и робототехники для детей "Пиксель" — это
+              обучение модулях, новые знакомства и перспектива в мире инноваций.
+            </p>
+            <p className={styles.paragraph}>
+              Мы учим детей программированию, созданию игр и веб-дизайну.
+              Пробильную возможности развития в мире высоких технологий.
+            </p>
+          </div>
+
+          <div className={styles.videoCard}>
+            <div className={styles.decorative4} />
+            <div className={styles.decorative5} />
+            <div className={styles.decorative1} />
+            <div className={styles.decorative2} />
+            <div className={styles.decorative3} />
+
+            {/* Video content */}
+            <div className={styles.videoContent}>
+              <button
+                className={styles.playButton}
+                aria-label="Play video"
+                onClick={() => setIsVideoOpen(true)}
+              >
+                <div className={styles.playIcon}>
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </button>
+
+              <div className={styles.textBlock}>
+                <span className={styles.videoLabel}>Видео</span>
+                <span className={styles.videoTitle}>О школе</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Popup */}
+      <VideoPopup
+        isOpen={isVideoOpen}
+        onClose={() => setIsVideoOpen(false)}
+        videoUrl="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        studentName="Школа Пиксель"
+      />
+    </>
+  );
+}

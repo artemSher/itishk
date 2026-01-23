@@ -1,16 +1,24 @@
 import styles from "./OnlineClassesSection.module.css";
 import Image from "next/image";
 
-export function OnlineClassesSection() {
+type OnlineClassesSectionProps = {
+  showHeader?: boolean;
+};
+
+export function OnlineClassesSection({
+  showHeader = true,
+}: OnlineClassesSectionProps) {
   return (
     <section className={styles.section}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Онлайн занятия</h2>
-        <p className={styles.subtitle}>
-          Программирование из дома Помимо очных занятий, в Айтишкино доступно
-          полноценное онлайн-обучение. Учиться должно быть комфортно!
-        </p>
-      </div>
+      {showHeader && (
+        <div className={styles.header}>
+          <h2 className={styles.title}>Онлайн занятия</h2>
+          <p className={styles.subtitle}>
+            Программирование из дома Помимо очных занятий, в Айтишкино доступно
+            полноценное онлайн-обучение. Учиться должно быть комфортно!
+          </p>
+        </div>
+      )}
 
       <div className={styles.cardsContainer}>
         <div className={styles.cardsRow}>

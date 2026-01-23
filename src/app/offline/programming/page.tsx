@@ -9,23 +9,59 @@ import { OnlineClassesSection } from "@/components/sections/online-сlasses/Onli
 import { CoursesSection } from "@/components/sections/courses/CoursesSection";
 import { SchoolsMapSection } from "@/components/sections/map/SchoolsMapSection";
 import { FAQSection } from "@/components/sections/faq/FAQSection";
+import { SchoolSection } from "@/components/sections/school/school";
+import FeaturesSection from "@/components/sections/features/FeaturesSection";
+import { EarningSection } from "@/components/sections/earning/EarningSection";
+import { ShopSection } from "@/components/sections/shop/ShopSection";
+import { Reviews } from "@/components/sections/reviews/Reviews";
 
 const ConsultationSection = dynamic(
   () =>
     import("@/components/sections/consultation/ConsultationSection").then(
       (mod) => ({
         default: mod.ConsultationSection,
-      })
+      }),
     ),
-  { ssr: true }
+  { ssr: true },
 );
-
+const mockReviews = [
+  {
+    id: "1",
+    name: "Имя",
+    age: 1,
+    avatar: "М",
+    course: "Курс",
+    rating: 4,
+    text: "Текст для отзыва длиной примерно в несколько предложений. Очень понравились занятия, преподаватель объясняет доступно и интересно!",
+    mediaType: "image" as const,
+    mediaUrl: "/reviews/anya.jpg",
+  },
+  {
+    id: "2",
+    name: "Имя",
+    age: 1,
+    avatar: "А",
+    course: "Курс",
+    rating: 5,
+    text: "Текст для отзыва длиной примерно в несколько предложений. Очень понравились занятия, преподаватель объясняет доступно и интересно!",
+    mediaType: "video" as const,
+    mediaUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  },
+];
 export default function OnlineProgrammingPage() {
   return (
     <PageLayout>
+      {/* SchoolSection */}
+      <section id="school">
+        <SchoolSection
+          title={["Школы", "программирования", "для детей"]}
+          imageSrc="/images/school/offline-prog.png"
+        />
+      </section>
+
       {/* Hero */}
       <section id="online-classes">
-        <OnlineClassesSection />
+        <OnlineClassesSection showHeader={false} />
       </section>
 
       {/* Почему офлайн */}
@@ -35,6 +71,20 @@ export default function OnlineProgrammingPage() {
         backgroundColor="#f8f9fa"
       />
 
+      <section id="features">
+        <FeaturesSection />
+      </section>
+
+      {/* Секция: Заработок */}
+      <section id="earnings" style={{ scrollMarginTop: "80px" }}>
+        <EarningSection />
+      </section>
+
+      {/* Секция: Магазин */}
+      <section id="shop">
+        <ShopSection />
+      </section>
+
       {/* Офлайн курсы по программированию */}
       <section id="courses">
         <CoursesSection
@@ -43,9 +93,15 @@ export default function OnlineProgrammingPage() {
           category="programming"
         />
       </section>
+
       <section id="map" style={{ scrollMarginTop: "80px" }}>
         <SchoolsMapSection />
       </section>
+
+      <section id="reviews">
+        <Reviews reviews={mockReviews} />{" "}
+      </section>
+
       <section id="faq">
         <FAQSection />
       </section>
@@ -53,10 +109,8 @@ export default function OnlineProgrammingPage() {
       <section id="contacts" style={{ scrollMarginTop: "80px" }}>
         <ConsultationSection />
       </section>
-
       {/* Cookie */}
       <CookiePopup />
-
       {/* Footer */}
       <Footer />
     </PageLayout>

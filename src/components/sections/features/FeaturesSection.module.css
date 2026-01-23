@@ -1,0 +1,124 @@
+.featuresSection {
+  display: flex;
+  gap: 32px;
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 592px;
+  height: 420px;
+  background: #ffffff;
+  box-shadow:
+    0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  border-radius: 24px;
+  overflow: hidden;
+  flex: 1 1 calc(50% - 16px);
+  min-width: 300px;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 32px;
+  gap: 24px;
+  height: 256px;
+  background: #00b18f;
+}
+
+.icon {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.badge {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 26px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+}
+
+.badgeText {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.44px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 32px 0px;
+  gap: 16px;
+  flex: 1;
+}
+
+.heading {
+  margin: 0;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.07px;
+  color: #0a0a0a;
+}
+
+.paragraph {
+  margin: 0;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: -0.31px;
+  color: #4a5565;
+}
+
+@media (max-width: 768px) {
+  .featuresSection {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+    min-height: 420px;
+  }
+}

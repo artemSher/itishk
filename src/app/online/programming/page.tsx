@@ -10,6 +10,9 @@ import { CoursesSection } from "@/components/sections/courses/CoursesSection";
 import { PlatformSection } from "@/components/sections/platform/PlatformSection";
 import { EarningSection } from "@/components/sections/earning/EarningSection";
 import { FAQSection } from "@/components/sections/faq/FAQSection";
+import { SchoolSection } from "@/components/sections/school/school";
+import FeaturesSection from "@/components/sections/features/FeaturesSection";
+import { Reviews } from "@/components/sections/reviews/Reviews";
 
 // консультация
 const ConsultationSection = dynamic(
@@ -17,14 +20,43 @@ const ConsultationSection = dynamic(
     import("@/components/sections/consultation/ConsultationSection").then(
       (mod) => ({
         default: mod.ConsultationSection,
-      })
+      }),
     ),
-  { ssr: true }
+  { ssr: true },
 );
-
+const mockReviews = [
+  {
+    id: "1",
+    name: "Имя",
+    age: 1,
+    avatar: "М",
+    course: "Курс",
+    rating: 4,
+    text: "Текст для отзыва длиной примерно в несколько предложений. Очень понравились занятия, преподаватель объясняет доступно и интересно!",
+    mediaType: "image" as const,
+    mediaUrl: "/reviews/anya.jpg",
+  },
+  {
+    id: "2",
+    name: "Имя",
+    age: 1,
+    avatar: "А",
+    course: "Курс",
+    rating: 5,
+    text: "Текст для отзыва длиной примерно в несколько предложений. Очень понравились занятия, преподаватель объясняет доступно и интересно!",
+    mediaType: "video" as const,
+    mediaUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  },
+];
 export default function OnlineProgrammingPage() {
   return (
     <PageLayout>
+      {/* SchoolSection */}
+      <SchoolSection
+        title={["Онлайн-школа", "программирования", "для детей"]}
+        imageSrc="/images/school/online-prog.png"
+      />
+
       {/* Hero */}
       <section id="online-classes">
         <OnlineClassesSection />
@@ -36,6 +68,9 @@ export default function OnlineProgrammingPage() {
         line2="Айтишкино?"
         backgroundColor="#f8f9fa"
       />
+      <section id="features">
+        <FeaturesSection />
+      </section>
 
       <section id="platform">
         <PlatformSection />
@@ -52,6 +87,9 @@ export default function OnlineProgrammingPage() {
           format="online"
           category="programming"
         />
+      </section>
+      <section id="reviews">
+        <Reviews reviews={mockReviews} />{" "}
       </section>
       <section id="faq">
         <FAQSection />
