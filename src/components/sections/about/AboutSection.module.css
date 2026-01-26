@@ -1,14 +1,14 @@
 .aboutSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 48px 32px 0;
-  gap: 40px;
   width: 100%;
-  max-width: 900px;
-  margin: 10vh auto;
-  min-height: auto;
+  padding: 48px 15%;
+  margin: 10vh 0;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
 }
 
 .heading {
@@ -19,22 +19,14 @@
   letter-spacing: 0.395508px;
   color: #0a0a0a;
   margin: 0;
-  margin-bottom: 0;
-}
-
-.container {
-  display: flex;
-  width: 100%;
-  gap: 40px;
-  align-items: center;
 }
 
 .textContainer {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  flex: 1;
-  max-width: 380px;
+  flex: 1 1 0;
+  height: auto;
 }
 
 .paragraph {
@@ -49,10 +41,13 @@
 }
 
 .videoCard {
-  flex: 1;
+  flex: 1 1 0;
   width: 100%;
-  max-width: 400px;
-  height: 240px;
+  max-width: none;
+
+  aspect-ratio: 16 / 9;
+  height: auto;
+
   background: linear-gradient(180deg, #6b8eff 0%, #7fa4ff 50%, #7fdbb8 100%);
   border-radius: 20px;
   box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.15);
@@ -129,7 +124,6 @@
   color: white;
 }
 
-/* Decorative elements */
 .decorative1 {
   position: absolute;
   width: 56.93px;
@@ -184,32 +178,45 @@
   opacity: 0.5;
   border-radius: 0 0 0 1000px;
 }
-
 @media (max-width: 768px) {
   .aboutSection {
-    width: 100%;
-    padding: 40px 16px 0;
-    gap: 32px;
-    max-width: 100%;
+    padding: 32px 16px;
+    margin: 6vh 0;
+    overflow-x: hidden;
   }
 
   .container {
+    width: 100%;
+    display: flex;
     flex-direction: column;
     gap: 24px;
+    align-items: stretch; /* ❗ ОБЯЗАТЕЛЬНО */
   }
 
   .textContainer {
-    max-width: 100%;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    height: auto;
   }
 
   .videoCard {
-    width: 100%;
-    height: 220px;
-    max-width: 100%;
+    width: 100%; /* ❗ ОБЯЗАТЕЛЬНО */
+    max-width: 520px; /* ограничение */
+    margin: 0 auto; /* центр */
+    flex: 0 0 auto; /* ❗ */
   }
 
   .heading {
     font-size: 24px;
     line-height: 30px;
+  }
+
+  .decorative1,
+  .decorative2,
+  .decorative3,
+  .decorative4,
+  .decorative5 {
+    display: none;
   }
 }

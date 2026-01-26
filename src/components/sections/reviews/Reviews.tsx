@@ -60,11 +60,7 @@ export function Reviews({ reviews }: ReviewsProps) {
   return (
     <section className={styles.reviewsSection}>
       <div className={styles.heading}>
-        <h2 className={styles.title}>
-          Отзывы о школе программирования
-          <br />
-          для детей &quot;Айтишкино&quot;
-        </h2>
+        <h2 className={styles.title}>Отзывы</h2>
       </div>
 
       <div className={styles.reviewsGrid}>

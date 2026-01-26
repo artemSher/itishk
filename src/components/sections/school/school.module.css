@@ -2,7 +2,7 @@
   position: relative;
   width: calc(100% - 10vw);
   max-width: 1354px;
-  height: 400px;
+  height: 500px;
   background: #00b18f;
   border-radius: 24px;
   overflow: hidden;
@@ -155,5 +155,73 @@
     height: 60%;
     right: 0;
     bottom: 0;
+  }
+}
+@media (max-width: 480px) {
+  .heroSection {
+    position: relative;
+    width: 375px;
+    height: 636px;
+    margin: 37px auto 0;
+    background: #00b18f;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .content {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 294px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    z-index: 2;
+  }
+
+  .textBlock {
+    align-items: center;
+    gap: 12px;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 38px;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: -0.31px;
+    max-width: 271px;
+  }
+
+  .button {
+    width: 294px;
+    height: 55px;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 9999px;
+  }
+
+  .imageWrapper {
+    position: absolute;
+    width: 343.58px;
+    height: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .image {
+    object-fit: contain;
+    object-position: bottom center;
   }
 }

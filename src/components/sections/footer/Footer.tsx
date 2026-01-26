@@ -35,7 +35,7 @@ export const Footer = () => {
           <div className={styles.logoColumn}>
             <div className={styles.logo}>
               <Image
-                src="/images/logo/logo.webp"
+                src="/images/logo/logo_white.webp"
                 alt="Айтишкино"
                 width={180}
                 height={40}
