@@ -31,7 +31,7 @@ const mockReviews = [
     age: 1,
     avatar: "М",
     course: "Курс",
-    rating: 4,
+    rating: 5,
     text: "Текст для отзыва длиной примерно в несколько предложений. Очень понравились занятия, преподаватель объясняет доступно и интересно!",
     mediaType: "image" as const,
     mediaUrl: "/reviews/anya.jpg",
@@ -51,7 +51,6 @@ const mockReviews = [
 export default function OnlineProgrammingPage() {
   return (
     <PageLayout>
-      {/* SchoolSection */}
       <section id="school">
         <SchoolSection
           title={["Школы", "программирования", "для детей"]}
@@ -59,12 +58,13 @@ export default function OnlineProgrammingPage() {
         />
       </section>
 
-      {/* Hero */}
       <section id="online-classes">
-        <OnlineClassesSection showHeader={false} />
+        <OnlineClassesSection
+          title="Очные занятия"
+          subtitle="Обучение в классе с преподавателем, живое общение и практика на каждом уроке."
+        />
       </section>
 
-      {/* Почему офлайн */}
       <FullscreenTextSection
         line1="Почему выбирают"
         line2="Айтишкино?"
@@ -75,17 +75,14 @@ export default function OnlineProgrammingPage() {
         <FeaturesSection />
       </section>
 
-      {/* Секция: Заработок */}
       <section id="earnings" style={{ scrollMarginTop: "80px" }}>
         <EarningSection />
       </section>
 
-      {/* Секция: Магазин */}
       <section id="shop">
         <ShopSection />
       </section>
 
-      {/* Офлайн курсы по программированию */}
       <section id="courses">
         <CoursesSection
           title="Очные курсы по программированию"
@@ -105,14 +102,17 @@ export default function OnlineProgrammingPage() {
       <section id="faq">
         <FAQSection />
       </section>
-      {/* Консультация */}
+
       <section id="contacts" style={{ scrollMarginTop: "80px" }}>
         <ConsultationSection />
       </section>
-      {/* Cookie */}
+
       <CookiePopup />
-      {/* Footer */}
-      <Footer />
+
+      {/* Подвал сайта */}
+      <section id="footer">
+        <Footer />
+      </section>
     </PageLayout>
   );
 }

@@ -31,7 +31,7 @@ const mockReviews = [
     age: 1,
     avatar: "М",
     course: "Курс",
-    rating: 4,
+    rating: 5,
     text: "Текст для отзыва длиной примерно в несколько предложений. Очень понравились занятия, преподаватель объясняет доступно и интересно!",
     mediaType: "image" as const,
     mediaUrl: "/reviews/anya.jpg",
@@ -59,7 +59,10 @@ export default function OnlineProgrammingPage() {
 
       {/* Hero */}
       <section id="online-classes">
-        <OnlineClassesSection />
+        <OnlineClassesSection
+          title="Онлайн-занятия"
+          subtitle="Индивидуальные занятия с преподавателем в удобное время"
+        />
       </section>
 
       {/* Почему онлайн */}
@@ -102,8 +105,10 @@ export default function OnlineProgrammingPage() {
       {/* Cookie */}
       <CookiePopup />
 
-      {/* Footer */}
-      <Footer />
+      {/* Подвал сайта */}
+      <section id="footer">
+        <Footer />
+      </section>
     </PageLayout>
   );
 }

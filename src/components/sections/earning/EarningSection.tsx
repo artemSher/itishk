@@ -37,7 +37,7 @@ export const EarningSection = () => {
         {showAnimation && (
           <div className={styles.animationContainer}>
             <LazyLottie
-              animationPath="EarningSection.json"
+              animationPath="ItShop.json"
               className={styles.animation}
             />
           </div>

@@ -160,3 +160,16 @@
   color: #ffffff;
   text-decoration: underline;
 }
+.spacer {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  font-size: 14px;
+}
+
+.spacer > div {
+  margin-bottom: 10px; /* расстояние между строками */
+}
+
+.spacer > div:last-child {
+  margin-bottom: 0;
+}

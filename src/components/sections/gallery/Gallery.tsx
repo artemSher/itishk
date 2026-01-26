@@ -7,50 +7,31 @@ import { ImagePopup } from "@/components/ui/ImagePopup/ImagePopup";
 interface GalleryItem {
   id: number;
   imageUrl: string;
-  alt: string;
 }
+
+const galleryItems: GalleryItem[] = [
+  { id: 1, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 2, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 3, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 4, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 5, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 6, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 7, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 8, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 9, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 10, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 11, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 12, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 13, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 14, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 15, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 16, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 17, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+  { id: 18, imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af" },
+];
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
-
-  // Замените этот массив на ваши реальные данные с фотографиями
-  const galleryItems: GalleryItem[] = [
-    {
-      id: 1,
-      imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af",
-      alt: "Робототехника - Занятие 1",
-    },
-    {
-      id: 2,
-      imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af",
-
-      alt: "Программирование - Занятие 2",
-    },
-    {
-      id: 3,
-      imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af",
-
-      alt: "Робототехника - Занятие 3",
-    },
-    {
-      id: 4,
-      imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af",
-
-      alt: "Программирование - Занятие 4",
-    },
-    {
-      id: 5,
-      imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af",
-
-      alt: "Робототехника - Занятие 5",
-    },
-    {
-      id: 6,
-      imageUrl: "https://dummyimage.com/800x600/e5e7eb/9ca3af",
-
-      alt: "Программирование - Занятие 6",
-    },
-  ];
 
   return (
     <>
@@ -72,18 +53,14 @@ const Gallery = () => {
               key={item.id}
               className={styles.card}
               onClick={() => setSelectedImage(item)}
-              style={{ cursor: "pointer" }}
             >
               <img
-                src={item.imageUrl || "/placeholder.svg"}
-                alt={item.alt}
+                src={item.imageUrl}
+                alt=""
                 className={styles.cardImage}
                 loading="lazy"
                 decoding="async"
               />
-              <div className={styles.badge}>
-                <span className={styles.badgeText}>{item.id}</span>
-              </div>
             </div>
           ))}
         </div>
@@ -91,7 +68,7 @@ const Gallery = () => {
 
       <ImagePopup
         imageUrl={selectedImage?.imageUrl || ""}
-        imageAlt={selectedImage?.alt || ""}
+        imageAlt=""
         isOpen={!!selectedImage}
         onClose={() => setSelectedImage(null)}
       />

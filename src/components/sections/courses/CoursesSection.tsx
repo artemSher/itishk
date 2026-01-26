@@ -20,7 +20,7 @@ export const CoursesSection = ({
   title = "Курсы",
 }: CoursesSectionProps) => {
   const [activeFormat, setActiveFormat] = useState<CourseFormat>(
-    format ?? "offline"
+    format ?? "offline",
   );
 
   const effectiveFormat = withFormatToggle ? activeFormat : format;

@@ -132,7 +132,12 @@ export const Footer = () => {
 
         <div className={styles.bottomBar}>
           <div className={styles.copyright}>
-            {new Date().getFullYear()} Айтишкино. Все права защищены.
+            {new Date().getFullYear()} Айтишкино. Все права защищены. <br />
+            <div className={styles.spacer}>
+              <div>Абдурахимов А.Б</div>
+              <div>ОГРНИП 323774600663900</div>
+              <div>ИНН 027509855212</div>
+            </div>
           </div>
           <div className={styles.legalLinks}>
             <a href="/privacy" className={styles.legalLink}>

@@ -27,8 +27,10 @@ export default function OnlineProgrammingPage() {
       {/* Cookie */}
       <CookiePopup />
 
-      {/* Footer */}
-      <Footer />
+      {/* Подвал сайта */}
+      <section id="footer">
+        <Footer />
+      </section>
     </PageLayout>
   );
 }

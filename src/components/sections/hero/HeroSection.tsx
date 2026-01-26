@@ -43,12 +43,12 @@ export const HeroSection = () => {
 
       <div className={styles.container}>
         <div className={styles.content}>
-          <div 
-            ref={animationRef} 
+          <div
+            ref={animationRef}
             className={styles.animationContainer}
-            style={{ 
-              minHeight: '200px',
-              contain: 'layout style paint'
+            style={{
+              minHeight: "200px",
+              contain: "layout style paint",
             }}
           >
             {showAnimation && (
@@ -70,8 +70,8 @@ export const HeroSection = () => {
               проект по программированию и робототехнике.
             </p>
 
-            <a 
-              href="#application-form" 
+            <a
+              href="#application-form"
               className={styles.button}
               aria-label="Записаться на бесплатный урок"
             >

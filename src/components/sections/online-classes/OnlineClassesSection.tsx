@@ -2,21 +2,20 @@ import styles from "./OnlineClassesSection.module.css";
 import Image from "next/image";
 
 type OnlineClassesSectionProps = {
-  showHeader?: boolean;
+  title?: string;
+  subtitle?: string;
 };
 
 export function OnlineClassesSection({
-  showHeader = true,
+  title,
+  subtitle,
 }: OnlineClassesSectionProps) {
   return (
     <section className={styles.section}>
-      {showHeader && (
+      {(title || subtitle) && (
         <div className={styles.header}>
-          <h2 className={styles.title}>Онлайн занятия</h2>
-          <p className={styles.subtitle}>
-            Программирование из дома Помимо очных занятий, в Айтишкино доступно
-            полноценное онлайн-обучение. Учиться должно быть комфортно!
-          </p>
+          {title && <h2 className={styles.title}>{title}</h2>}
+          {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
         </div>
       )}
 

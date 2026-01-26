@@ -16,7 +16,6 @@ import FeaturesSection from "@/components/sections/features/FeaturesSection";
 import { ShopSection } from "@/components/sections/shop/ShopSection";
 import { Reviews } from "@/components/sections/reviews/Reviews";
 
-// консультация
 const ConsultationSection = dynamic(
   () =>
     import("@/components/sections/consultation/ConsultationSection").then(
@@ -26,6 +25,7 @@ const ConsultationSection = dynamic(
     ),
   { ssr: true },
 );
+
 const mockReviews = [
   {
     id: "1",
@@ -33,7 +33,7 @@ const mockReviews = [
     age: 1,
     avatar: "М",
     course: "Курс",
-    rating: 4,
+    rating: 5,
     text: "Текст для отзыва длиной примерно в несколько предложений. Очень понравились занятия, преподаватель объясняет доступно и интересно!",
     mediaType: "image" as const,
     mediaUrl: "/reviews/anya.jpg",
@@ -61,9 +61,11 @@ export default function OnlineProgrammingPage() {
         />
       </section>
 
-      {/* Hero */}
       <section id="online-classes">
-        <OnlineClassesSection showHeader={false} />
+        <OnlineClassesSection
+          title="Очные занятия"
+          subtitle="Обучение в классе с преподавателем, живое общение и практика на каждом уроке."
+        />
       </section>
 
       {/* Почему онлайн */}
@@ -119,8 +121,10 @@ export default function OnlineProgrammingPage() {
       {/* Cookie */}
       <CookiePopup />
 
-      {/* Footer */}
-      <Footer />
+      {/* Подвал сайта */}
+      <section id="footer">
+        <Footer />
+      </section>
     </PageLayout>
   );
 }
