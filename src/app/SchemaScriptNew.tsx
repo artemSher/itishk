@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Script from 'next/script';
+import Script from "next/script";
 
 export default function SchemaScript() {
   return (
@@ -9,17 +9,18 @@ export default function SchemaScript() {
       type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'WebSite',
-          'name': 'Айтишкино',
-          'url': 'https://aitishkino.ru',
-          'description': 'Онлайн-школа программирования и робототехники для детей 8-17 лет',
-          'potentialAction': {
-            '@type': 'SearchAction',
-            'target': 'https://aitishkino.ru/search?q={search_term_string}',
-            'query-input': 'required name=search_term_string',
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Айтишкино",
+          url: "https://itishkino.ru",
+          description:
+            "Онлайн-школа программирования и робототехники для детей 8-17 лет",
+          potentialAction: {
+            "@type": "SearchAction",
+            target: "https://itishkino.ru/search?q={search_term_string}",
+            "query-input": "required name=search_term_string",
           },
-        })
+        }),
       }}
     />
   );

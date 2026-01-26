@@ -1,16 +1,32 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Clock,
-  MessageSquare,
-  Send,
-  Youtube,
-} from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import styles from "./Footer.module.css";
 
 export const Footer = () => {
+  const [mapVisible, setMapVisible] = useState(false);
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMapVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+
+    if (mapRef.current) {
+      observer.observe(mapRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -19,10 +35,11 @@ export const Footer = () => {
           <div className={styles.logoColumn}>
             <div className={styles.logo}>
               <Image
-                src="/images/logo/logo.png"
+                src="/images/logo/logo.webp"
                 alt="Айтишкино"
                 width={180}
                 height={40}
+                priority
                 className={styles.logoImage}
                 style={{ filter: "brightness(0) invert(1)" }}
               />
@@ -80,26 +97,59 @@ export const Footer = () => {
           </div>
 
           <div className={styles.mapColumn}>
-            <div className={styles.mapContainer}>
-              <iframe
-                src="https://yandex.ru/map-widget/v1/?um=constructor%3A50634a1040010f4e04ea1d364536c47fccc4cd4dbcf6d54d48c617bbbee2662b&amp;source=constructor"
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                style={{ border: 0 }}
-                allowFullScreen
-                aria-hidden="false"
-                tabIndex={0}
-                title="Наш офис на карте"
-              />
+            <div ref={mapRef} className={styles.mapContainer}>
+              {mapVisible ? (
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A50634a1040010f4e04ea1d364536c47fccc4cd4dbcf6d54d48c617bbbee2662b&amp;source=constructor"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  loading="lazy"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  aria-hidden="false"
+                  tabIndex={0}
+                  title="Наш офис на карте"
+                />
+              ) : (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "#f3f4f6",
+                    color: "#9ca3af",
+                  }}
+                >
+                  Загрузка карты...
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className={styles.bottomBar}>
           <div className={styles.copyright}>
             {new Date().getFullYear()} Айтишкино. Все права защищены.
+          </div>
+          <div className={styles.legalLinks}>
+            <a href="/privacy" className={styles.legalLink}>
+              Политика конфиденциальности
+            </a>
+            <a href="/terms" className={styles.legalLink}>
+              Пользовательское соглашение
+            </a>
+            <a href="/education-license" className={styles.legalLink}>
+              Образовательная лицензия
+            </a>
+            <a href="/contract-offline" className={styles.legalLink}>
+              Договор оферты очное обучение
+            </a>
+            <a href="/contract-online" className={styles.legalLink}>
+              Договор оферты онлайн обучение
+            </a>
           </div>
         </div>
       </div>

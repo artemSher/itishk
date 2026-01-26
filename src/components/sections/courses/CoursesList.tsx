@@ -16,15 +16,14 @@ export const CoursesList = ({ courses, idPrefix = "course" }: Props) => {
   return (
     <div className={styles.coursesGrid}>
       {courses.map((course) => {
-        const id = `${idPrefix}-${course.title
-          .toLowerCase()
-          .replace(/\s+/g, "-")}`;
+        const { id: courseId, ...courseProps } = course;
+        const id = `${idPrefix}-${courseId}`;
 
         return (
           <CourseCard
             key={id}
             id={id}
-            {...course}
+            {...courseProps}
             isExpanded={expandedId === id}
             onToggleExpand={() => setExpandedId(expandedId === id ? null : id)}
           />

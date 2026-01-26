@@ -21,57 +21,25 @@
 .content {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   gap: 2rem;
   width: 100%;
   max-width: 1280px;
 }
 
-/* Animation container */
 .animationContainer {
   order: 1;
-  width: 100%;
-  max-width: 800px;
+  width: min(800px, 90vw);
+  aspect-ratio: 16 / 9;
   margin: 0 auto 2rem;
-  /* removed overflow: hidden to prevent clipping */
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   pointer-events: none;
 }
 
 .animation {
   width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-  max-width: 100%;
-}
-
-/* Mobile animation optimizations */
-@media (max-width: 768px) {
-  .animationContainer {
-    margin: 0 auto 1.5rem;
-    /* increased max-width for mobile */
-    max-width: 90%;
-  }
-
-  .animation {
-    /* removed restrictive max-width */
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .animationContainer {
-    margin: 0 auto 1rem;
-    max-width: 95%;
-  }
-
-  .animation {
-    /* removed restrictive max-width */
-    max-width: 100%;
-  }
+  height: 100%;
 }
 
 .textContent {
@@ -82,41 +50,12 @@
   padding: 0 1rem;
 }
 
-@media (min-width: 1024px) {
-  .content {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 3rem;
-  }
-
-  .animationContainer {
-    order: 2;
-    width: 50%;
-    margin-bottom: 0;
-  }
-
-  .textContent {
-    order: 1;
-    padding-right: 3rem;
-    max-width: 50%;
-  }
-}
-
-/* Text content styles moved up */
-
 .title {
   font-size: 32px;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 24px;
   color: #111827;
-}
-
-@media (min-width: 768px) {
-  .title {
-    font-size: 42px;
-  }
 }
 
 .highlight {
@@ -134,41 +73,33 @@
 }
 
 @media (min-width: 768px) {
+  .title {
+    font-size: 42px;
+  }
+
   .description {
     font-size: 20px;
   }
 }
 
-/* Animation container styles moved up */
+@media (min-width: 1024px) {
+  .content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
 
-.animationPlaceholder {
-  position: absolute;
-  inset: 0;
-  background-color: #f3f4f6;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-}
+  .animationContainer {
+    order: 2;
+    width: 50%;
+    max-width: 900px;
+    margin-bottom: 0;
+  }
 
-.animationText {
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #6b7280;
-  margin-bottom: 1rem;
-}
-
-.animationIcon {
-  width: 4rem;
-  height: 4rem;
-  border: 0.25rem dashed #d1d5db;
-  border-radius: 9999px;
-  margin-bottom: 1rem;
-}
-
-.animationSubtext {
-  color: #9ca3af;
-  font-size: 0.875rem;
+  .textContent {
+    order: 1;
+    max-width: 50%;
+    padding-right: 3rem;
+  }
 }

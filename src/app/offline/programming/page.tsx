@@ -5,7 +5,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { Footer } from "@/components/sections/footer/Footer";
 import { FullscreenTextSection } from "@/components/sections/fullscreen-text/FullscreenTextSection";
 import { CookiePopup } from "@/components/ui/CookiePopup/CookiePopup";
-import { OnlineClassesSection } from "@/components/sections/online-сlasses/OnlineClassesSection";
+import { OnlineClassesSection } from "@/components/sections/online-classes/OnlineClassesSection";
 import { CoursesSection } from "@/components/sections/courses/CoursesSection";
 import { SchoolsMapSection } from "@/components/sections/map/SchoolsMapSection";
 import { FAQSection } from "@/components/sections/faq/FAQSection";

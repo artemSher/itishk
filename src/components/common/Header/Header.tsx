@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import logo from "@/../public/images/logo/logo.png";
+import logo from "@/../public/images/logo/logo.webp";
 import styles from "./Header.module.css";
 
 const navigation = [
@@ -63,7 +63,7 @@ export const Header = () => {
       });
 
       const firstInput = form.querySelector(
-        "input, textarea, select"
+        "input, textarea, select",
       ) as HTMLInputElement | null;
       if (firstInput) {
         const focusInput = () => {
@@ -128,7 +128,11 @@ export const Header = () => {
             <Image
               src={logo || "/placeholder.svg"}
               alt="Айтишкино"
+              width={140}
+              height={40}
               priority
+              fetchPriority="high"
+              quality={90}
               className={styles.logoImage}
             />
           </Link>
@@ -192,7 +196,7 @@ export const Header = () => {
                 >
                   {item.name}
                 </Link>
-              )
+              ),
             )}
 
             <a
@@ -300,7 +304,7 @@ export const Header = () => {
                 >
                   {item.name}
                 </Link>
-              )
+              ),
             )}
             <a
               href="tel:+74951233585"

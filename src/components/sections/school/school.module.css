@@ -1,6 +1,6 @@
 .heroSection {
   position: relative;
-  width: 100%;
+  width: calc(100% - 10vw);
   max-width: 1354px;
   height: 400px;
   background: #00b18f;

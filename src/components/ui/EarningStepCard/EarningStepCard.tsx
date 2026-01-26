@@ -22,5 +22,3 @@ export const EarningStepCard: React.FC<EarningStepCardProps> = ({
     </div>
   );
 };
-
-

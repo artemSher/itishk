@@ -1,87 +1,105 @@
-import type React from "react";
+import React from "react";
 import type { Metadata, Viewport } from "next";
-import "./globals.css";
-import SchemaScript from "./SchemaScriptNew";
-import OrganizationSchema from "@/components/seo/OrganizationSchema";
+import { WebVitals } from "@/components/analytics/WebVitals";
+import { Analytics } from "@/components/analytics/Analytics";
 
-// Viewport settings for proper mobile rendering
+import "./globals.css";
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
   viewportFit: "cover",
-  userScalable: false,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: "#00b18f",
 };
 
 export const metadata: Metadata = {
   title: "Айтишкино",
   description: "Школа программирования и робототехники.",
-  keywords: [
-    "программирование для детей",
-    "обучение детей программированию",
-    "курсы по программированию",
-    "робототехника для детей",
-    "IT-школа для детей",
-  ],
-
-  icons: {
-    icon: "/favicon.ico",
-  },
-
-  openGraph: {
-    title: "Айтишкино",
-    description:
-      "Бесплатное пробное занятие по программированию и робототехнике",
-    url: "https://aitishkino.ru",
-    siteName: "Айтишкино",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "ru_RU",
-    type: "website",
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Айтишкино - Школа программирования для детей",
-    description:
-      "Бесплатное пробное занятие по программированию и робототехнике",
-    images: ["/images/og-image.jpg"],
-  },
-
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "Айтишкино",
-  },
-
-  formatDetection: {
-    telephone: false,
-  },
-
-  metadataBase: new URL("https://aitishkino.ru"),
-  alternates: {
-    canonical: "/",
-  },
-  verification: {
-    google: "google-site-verification=your-verification-code",
-    yandex: "yandex-verification=your-verification-code",
-  },
+  metadataBase: new URL("https://itishkino.ru"),
+  generator: "v0.app",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="ru" className="h-full">
+    <html lang="ru">
       <head>
-        {/* Preload критичных шрифтов */}
+        {/* Critical CSS — минимальный */}
+        <style>{`
+          html, body {
+            margin: 0;
+            background: #ffffff;
+            color: #171717;
+            font-family: 'SF Pro Text', system-ui, -apple-system;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+
+          h1 {
+            font-weight: 700;
+            line-height: 1.2;
+          }
+          
+          /* Critical hero styles для быстрой отрисовки */
+          .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+          }
+          
+          /* Prevent layout shift */
+          img {
+            max-width: 100%;
+            height: auto;
+          }
+        `}</style>
+
+        {/* INLINE font-face — НЕ render-blocking */}
+        <style>{`
+          @font-face {
+            font-family: "SF Pro Text";
+            src: url("/fonts/SFProText-Regular.woff2") format("woff2");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+          }
+
+          @font-face {
+            font-family: "SF Pro Text";
+            src: url("/fonts/SFProText-Bold.woff2") format("woff2");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+          }
+        `}</style>
+
+        {/* DNS prefetch для внешних доменов */}
+        <link rel="dns-prefetch" href="https://mc.yandex.ru" />
+        <link rel="dns-prefetch" href="https://mc.yandex.com" />
+
+        {/* preconnect для критических ресурсов */}
+        <link
+          rel="preconnect"
+          href="https://mc.yandex.ru"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://mc.yandex.com"
+          crossOrigin="anonymous"
+        />
+
+        {/* Prefetch DNS для CDN если используется */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+        {/* preload ТОЛЬКО критических шрифтов */}
         <link
           rel="preload"
           href="/fonts/SFProText-Regular.woff2"
@@ -91,19 +109,17 @@ export default function RootLayout({
         />
         <link
           rel="preload"
-          href="/fonts/SFProText-Medium.woff2"
+          href="/fonts/SFProText-Bold.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        {/* DNS prefetch для внешних ресурсов */}
-        <link rel="dns-prefetch" href="https://docs.google.com" />
-        <link rel="dns-prefetch" href="https://yandex.ru" />
       </head>
+
       <body className="font-sans antialiased">
+        <WebVitals />
+        <Analytics />
         {children}
-        <OrganizationSchema />
-        <SchemaScript />
       </body>
     </html>
   );

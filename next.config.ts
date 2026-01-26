@@ -1,52 +1,50 @@
 import type { NextConfig } from "next";
-import path from 'path';
+import path from "path";
 
 const nextConfig: NextConfig = {
-  // Включаем строгий режим React
   reactStrictMode: true,
+
+  output: "export",
+
+  trailingSlash: true,
+
+  images: {
+    unoptimized: true,
+    domains: ["images.unsplash.com", "source.unsplash.com"],
+  },
+
   turbopack: {
     rules: {
-      '**/*.lottie': [
+      "**/*.lottie": [
         {
-          loader: 'file-loader',
+          loader: "file-loader",
           options: {
-            name: 'static/media/[name].[hash].[ext]',
+            name: "static/media/[name].[hash].[ext]",
           },
         },
       ],
     },
   },
-  
-  // Настройка алиасов путей
+
+  // Webpack (используется при build/export)
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': path.resolve(__dirname, 'src'),
+      "@": path.resolve(__dirname, "src"),
     };
 
     config.module.rules.push({
       test: /\.lottie$/,
-      type: 'asset/resource',
+      type: "asset/resource",
     });
 
     return config;
   },
-  
-  // Оптимизация изображений
-  images: {
-    domains: ['images.unsplash.com', 'source.unsplash.com'],
-    unoptimized: true,
-  },
-  
-  // Настройки для экспорта статического сайта
-  output: 'export',
-  
-  // Отключаем проверку ESLint при сборке
+
   eslint: {
     ignoreDuringBuilds: true,
   },
-  
-  // Отключаем проверку типов TypeScript при сборке
+
   typescript: {
     ignoreBuildErrors: true,
   },

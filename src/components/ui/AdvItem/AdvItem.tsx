@@ -37,5 +37,3 @@ export const AdvItem: React.FC<AdvItemProps> = ({ text, text1, icon, iconColor =
     </div>
   );
 };
-
-

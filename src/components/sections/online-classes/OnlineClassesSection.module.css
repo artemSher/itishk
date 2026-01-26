@@ -1,0 +1,178 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 1rem;
+  gap: 3.625rem;
+  max-width: 1232px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 714px;
+  text-align: center;
+}
+
+.title {
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.25rem;
+  line-height: 2.375rem;
+  color: #111111;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
+  color: #585858;
+  margin: 0;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2.8125rem;
+  width: 100%;
+  max-width: 1104px;
+}
+
+.cardsRow {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1.25rem 2.5rem;
+  gap: 1.5rem;
+  flex: 1;
+  border-radius: 1.0625rem;
+  min-height: 238px;
+}
+
+.cardTeal {
+  background: #00b18f;
+}
+
+.cardWhite {
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.cardImage {
+  flex-shrink: 0;
+  width: 199px;
+  height: 199px;
+}
+
+.illustration {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.67rem;
+  flex: 1;
+}
+
+.cardTeal .cardTitle {
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.1875rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.cardWhite .cardTitle {
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.1875rem;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.cardTeal .cardDescription {
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.cardWhite .cardDescription {
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .cardsRow {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    gap: 2rem;
+    padding: 2rem 1rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+    line-height: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+
+  .card {
+    flex-direction: column;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .cardImage {
+    width: 150px;
+    height: 150px;
+  }
+}

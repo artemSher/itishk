@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Script from 'next/script';
+import Script from "next/script";
 
 interface CourseSchemaProps {
   courseName: string;
@@ -19,38 +19,38 @@ export default function CourseSchema({
   endDate,
   price,
   instructor,
-  image = 'https://aitishkino.ru/images/course-default.jpg'
+  image = "https://itishkino.ru/images/course-default.jpg",
 }: CourseSchemaProps) {
   const courseSchema = {
     "@context": "https://schema.org",
     "@type": "Course",
-    "name": courseName,
-    "description": description,
-    "provider": {
+    name: courseName,
+    description: description,
+    provider: {
       "@type": "EducationalOrganization",
-      "name": "Айтишкино",
-      "sameAs": "https://aitishkino.ru"
+      name: "Айтишкино",
+      sameAs: "https://itishkino.ru",
     },
-    "image": image,
-    "instructor": {
+    image: image,
+    instructor: {
       "@type": "Person",
-      "name": instructor
+      name: instructor,
     },
-    "hasCourseInstance": {
+    hasCourseInstance: {
       "@type": "CourseInstance",
-      "startDate": startDate,
-      "endDate": endDate,
-      "offers": {
+      startDate: startDate,
+      endDate: endDate,
+      offers: {
         "@type": "Offer",
-        "price": price.toString(),
-        "priceCurrency": "RUB"
-      }
-    }
+        price: price.toString(),
+        priceCurrency: "RUB",
+      },
+    },
   };
 
   return (
     <Script
-      id={`course-schema-${courseName.replace(/\s+/g, '-').toLowerCase()}`}
+      id={`course-schema-${courseName.replace(/\s+/g, "-").toLowerCase()}`}
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
     />

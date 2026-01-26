@@ -25,11 +25,11 @@ export default function PythonCoursePage() {
       {/* Хлебные крошки */}
       <BreadcrumbSchema
         items={[
-          { name: "Главная", item: "https://aitishkino.ru" },
-          { name: "Курсы", item: "https://aitishkino.ru/courses" },
+          { name: "Главная", item: "https://itishkino.ru" },
+          { name: "Курсы", item: "https://itishkino.ru/courses" },
           {
             name: "Python для начинающих",
-            item: "https://aitishkino.ru/courses/python",
+            item: "https://itishkino.ru/courses/python",
           },
         ]}
       />

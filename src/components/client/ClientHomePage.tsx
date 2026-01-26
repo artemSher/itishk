@@ -13,7 +13,7 @@ const YouAreCodeSection = dynamic(
     import("../sections/you-are-code/YouAreCodeSection").then((mod) => ({
       default: mod.YouAreCodeSection,
     })),
-  { ssr: true }
+  { ssr: true },
 );
 
 const CoursesSection = dynamic(
@@ -21,7 +21,7 @@ const CoursesSection = dynamic(
     import("../sections/courses/CoursesSection").then((mod) => ({
       default: mod.CoursesSection,
     })),
-  { ssr: true }
+  { ssr: true },
 );
 
 const ApproachSection = dynamic(
@@ -29,7 +29,7 @@ const ApproachSection = dynamic(
     import("../sections/approach/ApproachSection").then((mod) => ({
       default: mod.ApproachSection,
     })),
-  { ssr: true }
+  { ssr: true },
 );
 
 const AdvantagesSection = dynamic(
@@ -37,15 +37,7 @@ const AdvantagesSection = dynamic(
     import("../sections/advantages/AdvantagesSection").then((mod) => ({
       default: mod.AdvantagesSection,
     })),
-  { ssr: true }
-);
-
-const PlatformSection = dynamic(
-  () =>
-    import("../sections/platform/PlatformSection").then((mod) => ({
-      default: mod.PlatformSection,
-    })),
-  { ssr: true }
+  { ssr: false, loading: () => <div style={{ minHeight: "400px" }} /> },
 );
 
 const EarningSection = dynamic(
@@ -53,15 +45,7 @@ const EarningSection = dynamic(
     import("../sections/earning/EarningSection").then((mod) => ({
       default: mod.EarningSection,
     })),
-  { ssr: true }
-);
-
-const StudentsSection = dynamic(
-  () =>
-    import("../sections/students/StudentsSection").then((mod) => ({
-      default: mod.StudentsSection,
-    })),
-  { ssr: true }
+  { ssr: false, loading: () => <div style={{ minHeight: "300px" }} /> },
 );
 
 const ShopSection = dynamic(
@@ -69,15 +53,7 @@ const ShopSection = dynamic(
     import("../sections/shop/ShopSection").then((mod) => ({
       default: mod.ShopSection,
     })),
-  { ssr: true }
-);
-
-const FAQSection = dynamic(
-  () =>
-    import("../sections/faq/FAQSection").then((mod) => ({
-      default: mod.FAQSection,
-    })),
-  { ssr: true }
+  { ssr: false, loading: () => <div style={{ minHeight: "300px" }} /> },
 );
 
 const ConsultationSection = dynamic(
@@ -85,12 +61,12 @@ const ConsultationSection = dynamic(
     import("../sections/consultation/ConsultationSection").then((mod) => ({
       default: mod.ConsultationSection,
     })),
-  { ssr: true }
+  { ssr: false, loading: () => <div style={{ minHeight: "400px" }} /> },
 );
 
 const ConsultationPopup = dynamic(
   () => import("../ui/ConsultationPopup/ConsultationPopup"),
-  { ssr: false }
+  { ssr: false },
 );
 
 export default function ClientHomePage() {

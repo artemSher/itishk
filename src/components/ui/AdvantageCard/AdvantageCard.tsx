@@ -26,5 +26,3 @@ export const AdvantageCard: React.FC<AdvantageCardProps> = ({
     </div>
   );
 };
-
-

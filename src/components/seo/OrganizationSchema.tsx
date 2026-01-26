@@ -7,8 +7,8 @@ export default function OrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
     name: "Айтишкино",
-    url: "https://aitishkino.ru",
-    logo: "https://aitishkino.ru/images/logo.png",
+    url: "https://itishkino.ru",
+    logo: "https://itishkino.ru/images/logo.webp",
     description:
       "Онлайн-школа программирования и робототехники для детей 8-17 лет",
     address: {

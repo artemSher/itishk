@@ -5,6 +5,7 @@ export type CourseCategory = "programming" | "robotics";
 export type CourseFormat = "online" | "offline";
 
 export interface Course {
+  id: string;
   title: string;
   age: string;
   modules: number;
@@ -15,28 +16,18 @@ export interface Course {
   format: CourseFormat;
 }
 
-/* ======================
-   ИКОНКИ
-====================== */
 const CourseIcons = {
-  // programming
   digitalThinking: <BrainCircuit className="text-[#00B18F]" size={48} />,
   gameDev: <Gamepad2 className="text-[#00B18F]" size={48} />,
   webDev: <Globe className="text-[#00B18F]" size={48} />,
-
-  // robotics
   roboticsBasic: <Puzzle className="text-[#00B18F]" size={48} />,
   roboticsAdvanced: <Bot className="text-[#00B18F]" size={48} />,
   iot: <Cpu className="text-[#00B18F]" size={48} />,
 };
 
-/* ======================
-   ВСЕ КУРСЫ
-====================== */
 export const COURSES: Course[] = [
-  /* ---------- ROBOTICS | OFFLINE ---------- */
-
   {
+    id: "robotics-junior-offline",
     title: "Junior: “Букварь изобретателя”",
     age: "5–7 лет",
     modules: 12,
@@ -59,8 +50,8 @@ export const COURSES: Course[] = [
     category: "robotics",
     format: "offline",
   },
-
   {
+    id: "robotics-middle-offline",
     title: "Middle: “Справочник инженера”",
     age: "7–11 лет",
     modules: 12,
@@ -83,8 +74,8 @@ export const COURSES: Course[] = [
     category: "robotics",
     format: "offline",
   },
-
   {
+    id: "robotics-senior-offline",
     title: "Senior: “Мануал архитектора”",
     age: "12–15 лет",
     modules: 12,
@@ -106,10 +97,8 @@ export const COURSES: Course[] = [
     category: "robotics",
     format: "offline",
   },
-
-  /* ---------- PROGRAMMING | OFFLINE ---------- */
-
   {
+    id: "programming-junior-offline",
     title: "Junior: “Компьютерная азбука”",
     age: "5–7 лет",
     modules: 8,
@@ -128,8 +117,8 @@ export const COURSES: Course[] = [
     category: "programming",
     format: "offline",
   },
-
   {
+    id: "programming-middle-offline",
     title: "Middle: “Учебник программиста”",
     age: "8–11 лет",
     modules: 7,
@@ -147,8 +136,8 @@ export const COURSES: Course[] = [
     category: "programming",
     format: "offline",
   },
-
   {
+    id: "programming-senior-offline",
     title: "Senior: “Энциклопедия разработчика”",
     age: "12–15 лет",
     modules: 6,
@@ -165,10 +154,8 @@ export const COURSES: Course[] = [
     category: "programming",
     format: "offline",
   },
-
-  /* ---------- PROGRAMMING | ONLINE ---------- */
-
   {
+    id: "programming-middle-online",
     title: "Middle: “Учебник программиста”",
     age: "8–11 лет",
     modules: 7,
@@ -186,8 +173,8 @@ export const COURSES: Course[] = [
     category: "programming",
     format: "online",
   },
-
   {
+    id: "programming-senior-online",
     title: "Senior: “Энциклопедия разработчика”",
     age: "12–15 лет",
     modules: 6,

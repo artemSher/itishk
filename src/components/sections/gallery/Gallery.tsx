@@ -78,6 +78,8 @@ const Gallery = () => {
                 src={item.imageUrl || "/placeholder.svg"}
                 alt={item.alt}
                 className={styles.cardImage}
+                loading="lazy"
+                decoding="async"
               />
               <div className={styles.badge}>
                 <span className={styles.badgeText}>{item.id}</span>

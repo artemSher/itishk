@@ -1,21 +1,47 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./EarningSection.module.css";
 import { EarningStepCard } from "@/components/ui/EarningStepCard/EarningStepCard";
-import LazyLottie from "@/components/common/LazyLottie/LazyLottie";
+import dynamic from "next/dynamic";
+
+const LazyLottie = dynamic(
+  () => import("@/components/common/LazyLottie/LazyLottie"),
+  { ssr: false },
+);
 
 export const EarningSection = () => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowAnimation(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className={styles.section}>
+    <section ref={sectionRef} className={styles.section}>
       <div className={styles.container}>
         <h2 className={styles.title}>Зарабатывай знаниями!</h2>
 
-        <div className={styles.animationContainer}>
-          <LazyLottie
-            animationPath="EarningSection.json"
-            className={styles.animation}
-            style={{ width: "100%", height: "100%" }}
-          />
-        </div>
+        {showAnimation && (
+          <div className={styles.animationContainer}>
+            <LazyLottie
+              animationPath="EarningSection.json"
+              className={styles.animation}
+            />
+          </div>
+        )}
 
         <div className={styles.cardsContainer}>
           <EarningStepCard
