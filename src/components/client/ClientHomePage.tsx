@@ -72,12 +72,10 @@ const ConsultationPopup = dynamic(
 export default function ClientHomePage() {
   return (
     <PageLayout>
-      {/* Секция 1: Научись говорить с гаджетами за час! */}
       <section id="home">
         <HeroSection />
       </section>
 
-      {/* Секция 2: Ты — код, который изменит мир */}
       <section id="about">
         <YouAreCodeSection />
       </section>
@@ -132,11 +130,10 @@ export default function ClientHomePage() {
       </section> */}
 
       {/* Секция: Консультация */}
-      <section id="contacts">
-        <ConsultationSection />
-      </section>
 
-      <section id="contacts">
+      <ConsultationSection />
+
+      <section>
         <CookiePopup />
       </section>
 

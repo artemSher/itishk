@@ -278,6 +278,9 @@
   order: 1;
   /* removed overflow: hidden to prevent clipping */
   pointer-events: none;
+  /* Fixed dimensions to prevent layout shift */
+  min-height: 300px;
+  aspect-ratio: 1 / 1;
 }
 
 @media (min-width: 375px) {
@@ -415,6 +418,7 @@
   padding: 0.5rem;
   max-width: 100%;
   text-align: center;
+  order: 2;
 }
 
 @media (min-width: 320px) {

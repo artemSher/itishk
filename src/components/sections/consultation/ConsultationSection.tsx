@@ -63,13 +63,13 @@ export const ConsultationSection = () => {
           format: formatLabel,
           course: courseLabel,
         },
-        "4NGKAgHHT5_Xo9_LN"
+        "4NGKAgHHT5_Xo9_LN",
       );
 
       setIsSubmitted(true);
     } catch {
       alert(
-        "Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз."
+        "Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.",
       );
     } finally {
       setIsLoading(false);
@@ -105,7 +105,7 @@ export const ConsultationSection = () => {
   }
 
   return (
-    <section className={styles.section} id="application-form">
+    <section className={styles.section} id="contacts">
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.pattern} aria-hidden="true" />
@@ -210,7 +210,9 @@ export const ConsultationSection = () => {
                       <select {...field} className={styles.select}>
                         <option value="programming">Программирование</option>
                         <option value="robotics">Робототехника</option>
-                        <option value="duo">Дуо: Программирование + Робототехника</option>
+                        <option value="duo">
+                          Дуо: Программирование + Робототехника
+                        </option>
                       </select>
                     )}
                   />

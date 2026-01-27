@@ -21,7 +21,7 @@ const navigation = [
     ],
   },
   { name: "Проекты учеников", href: "/projects" },
-  { name: "Контакты", href: "/#contacts" },
+  { name: "Контакты", href: "/#footer" },
 ];
 
 export const Header = () => {
@@ -37,61 +37,140 @@ export const Header = () => {
     setMobileCoursesOpen(false);
   };
 
+  const scrollToBottom = () => {
+    let attempts = 0;
+    const maxAttempts = 2;
+    let lastHeight = 0;
+
+    const doScroll = () => {
+      const currentHeight = document.documentElement.scrollHeight;
+      const currentScroll = window.pageYOffset + window.innerHeight;
+      const isAtBottom = currentScroll >= currentHeight - 10;
+
+      // Scroll to bottom
+      window.scrollTo({
+        top: currentHeight,
+        behavior: "smooth",
+      });
+
+      attempts++;
+
+      // Костыль Из-за изменения размеров блоков под анимашки
+      if (
+        attempts < maxAttempts &&
+        (!isAtBottom || currentHeight !== lastHeight)
+      ) {
+        lastHeight = currentHeight;
+        setTimeout(doScroll, 500);
+      }
+    };
+
+    doScroll();
+  };
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    if (href === "/#footer") {
+      e.preventDefault();
+      closeMenu();
+
+      const footer = document.getElementById("footer");
+
+      if (footer) {
+        scrollToBottom();
+      } else {
+        window.location.href = "/#footer";
+      }
+      return;
+    }
+
+    if (pathname === "/" && href.startsWith("/#")) {
+      e.preventDefault();
+      closeMenu();
+      const id = href.substring(2);
+      scrollToElement(id);
+      return;
+    }
+    closeMenu();
+  };
+
   const handlePhoneClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!window.confirm("Позвонить по номеру +7 (495) 123 35-85?")) {
       e.preventDefault();
     }
   };
 
+  const scrollToElement = (elementId: string, focusFirstInput = false) => {
+    let attempts = 0;
+    const maxAttempts = 2;
+    const yOffset = -100;
+
+    const doScroll = () => {
+      const element = document.getElementById(elementId);
+      if (!element) return;
+
+      const targetY =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const currentScroll = window.pageYOffset;
+      const isAtTarget = Math.abs(currentScroll - targetY) < 20;
+
+      window.scrollTo({
+        top: targetY,
+        behavior: "smooth",
+      });
+
+      attempts++;
+      // Костыль Из-за изменения размеров блоков под анимашки
+
+      if (attempts < maxAttempts && !isAtTarget) {
+        setTimeout(doScroll, 500);
+      } else if (focusFirstInput) {
+        // Focus first input after scrolling is complete
+        setTimeout(() => {
+          const firstInput = element.querySelector(
+            "input, textarea, select",
+          ) as HTMLInputElement | null;
+          if (firstInput) {
+            firstInput.focus({ preventScroll: true });
+          }
+        }, 300);
+      }
+    };
+
+    doScroll();
+  };
+
   const handleRecordClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    // If not on home page, navigate to home page with contacts anchor
+    // If not on home page, navigate to home page with application form
     if (pathname !== "/") {
       window.location.href = "/#contacts";
       return;
     }
 
-    const form = document.getElementById("application-form");
-    if (form) {
-      const yOffset = -80;
-      const y = form.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-      window.scrollTo({
-        top: y,
-        behavior: "smooth",
-      });
-
-      const firstInput = form.querySelector(
-        "input, textarea, select",
-      ) as HTMLInputElement | null;
-      if (firstInput) {
-        const focusInput = () => {
-          firstInput.focus({
-            preventScroll: true,
-          });
-        };
-
-        const focusTimer = setTimeout(focusInput, 800);
-
-        const onScroll = () => {
-          if (
-            (window.pageYOffset >= y - 10 && window.pageYOffset <= y + 10) ||
-            window.innerHeight + window.pageYOffset >=
-              document.body.offsetHeight - 2
-          ) {
-            window.removeEventListener("scroll", onScroll);
-            clearTimeout(focusTimer);
-            focusInput();
-          }
-        };
-
-        setTimeout(() => {
-          window.addEventListener("scroll", onScroll, { once: true });
-        }, 100);
-      }
-    }
+    scrollToElement("contacts", true);
   };
+
+  // Handle hash on page load (when navigating from other pages)
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      // Small delay to ensure page is rendered
+      setTimeout(() => {
+        if (hash === "#footer") {
+          scrollToBottom();
+        } else if (hash === "#contacts") {
+          scrollToElement("contacts", true);
+        } else {
+          const id = hash.substring(1);
+          scrollToElement(id);
+        }
+      }, 100);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -192,7 +271,7 @@ export const Header = () => {
                   key={item.name}
                   href={item.href}
                   className={styles.navLink}
-                  onClick={closeMenu}
+                  onClick={(e) => handleNavClick(e, item.href)}
                 >
                   {item.name}
                 </Link>
@@ -300,7 +379,7 @@ export const Header = () => {
                   key={item.name}
                   href={item.href}
                   className={styles.mobileNavLink}
-                  onClick={closeMenu}
+                  onClick={(e) => handleNavClick(e, item.href)}
                 >
                   {item.name}
                 </Link>

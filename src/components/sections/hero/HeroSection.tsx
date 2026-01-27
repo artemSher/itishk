@@ -34,6 +34,37 @@ export const HeroSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    let attempts = 0;
+    const maxAttempts = 2;
+    const yOffset = -100;
+
+    const doScroll = () => {
+      const element = document.getElementById("contacts");
+      if (!element) return;
+
+      const targetY =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const currentScroll = window.pageYOffset;
+      const isAtTarget = Math.abs(currentScroll - targetY) < 20;
+
+      window.scrollTo({
+        top: targetY,
+        behavior: "smooth",
+      });
+
+      attempts++;
+      // Костыль Из-за изменения размеров блоков под анимашки
+      if (attempts < maxAttempts && !isAtTarget) {
+        setTimeout(doScroll, 500);
+      }
+    };
+
+    doScroll();
+  };
+
   return (
     <section className={styles.section}>
       <div className={styles.background}>
@@ -71,7 +102,8 @@ export const HeroSection = () => {
             </p>
 
             <a
-              href="#application-form"
+              href="#contacts"
+              onClick={handleClick}
               className={styles.button}
               aria-label="Записаться на бесплатный урок"
             >

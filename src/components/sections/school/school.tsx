@@ -9,10 +9,32 @@ type SchoolSectionProps = {
   imageAlt?: string;
 };
 const handleClick = () => {
-  const form = document.getElementById("application-form");
-  if (form) {
-    form.scrollIntoView({ behavior: "smooth" });
-  }
+  let attempts = 0;
+  const maxAttempts = 3;
+  const yOffset = -100;
+
+  const doScroll = () => {
+    const form = document.getElementById("contacts");
+    if (!form) return;
+
+    const targetY =
+      form.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    const currentScroll = window.pageYOffset;
+    const isAtTarget = Math.abs(currentScroll - targetY) < 20;
+
+    window.scrollTo({
+      top: targetY,
+      behavior: "smooth",
+    });
+
+    attempts++;
+    // Костыль Из-за изменения размеров блоков под анимашки
+    if (attempts < maxAttempts && !isAtTarget) {
+      setTimeout(doScroll, 500);
+    }
+  };
+
+  doScroll();
 };
 
 export function SchoolSection({
