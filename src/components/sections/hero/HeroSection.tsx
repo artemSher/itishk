@@ -38,7 +38,7 @@ export const HeroSection = () => {
     e.preventDefault();
 
     let attempts = 0;
-    const maxAttempts = 2;
+    const maxAttempts = 3;
     const yOffset = -100;
 
     const doScroll = () => {
@@ -58,7 +58,7 @@ export const HeroSection = () => {
       attempts++;
       // Костыль Из-за изменения размеров блоков под анимашки
       if (attempts < maxAttempts && !isAtTarget) {
-        setTimeout(doScroll, 500);
+        setTimeout(doScroll, 700);
       }
     };
 

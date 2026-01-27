@@ -39,7 +39,7 @@ export const Header = () => {
 
   const scrollToBottom = () => {
     let attempts = 0;
-    const maxAttempts = 2;
+    const maxAttempts = 3;
     let lastHeight = 0;
 
     const doScroll = () => {
@@ -104,7 +104,7 @@ export const Header = () => {
 
   const scrollToElement = (elementId: string, focusFirstInput = false) => {
     let attempts = 0;
-    const maxAttempts = 2;
+    const maxAttempts = 3;
     const yOffset = -100;
 
     const doScroll = () => {
