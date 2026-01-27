@@ -66,17 +66,19 @@
 
 .coursesGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 29.6px;
   justify-content: center;
-  /* align-items: start чтобы карточки не растягивались при раскрытии одной из них */
+
   align-items: start;
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
   width: 100%;
 }
-
+.twoColumns {
+  grid-template-columns: repeat(2, 1fr);
+}
 .courseCard {
   width: 100%;
   max-width: 100%;

@@ -8,13 +8,20 @@ import { Course } from "./courses.data";
 interface Props {
   courses: Course[];
   idPrefix?: string;
+  twoColumns?: boolean;
 }
 
-export const CoursesList = ({ courses, idPrefix = "course" }: Props) => {
+export const CoursesList = ({
+  courses,
+  idPrefix = "course",
+  twoColumns = false,
+}: Props) => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   return (
-    <div className={styles.coursesGrid}>
+    <div
+      className={`${styles.coursesGrid} ${twoColumns ? styles.twoColumns : ""}`}
+    >
       {courses.map((course) => {
         const { id: courseId, ...courseProps } = course;
         const id = `${idPrefix}-${courseId}`;

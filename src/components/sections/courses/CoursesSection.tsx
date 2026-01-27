@@ -11,6 +11,7 @@ interface CoursesSectionProps {
   format?: CourseFormat;
   category?: CourseCategory;
   title?: string;
+  twoColumns?: boolean;
 }
 
 export const CoursesSection = ({
@@ -18,6 +19,7 @@ export const CoursesSection = ({
   format,
   category,
   title = "Курсы",
+  twoColumns = false,
 }: CoursesSectionProps) => {
   const [activeFormat, setActiveFormat] = useState<CourseFormat>(
     format ?? "offline",
@@ -66,6 +68,7 @@ export const CoursesSection = ({
         <CoursesList
           courses={filteredCourses}
           idPrefix={`${category ?? "all"}-${effectiveFormat ?? "all"}`}
+          twoColumns={twoColumns}
         />
       </div>
 

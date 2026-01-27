@@ -89,6 +89,7 @@ export default function OnlineProgrammingPage() {
           title="Онлайн-курсы по программированию"
           format="online"
           category="programming"
+          twoColumns
         />
       </section>
       <section id="reviews">
