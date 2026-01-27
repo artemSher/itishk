@@ -61,7 +61,7 @@ export const Header = () => {
         (!isAtBottom || currentHeight !== lastHeight)
       ) {
         lastHeight = currentHeight;
-        setTimeout(doScroll, 500);
+        setTimeout(doScroll, 750);
       }
     };
 
@@ -125,7 +125,7 @@ export const Header = () => {
       // Костыль Из-за изменения размеров блоков под анимашки
 
       if (attempts < maxAttempts && !isAtTarget) {
-        setTimeout(doScroll, 500);
+        setTimeout(doScroll, 750);
       } else if (focusFirstInput) {
         // Focus first input after scrolling is complete
         setTimeout(() => {
