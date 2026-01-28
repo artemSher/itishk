@@ -48,7 +48,6 @@
   isolation: isolate;
 }
 
-/* Стили для фона с кругами */
 .content::before {
   content: "";
   position: absolute;
@@ -64,7 +63,6 @@
   border-radius: 50%;
   z-index: -1;
   pointer-events: none;
-  opacity: 1;
   filter: blur(20px);
 }
 
@@ -83,13 +81,10 @@
   border-radius: 50%;
   z-index: -1;
   pointer-events: none;
-  opacity: 1;
   filter: blur(20px);
 }
 
-/* Точечный паттерн */
 .pattern {
-  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -100,20 +95,9 @@
     radial-gradient(circle at 1px 1px, #00b18f20 1px, transparent 0);
   z-index: -1;
   pointer-events: none;
-  opacity: 1;
   mask-image: radial-gradient(white, black);
 }
 
-.formWrapper {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-  width: 100%;
-  padding: 20px 0;
-  margin: 0 auto;
-}
-
-/* Шапка с заголовком */
 .header {
   text-align: center;
   margin-bottom: 24px;
@@ -123,7 +107,6 @@
   transition: all 0.3s ease;
 }
 
-/* Адаптивные отступы для шапки */
 @media (min-width: 375px) {
   .header {
     padding: 0 8px;
@@ -166,18 +149,6 @@
 .title::after {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #00b18f 0%, #00a5b1 100%);
-  border-radius: 2px;
-}
-
-.title::after {
-  content: "";
-  position: absolute;
   bottom: -12px;
   left: 50%;
   transform: translateX(-50%);
@@ -188,15 +159,43 @@
 }
 
 .subtitle {
+  font-size: 14px;
   color: #64748b;
-  font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.5;
   max-width: 600px;
   margin: 20px auto 0;
-  font-weight: 400;
-  padding: 0 20px;
+  padding: 0 4px;
+  transition: all 0.3s ease;
 }
-/* Удалить этот блок полностью */
+
+@media (min-width: 375px) {
+  .subtitle {
+    font-size: 15px;
+    line-height: 1.55;
+    padding: 0 8px;
+  }
+}
+
+@media (min-width: 480px) {
+  .subtitle {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+}
+
+@media (min-width: 768px) {
+  .subtitle {
+    font-size: 17px;
+    line-height: 1.6;
+  }
+}
+
+@media (min-width: 1024px) {
+  .subtitle {
+    font-size: 18px;
+  }
+}
+
 .privacyText {
   color: #64748b;
   font-size: 13px;
@@ -208,15 +207,12 @@
 
 @media (min-width: 375px) {
   .privacyText {
-    font-size: 13px;
     padding: 0 24px;
   }
 }
 
 @media (min-width: 480px) {
   .privacyText {
-    font-size: 13px;
-    line-height: 1.6;
     max-width: 90%;
   }
 }
@@ -232,43 +228,29 @@
 .privacyLink {
   color: #00b18f;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  position: relative;
+  white-space: nowrap;
+}
+
+.privacyLink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #00b18f;
+  transition: width 0.3s ease;
 }
 
 .privacyLink:hover {
   color: #008f7a;
-  text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-  .content {
-    padding: 40px 20px;
-    border-radius: 16px;
-  }
-
-  .title {
-    font-size: 28px;
-  }
-
-  .subtitle {
-    font-size: 16px;
-  }
-
-  .input,
-  .submitButton {
-    height: 52px;
-    font-size: 15px;
-  }
-
-  .formVertical {
-    gap: 15px;
-    padding: 0 10px;
-  }
-
-  .privacyText {
-    font-size: 13px;
-    text-align: center;
-  }
+.privacyLink:hover::after {
+  width: 100%;
 }
 
 .form {
@@ -283,7 +265,6 @@
   z-index: 2;
 }
 
-/* Контейнер формы */
 .formVertical {
   display: flex;
   flex-direction: column;
@@ -295,7 +276,6 @@
   transition: all 0.3s ease;
 }
 
-/* Адаптивность контейнера формы */
 @media (min-width: 375px) {
   .formVertical {
     gap: 16px;
@@ -318,7 +298,6 @@
   }
 }
 
-/* Футер формы */
 .formFooter {
   margin-top: 20px;
   display: flex;
@@ -333,7 +312,6 @@
   transition: all 0.3s ease;
 }
 
-/* Адаптивность футера формы */
 @media (min-width: 375px) {
   .formFooter {
     margin-top: 22px;
@@ -345,7 +323,6 @@
 @media (min-width: 480px) {
   .formFooter {
     padding: 0 15px;
-    gap: 14px;
   }
 }
 
@@ -357,7 +334,6 @@
   }
 }
 
-/* Группа полей формы */
 .formGroup {
   position: relative;
   width: 100%;
@@ -387,6 +363,12 @@
   outline: none;
 }
 
+.input::placeholder {
+  color: #94a3b8;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
 .select {
   width: 100%;
   padding: 14px 20px;
@@ -405,10 +387,6 @@
   background-position: right 16px center;
   padding-right: 48px;
   cursor: pointer;
-}
-
-.select option[value=""] {
-  color: #94a3b8;
 }
 
 .label {
@@ -489,13 +467,6 @@
   text-align: left;
 }
 
-.input::placeholder {
-  color: #94a3b8;
-  opacity: 0.8;
-  font-weight: 400;
-}
-
-/* Кнопка отправки */
 .submitButton {
   background: #00b18f;
   color: white;
@@ -521,11 +492,9 @@
   user-select: none;
 }
 
-/* Адаптивность кнопки */
 @media (min-width: 375px) {
   .submitButton {
     height: 52px;
-    font-size: 15px;
     padding: 0 22px;
   }
 }
@@ -533,7 +502,6 @@
 @media (min-width: 480px) {
   .submitButton {
     height: 54px;
-    font-size: 15px;
     padding: 15px 28px;
   }
 }
@@ -545,37 +513,6 @@
     padding: 16px 32px;
     border-radius: 12px;
   }
-}
-
-.submitButton:hover {
-  background: #009a7f;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 177, 143, 0.3);
-}
-
-.submitButton:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 177, 143, 0.3);
-}
-
-.submitButton::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: 0.5s;
-}
-
-.submitButton:hover::before {
-  left: 100%;
 }
 
 .submitButton::before {
@@ -616,43 +553,6 @@
   box-shadow: none;
 }
 
-.buttonIcon {
-  transition: transform 0.3s ease;
-}
-
-.submitButton:hover .buttonIcon {
-  transform: translateX(4px);
-}
-
-.privacyLink {
-  color: #00b18f;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  font-weight: 500;
-  position: relative;
-  white-space: nowrap;
-}
-
-.privacyLink::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background-color: #00b18f;
-  transition: width 0.3s ease;
-}
-
-.privacyLink:hover {
-  color: #008f7a;
-}
-
-.privacyLink:hover::after {
-  width: 100%;
-}
-
-/* Success State */
 .successContainer {
   display: flex;
   flex-direction: column;
@@ -672,10 +572,6 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
-}
-
-.successContent::before {
-  content: none;
 }
 
 .successIcon {
@@ -733,70 +629,6 @@
   margin: 0 auto;
 }
 
-/* Подзаголовок */
-.subtitle {
-  font-size: 14px;
-  color: #64748b;
-  line-height: 1.5;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 4px;
-  transition: all 0.3s ease;
-}
-
-/* Адаптивность подзаголовка */
-@media (min-width: 375px) {
-  .subtitle {
-    font-size: 15px;
-    line-height: 1.55;
-    padding: 0 8px;
-  }
-}
-
-@media (min-width: 480px) {
-  .subtitle {
-    font-size: 16px;
-    line-height: 1.55;
-  }
-}
-
-@media (min-width: 768px) {
-  .subtitle {
-    font-size: 17px;
-    line-height: 1.6;
-  }
-}
-
-@media (min-width: 1024px) {
-  .subtitle {
-    font-size: 18px;
-  }
-}
-
-/* Decorative Elements */
-.section::before,
-.section::after {
-  content: "";
-  position: absolute;
-  display: none; /* Скрываем градиентные круги */
-  z-index: 1;
-}
-
-.section::before {
-  width: 400px;
-  height: 400px;
-  top: -200px;
-  left: -200px;
-}
-
-.section::after {
-  width: 500px;
-  height: 500px;
-  bottom: -250px;
-  right: -250px;
-}
-
-/* Responsive Styles */
 @media (max-width: 1024px) {
   .section {
     padding: 40px 0;
@@ -814,24 +646,14 @@
     margin-bottom: 16px;
   }
 
-  .subtitle {
-    font-size: 16px;
-    margin-bottom: 24px;
-  }
-
   .form {
     padding: 16px;
     gap: 16px;
   }
 
-  .input,
-  .button {
+  .input {
     height: 48px;
     font-size: 15px;
-  }
-
-  .button {
-    margin-top: 8px;
   }
 }
 
@@ -842,26 +664,32 @@
 
   .content {
     padding: 40px 24px;
+    border-radius: 16px;
   }
 
   .title {
     font-size: 24px;
   }
 
-  .subtitle {
+  .input,
+  .submitButton {
+    height: 52px;
     font-size: 15px;
   }
 
-  .section::before,
-  .section::after {
-    display: none;
+  .formVertical {
+    gap: 15px;
+    padding: 0 10px;
+  }
+
+  .privacyText {
+    text-align: center;
   }
 }
 
 @media (max-width: 480px) {
   .content {
     padding: 32px 20px;
-    border-radius: 16px;
   }
 
   .title {

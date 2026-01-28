@@ -50,7 +50,7 @@
   width: 360px;
   height: 360px;
   border-radius: 50%;
-  background-color: #00B18F;
+  background-color: #00b18f;
   z-index: 0;
 }
 
@@ -78,7 +78,7 @@
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background-color: #00B18F;
+  background-color: #00b18f;
   z-index: 0;
   bottom: -150px;
   right: -80px;
@@ -102,10 +102,6 @@
   margin-bottom: 12px;
   line-height: 1.2;
   white-space: pre-line;
-}
-
-.titleLine {
-  display: block;
 }
 
 .subtitle {
@@ -384,18 +380,5 @@
   .subtitle {
     font-size: 12px;
     margin-bottom: 16px;
-  }
-
-  .heroTitle {
-    font-size: 22px;
-  }
-
-  .heroText {
-    font-size: 13px;
-    margin-bottom: 14px;
-  }
-
-  .features {
-    grid-template-columns: 1fr;
   }
 }
