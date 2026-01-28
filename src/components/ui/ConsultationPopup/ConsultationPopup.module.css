@@ -38,8 +38,9 @@
   overflow: hidden;
   width: 100%;
   max-width: 1000px;
-  max-height: 88vh;
-  aspect-ratio: 1000 / 560;
+  max-height: 90vh;
+  height: auto;
+  aspect-ratio: auto;
   animation: slideUp 0.4s ease-out;
 }
 
@@ -89,6 +90,9 @@
   background-color: white;
   display: flex;
   flex-direction: column;
+  max-height: calc(90vh - 80px);
+  overflow-y: auto;
+  padding-bottom: 32px;
 }
 
 .formWrapper {
