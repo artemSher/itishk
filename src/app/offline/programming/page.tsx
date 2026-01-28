@@ -14,6 +14,7 @@ import FeaturesSection from "@/components/sections/features/FeaturesSection";
 import { EarningSection } from "@/components/sections/earning/EarningSection";
 import { ShopSection } from "@/components/sections/shop/ShopSection";
 import { Reviews } from "@/components/sections/reviews/Reviews";
+import { FAQ_OFFLINE } from "@/components/sections/faq/faqData";
 
 const ConsultationSection = dynamic(
   () =>
@@ -76,7 +77,7 @@ export default function OnlineProgrammingPage() {
       </section>
 
       <section id="earnings" style={{ scrollMarginTop: "80px" }}>
-        <EarningSection />
+        <EarningSection animationPath="ItShop.json" />
       </section>
 
       <section id="shop">
@@ -100,7 +101,7 @@ export default function OnlineProgrammingPage() {
       </section>
 
       <section id="faq">
-        <FAQSection />
+        <FAQSection items={FAQ_OFFLINE} />
       </section>
 
       <section id="contacts" style={{ scrollMarginTop: "80px" }}>

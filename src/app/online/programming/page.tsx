@@ -13,8 +13,8 @@ import { FAQSection } from "@/components/sections/faq/FAQSection";
 import { SchoolSection } from "@/components/sections/school/school";
 import FeaturesSection from "@/components/sections/features/FeaturesSection";
 import { Reviews } from "@/components/sections/reviews/Reviews";
+import { FAQ_ONLINE } from "@/components/sections/faq/faqData";
 
-// консультация
 const ConsultationSection = dynamic(
   () =>
     import("@/components/sections/consultation/ConsultationSection").then(
@@ -80,7 +80,7 @@ export default function OnlineProgrammingPage() {
       </section>
 
       <section id="earnings" style={{ scrollMarginTop: "80px" }}>
-        <EarningSection />
+        <EarningSection animationPath="EarningSection.json" />
       </section>
 
       {/* Онлайн курсы по программированию */}
@@ -96,7 +96,7 @@ export default function OnlineProgrammingPage() {
         <Reviews reviews={mockReviews} />{" "}
       </section>
       <section id="faq">
-        <FAQSection />
+        <FAQSection items={FAQ_ONLINE} />
       </section>
       {/* Консультация */}
       <section id="contacts" style={{ scrollMarginTop: "80px" }}>

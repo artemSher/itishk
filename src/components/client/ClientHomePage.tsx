@@ -111,7 +111,7 @@ export default function ClientHomePage() {
 
       {/* Секция: Заработок */}
       <section id="earnings" style={{ scrollMarginTop: "80px" }}>
-        <EarningSection />
+        <EarningSection animationPath="EarningSection.json" />
       </section>
 
       {/* Секция: Проекты учеников */}

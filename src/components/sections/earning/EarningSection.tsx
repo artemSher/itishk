@@ -10,7 +10,13 @@ const LazyLottie = dynamic(
   { ssr: false },
 );
 
-export const EarningSection = () => {
+type EarningSectionProps = {
+  animationPath: string;
+};
+
+export const EarningSection: React.FC<EarningSectionProps> = ({
+  animationPath,
+}) => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [showAnimation, setShowAnimation] = useState(false);
 
@@ -37,7 +43,7 @@ export const EarningSection = () => {
         {showAnimation && (
           <div className={styles.animationContainer}>
             <LazyLottie
-              animationPath="ItShop.json"
+              animationPath={animationPath}
               className={styles.animation}
             />
           </div>

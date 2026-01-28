@@ -134,7 +134,7 @@ export const Footer = () => {
           <div className={styles.copyright}>
             {new Date().getFullYear()} Айтишкино. Все права защищены. <br />
             <div className={styles.spacer}>
-              <div>Абдурахимов А.Б</div>
+              <div>ИП Абдурахимов А.Б</div>
               <div>ОГРНИП 323774600663900</div>
               <div>ИНН 027509855212</div>
             </div>
