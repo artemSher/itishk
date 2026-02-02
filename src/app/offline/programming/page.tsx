@@ -15,6 +15,35 @@ import { EarningSection } from "@/components/sections/earning/EarningSection";
 import { ShopSection } from "@/components/sections/shop/ShopSection";
 import { Reviews } from "@/components/sections/reviews/Reviews";
 import { FAQ_OFFLINE } from "@/components/sections/faq/faqData";
+import type { CardData } from "@/components/sections/online-classes/OnlineClassesSection";
+
+const cards: CardData[] = [
+  {
+    title: "Группы по возрасту",
+    description:
+      "Каждая программа разработана с учётом возраста и уровня подготовки детей...",
+    image: "/images/onlineClasses/5.png",
+    variant: "teal",
+  },
+  {
+    title: "Оборудованные классы",
+    description: "Для занятий не нужно приносить своё оборудование...",
+    image: "/images/onlineClasses/3.png",
+    variant: "white",
+  },
+  {
+    title: "Финансовая грамотность",
+    description: "Дети получают внутреннюю валюту за успехи в обучении...",
+    image: "/images/onlineClasses/17.png",
+    variant: "white",
+  },
+  {
+    title: "Геймификация",
+    description: "Успехи ученика влияют на его рейтинг в школе...",
+    image: "/images/onlineClasses/6.png",
+    variant: "teal",
+  },
+];
 
 const ConsultationSection = dynamic(
   () =>
@@ -25,30 +54,7 @@ const ConsultationSection = dynamic(
     ),
   { ssr: true },
 );
-const mockReviews = [
-  {
-    id: "1",
-    name: "Имя",
-    age: 1,
-    avatar: "М",
-    course: "Курс",
-    rating: 5,
-    text: "Текст для отзыва длиной примерно в несколько предложений. Очень понравились занятия, преподаватель объясняет доступно и интересно!",
-    mediaType: "image" as const,
-    mediaUrl: "/reviews/anya.jpg",
-  },
-  {
-    id: "2",
-    name: "Имя",
-    age: 1,
-    avatar: "А",
-    course: "Курс",
-    rating: 5,
-    text: "Текст для отзыва длиной примерно в несколько предложений. Очень понравились занятия, преподаватель объясняет доступно и интересно!",
-    mediaType: "video" as const,
-    mediaUrl: "https://vkvideo.ru/video-232343069_456239036",
-  },
-];
+
 export default function OnlineProgrammingPage() {
   return (
     <PageLayout>
@@ -64,6 +70,7 @@ export default function OnlineProgrammingPage() {
         <OnlineClassesSection
           title="Компьютерная школа"
           subtitle="Обучение в классе с преподавателем, живое общение и практика на каждом уроке."
+          cards={cards}
         />
       </section>
 
@@ -98,7 +105,7 @@ export default function OnlineProgrammingPage() {
       </section>
 
       <section id="reviews">
-        <Reviews reviews={mockReviews} />{" "}
+        <Reviews />{" "}
       </section>
 
       <section id="faq">

@@ -149,10 +149,10 @@ export const Footer = () => {
             <a href="/education-license" className={styles.legalLink}>
               Образовательная лицензия
             </a>
-            <a href="/contract-offline" className={styles.legalLink}>
+            <a href="/contract/offline" className={styles.legalLink}>
               Договор оферты очное обучение
             </a>
-            <a href="/contract-online" className={styles.legalLink}>
+            <a href="/contract/online/" className={styles.legalLink}>
               Договор оферты онлайн обучение
             </a>
           </div>
