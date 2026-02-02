@@ -2,7 +2,6 @@
 
 import type React from "react";
 import { useEffect } from "react";
-import styles from "./VideoPopup.module.css";
 import { X } from "lucide-react";
 
 interface VideoPopupProps {
@@ -39,14 +38,23 @@ export const VideoPopup: React.FC<VideoPopupProps> = ({
   // --- EMBED CONVERTERS ---
   //
   const getEmbedUrl = (url: string): string | null => {
-    // --- VK ---
-    if (url.includes("vk.com")) {
+    // --- VK / VKVideo ---
+    // Поддержка как vk.com, так и vkvideo.ru
+    if (url.includes("vk.com") || url.includes("vkvideo.ru")) {
+      // Если это уже embed URL от vkvideo.ru, используем его напрямую
+      if (url.includes("vkvideo.ru/video_ext.php")) {
+        return url;
+      }
+
+      // Парсим обычные VK URL в формате video{oid}_{id}
       const match = url.match(/video(-?\d+)_(\d+)/);
       if (!match) return null;
 
       const oid = match[1];
       const id = match[2];
-      return `https://vk.com/video_ext.php?oid=${oid}&id=${id}`;
+
+      // Используем vkvideo.ru вместо старого vk.com
+      return `https://vkvideo.ru/video_ext.php?oid=${oid}&id=${id}`;
     }
 
     // --- YouTube ---
@@ -54,7 +62,7 @@ export const VideoPopup: React.FC<VideoPopupProps> = ({
       let videoId = "";
 
       if (url.includes("youtu.be")) {
-        videoId = url.split("/").pop() || "";
+        videoId = url.split("/").pop()?.split("?")[0] || "";
       } else {
         const params = new URL(url).searchParams;
         videoId = params.get("v") || "";
@@ -91,32 +99,43 @@ export const VideoPopup: React.FC<VideoPopupProps> = ({
   const embedUrl = getEmbedUrl(videoUrl);
 
   return (
-    <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.popup} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={onClose}>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-6xl bg-background rounded-lg shadow-xl overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          className="absolute top-4 right-4 z-10 p-2 bg-background/80 rounded-full hover:bg-background transition-colors"
+          onClick={onClose}
+        >
           <X size={24} />
         </button>
 
-        <div className={styles.videoContainer}>
-          <h3 className={styles.title}>Проект ученика: {studentName}</h3>
+        <div className="p-6">
+          <h3 className="text-2xl font-semibold mb-4">
+            Проект ученика: {studentName}
+          </h3>
 
-          <div className={styles.videoWrapper}>
+          <div className="relative w-full aspect-video bg-black rounded-lg overflow-hidden">
             {isDirectVideo ? (
               <video
                 src={videoUrl}
                 controls
                 autoPlay
                 preload="metadata"
-                className={styles.video}
+                className="w-full h-full"
               >
                 Ваш браузер не поддерживает видео.
               </video>
             ) : (
               <iframe
                 src={embedUrl || videoUrl}
-                allow="autoplay; encrypted-media"
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
                 allowFullScreen
-                className={styles.video}
+                className="w-full h-full"
               />
             )}
           </div>

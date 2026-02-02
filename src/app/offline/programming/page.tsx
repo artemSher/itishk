@@ -46,7 +46,7 @@ const mockReviews = [
     rating: 5,
     text: "Текст для отзыва длиной примерно в несколько предложений. Очень понравились занятия, преподаватель объясняет доступно и интересно!",
     mediaType: "video" as const,
-    mediaUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    mediaUrl: "https://vkvideo.ru/video-232343069_456239036",
   },
 ];
 export default function OnlineProgrammingPage() {
