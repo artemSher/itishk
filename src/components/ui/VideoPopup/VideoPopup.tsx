@@ -46,15 +46,23 @@ export const VideoPopup: React.FC<VideoPopupProps> = ({
         return url;
       }
 
-      // Парсим обычные VK URL в формате video{oid}_{id}
-      const match = url.match(/video(-?\d+)_(\d+)/);
-      if (!match) return null;
+      // Парсим VK клипы в формате clip{oid}_{id}
+      const clipMatch = url.match(/clip(-?\d+)_(\d+)/);
+      if (clipMatch) {
+        const oid = clipMatch[1];
+        const id = clipMatch[2];
+        return `https://vkvideo.ru/video_ext.php?oid=${oid}&id=${id}`;
+      }
 
-      const oid = match[1];
-      const id = match[2];
+      // Парсим обычные VK видео в формате video{oid}_{id}
+      const videoMatch = url.match(/video(-?\d+)_(\d+)/);
+      if (videoMatch) {
+        const oid = videoMatch[1];
+        const id = videoMatch[2];
+        return `https://vkvideo.ru/video_ext.php?oid=${oid}&id=${id}`;
+      }
 
-      // Используем vkvideo.ru вместо старого vk.com
-      return `https://vkvideo.ru/video_ext.php?oid=${oid}&id=${id}`;
+      return null;
     }
 
     // --- YouTube ---

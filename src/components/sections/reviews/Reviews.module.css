@@ -6,7 +6,7 @@
   gap: 48px;
   color: #ffffff;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 10vh auto;
 }
 
@@ -30,11 +30,27 @@
   margin: 0;
 }
 
-.reviewsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: 32px;
+.gridContainer {
+  position: relative;
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.grid {
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 8px 0;
+  flex: 1;
+}
+
+.grid::-webkit-scrollbar {
+  display: none;
 }
 
 .reviewCard {
@@ -47,6 +63,8 @@
   border-radius: 24px;
   overflow: hidden;
   transition: transform 0.2s ease;
+  flex-shrink: 0;
+  width: 532px;
 }
 
 .reviewCard:hover {
@@ -60,21 +78,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.imageMedia {
-  background: #f3f4f6;
-}
-
-.videoMedia {
   background: linear-gradient(180deg, #d1d5dc 0%, #4a5565 100%);
   cursor: pointer;
-}
-
-.imagePlaceholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .videoBadge {
@@ -119,14 +124,14 @@
   transition: transform 0.2s ease;
 }
 
-.videoMedia:hover .playButton {
+.mediaContainer:hover .playButton {
   transform: scale(1.1);
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  padding: 32px 32px 32px;
+  padding: 32px;
   gap: 16px;
 }
 
@@ -218,10 +223,33 @@
   margin: 0;
 }
 
-@media (max-width: 1200px) {
-  .reviewsGrid {
-    grid-template-columns: 1fr;
-  }
+.navArrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.navArrow:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  transform: scale(1.05);
+}
+
+.navArrow:active {
+  transform: scale(0.95);
+}
+
+.navArrow svg {
+  color: #0a0a0a;
 }
 
 @media (max-width: 768px) {
@@ -235,8 +263,25 @@
     line-height: 34px;
   }
 
-  .reviewsGrid {
-    grid-template-columns: 1fr;
-    gap: 24px;
+  .gridContainer {
+    gap: 16px;
+  }
+
+  .grid {
+    gap: 16px;
+  }
+
+  .reviewCard {
+    width: 320px;
+  }
+
+  .navArrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navArrow svg {
+    width: 20px;
+    height: 20px;
   }
 }

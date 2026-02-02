@@ -3,6 +3,8 @@
 import { useState } from "react";
 import styles from "./AboutSection.module.css";
 import { VideoPopup } from "@/components/ui/VideoPopup/VideoPopup";
+import Image from "next/image";
+import about from "@/../public/images/about/about.png";
 
 export default function AboutSection() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -22,15 +24,21 @@ export default function AboutSection() {
               Пробильную возможности развития в мире высоких технологий.
             </p>
           </div>
-
+          {/* для видоса  ЕЩЕ РАСКОММЕНТИРОВАТЬ videoCard в css*/}
           <div className={styles.videoCard}>
-            <div className={styles.decorative4} />
+            <Image
+              alt={""}
+              src={about}
+              width={320}
+              className={styles.logoImage}
+            />
+            {/* <div className={styles.decorative4} />
             <div className={styles.decorative5} />
             <div className={styles.decorative1} />
             <div className={styles.decorative2} />
             <div className={styles.decorative3} />
 
-            {/* Video content */}
+   
             <div className={styles.videoContent}>
               <button
                 className={styles.playButton}
@@ -48,7 +56,7 @@ export default function AboutSection() {
                 <span className={styles.videoLabel}>Видео</span>
                 <span className={styles.videoTitle}>О школе</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
