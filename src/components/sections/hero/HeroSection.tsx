@@ -92,8 +92,8 @@ export const HeroSection = () => {
 
           <div className={styles.textContent}>
             <h1 className={styles.title}>
-              Научись говорить
-              <span className={styles.highlight}>с гаджетами за час!</span>
+              Школа программирования
+              <span className={styles.highlight}>и робототехники для детей!</span>
             </h1>
 
             <p className={styles.description}>
@@ -107,7 +107,7 @@ export const HeroSection = () => {
               className={styles.button}
               aria-label="Записаться на бесплатный урок"
             >
-              Записаться на бесплатный урок
+              Оставить заявку
             </a>
           </div>
         </div>

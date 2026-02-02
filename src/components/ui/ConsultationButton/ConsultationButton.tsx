@@ -59,7 +59,7 @@ export const ConsultationButton = () => {
   return (
     <div className={styles.buttonContainer}>
       <button className={styles.consultationButton} onClick={handleClick}>
-        <span>Записаться на консультацию</span>
+        <span>Оставить заявку</span>
         <ArrowRight className={styles.arrowIcon} size={20} />
       </button>
     </div>

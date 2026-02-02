@@ -147,7 +147,8 @@
 }
 
 .courseCard.expanded .expandedContent.visible {
-  max-height: 1000px;
+  max-height: none;
+  overflow: visible;
   opacity: 1;
   padding: 30px;
   border-top: 1px solid #e5e7eb;
@@ -243,6 +244,22 @@
   display: inline-block;
   width: 20px;
   margin-left: -20px;
+}
+
+.formatTag  {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  background: rgba(0, 177, 143, 0.08); /* тускленький зеленый фон */
+  color: #00b18f;
+  border-radius: 6px;
+  font-family: "SF Pro Text", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: lowercase;
+  z-index: 10;
+  pointer-events: none;
 }
 
 /* Костыль для диапазона 768-826px - фиксированная высота заголовка */

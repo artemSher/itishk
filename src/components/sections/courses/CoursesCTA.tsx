@@ -43,7 +43,7 @@ export const CoursesCTA = () => {
           transition-all duration-300 transform hover:-translate-y-0.5
           focus:outline-none focus:ring-2 focus:ring-[#00B18F] focus:ring-opacity-50"
       >
-        <span>Записаться на бесплатную консультацию</span>
+        <span>Оставить заявку на бесплатное пробное занятие</span>
         <ArrowRight size={20} />
       </button>
     </div>

@@ -18,7 +18,7 @@ export const CoursesSection = ({
   withFormatToggle = false,
   format,
   category,
-  title = "Курсы",
+  title = "Курсы по программированию и робототехнике для детей",
   twoColumns = false,
 }: CoursesSectionProps) => {
   const [activeFormat, setActiveFormat] = useState<CourseFormat>(

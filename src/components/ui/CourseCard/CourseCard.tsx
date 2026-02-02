@@ -14,6 +14,7 @@ interface CourseCardProps {
   isExpanded: boolean;
   onToggleExpand: (id: string) => void;
   category?: "programming" | "robotics";
+  format?: "online" | "offline" | "online and offline";
 }
 
 export const CourseCard: React.FC<CourseCardProps> = React.memo(
@@ -28,6 +29,7 @@ export const CourseCard: React.FC<CourseCardProps> = React.memo(
     isExpanded,
     onToggleExpand,
     category,
+    format,
   }) => {
     const handleToggle = React.useCallback(() => {
       onToggleExpand(id);
@@ -40,6 +42,12 @@ export const CourseCard: React.FC<CourseCardProps> = React.memo(
         {category && (
           <div className={styles.categoryTag}>
             {category === "robotics" ? "робототехника" : "программирование"}
+          </div>
+        )}
+
+        {format && (
+          <div className={styles.formatTag}>
+            {format === "online" ? "онлайн" : format === "offline" ? "оффлайн" : "онлайн и оффлайн"}
           </div>
         )}
 

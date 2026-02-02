@@ -235,7 +235,7 @@ export const ConsultationSection = () => {
                 className={styles.submitButton}
                 disabled={isLoading}
               >
-                {isLoading ? "Отправка..." : "Отправить заявку"}
+                {isLoading ? "Отправка..." : "Оставить заявку"}
                 {!isLoading && <Send size={18} />}
               </button>
 

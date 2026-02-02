@@ -38,7 +38,7 @@ export const EarningSection: React.FC<EarningSectionProps> = ({
   return (
     <section ref={sectionRef} className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.title}>Зарабатывай знаниями!</h2>
+        <h2 className={styles.title}>Дети учатся:</h2>
 
         {showAnimation && (
           <div className={styles.animationContainer}>
@@ -52,7 +52,7 @@ export const EarningSection: React.FC<EarningSectionProps> = ({
         <div className={styles.cardsContainer}>
           <EarningStepCard
             number="01"
-            title="Зарабатывай"
+            title="Зарабатывать"
             description={
               <>
                 За выполнение заданий, активность
@@ -63,13 +63,13 @@ export const EarningSection: React.FC<EarningSectionProps> = ({
 
           <EarningStepCard
             number="02"
-            title="Копи"
-            description="Учись планировать бюджет и принимать решения."
+            title="Копить"
+            description="Планировать бюджет и принимать решения."
           />
 
           <EarningStepCard
             number="03"
-            title="Трать"
+            title="Тратить"
             description="В нашем «Айтишопе» на крутые гаджеты, мерч или оплату курсов!"
           />
         </div>

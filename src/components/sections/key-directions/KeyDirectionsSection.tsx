@@ -28,7 +28,7 @@ export const KeyDirectionsSection = () => {
               </div>
               <h3 className={styles.directionTitle}>Программирование</h3>
               <p className={styles.directionText}>
-                Написание кода развивает логику, алгоритмическое мышление и
+                Обучение программированию развивает логику, алгоритмическое мышление и
                 цифровую грамотность.
               </p>
               <div className={styles.buttonGroup}>
@@ -60,7 +60,7 @@ export const KeyDirectionsSection = () => {
               </div>
               <h3 className={styles.directionTitle}>Робототехника</h3>
               <p className={styles.directionText}>
-                Превращает этот код в настоящие движущиеся механизмы и умные
+                Превращает написанные программы в настоящие движущиеся механизмы и умные
                 устройства.
               </p>
               <div className={styles.buttonGroup}>
