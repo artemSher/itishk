@@ -254,8 +254,9 @@
 
 @media (max-width: 768px) {
   .reviewsSection {
-    padding: 48px 24px;
+    padding: 48px 16px;
     gap: 32px;
+    margin: 5vh auto;
   }
 
   .title {
@@ -264,24 +265,96 @@
   }
 
   .gridContainer {
-    gap: 16px;
+    gap: 8px;
   }
 
   .grid {
-    gap: 16px;
+    gap: 12px;
+    padding: 4px 0;
   }
 
   .reviewCard {
-    width: 320px;
+    width: 280px;
+  }
+
+  .mediaContainer {
+    height: 180px;
+  }
+
+  .playButton {
+    width: 60px;
+    height: 60px;
+  }
+
+  .playButton svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .content {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .header {
+    gap: 12px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .name {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .course {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .text {
+    font-size: 14px;
+    line-height: 22px;
   }
 
   .navArrow {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
   }
 
   .navArrow svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reviewsSection {
+    padding: 40px 12px;
+  }
+
+  .gridContainer {
+    gap: 6px;
+  }
+
+  .reviewCard {
+    width: 260px;
+  }
+
+  .mediaContainer {
+    height: 160px;
+  }
+
+  .content {
+    padding: 16px;
+  }
+
+  .navArrow {
+    width: 32px;
+    height: 32px;
   }
 }

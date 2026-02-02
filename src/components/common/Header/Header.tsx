@@ -145,13 +145,16 @@ export const Header = () => {
   const handleRecordClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    // If not on home page, navigate to home page with application form
-    if (pathname !== "/") {
-      window.location.href = "/#contacts";
-      return;
-    }
+    // Check if contacts section exists on current page
+    const contactsElement = document.getElementById("contacts");
 
-    scrollToElement("contacts", true);
+    if (contactsElement) {
+      // If contacts section exists on current page, scroll to it
+      scrollToElement("contacts", true);
+    } else {
+      // If not found, navigate to home page with application form
+      window.location.href = "/#contacts";
+    }
   };
 
   // Handle hash on page load (when navigating from other pages)

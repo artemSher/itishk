@@ -45,6 +45,7 @@
   flex: 1 1 0;
   width: 100%;
   max-width: none;
+  min-width: 0;
 
   aspect-ratio: 16 / 9;
   height: auto;
@@ -58,6 +59,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.logoImage {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .videoContent {
@@ -189,28 +197,39 @@
 
   .container {
     width: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     gap: 24px;
     align-items: stretch;
+    overflow: hidden;
   }
 
   .textContainer {
     width: 100%;
-    max-width: 520px;
-    margin: 0 auto;
-    min-height: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .videoCard {
-    width: 100%; /* ❗ ОБЯЗАТЕЛЬНО */
-    max-width: 520px; /* ограничение */
-    margin: 0 auto; /* центр */
-    flex: 0 0 auto; /* ❗ */
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    flex: 0 0 auto;
+    position: relative;
+  }
+
+  .logoImage {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
   }
 
   .heading {
