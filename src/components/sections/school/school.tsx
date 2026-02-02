@@ -7,6 +7,7 @@ type SchoolSectionProps = {
   title: string[];
   imageSrc: string;
   imageAlt?: string;
+  subtitle?: string;
 };
 const handleClick = () => {
   let attempts = 0;
@@ -41,6 +42,7 @@ export function SchoolSection({
   title,
   imageSrc,
   imageAlt = "Изображение школы",
+  subtitle,
 }: SchoolSectionProps) {
   return (
     <section className={styles.heroSection}>
@@ -56,13 +58,12 @@ export function SchoolSection({
           </h1>
 
           <p className={styles.subtitle}>
-            Все программы рассчитаны на определенный возраст, группы
-            сформированы по этому принципу.
+            {subtitle || "Все программы рассчитаны на определенный возраст, группы сформированы по этому принципу."}
           </p>
         </div>
 
         <button onClick={handleClick} className={styles.button}>
-          Записаться в школу
+          Записаться на бесплатный урок
         </button>
       </div>
 

@@ -26,10 +26,9 @@ export default function FeaturesSection() {
           </div>
         </div>
         <div className={styles.cardContent}>
-          <h3 className={styles.heading}>Группы по возрасту</h3>
+          <h3 className={styles.heading}>Проекты в портфолио</h3>
           <p className={styles.paragraph}>
-            Все программы рассчитаны на определенный возраст, группы
-            сформированы по этому принципу.
+            После каждой темы у ребёнка готовый проект: сайты, игры, приложения, роботы. Родители видят прогресс, а ребёнок видит результаты своего труда.
           </p>
         </div>
       </div>
@@ -69,10 +68,9 @@ export default function FeaturesSection() {
           </div>
         </div>
         <div className={styles.cardContent}>
-          <h3 className={styles.heading}>Оборудованные классы</h3>
+          <h3 className={styles.heading}>Мы — лицензированная школа</h3>
           <p className={styles.paragraph}>
-            Современное оборудование: компьютеры, VR-гарнитуры, роботы и
-            конструкторы для практических занятий.
+            Каждый курс в компьютерной школе Айтишкино соответствует российским образовательным стандартам.
           </p>
         </div>
       </div>

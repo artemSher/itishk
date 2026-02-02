@@ -32,10 +32,9 @@ export function OnlineClassesSection({
               />
             </div>
             <div className={styles.cardContent}>
-              <h3 className={styles.cardTitle}>Индивидуальный формат.</h3>
+              <h3 className={styles.cardTitle}>Группы по возрасту</h3>
               <p className={styles.cardDescription}>
-                В "Айтишкино" мы не просто учим — мы создаём юных инноваторов!
-                Наши два ключевых направления идеально дополняют друг друга:
+                Каждая программа разработана с учётом возраста и уровня подготовки детей, поэтому группы формируются так, чтобы всем было комфортно и интересно учиться в своём темпе.
               </p>
             </div>
           </div>
@@ -52,11 +51,10 @@ export function OnlineClassesSection({
             </div>
             <div className={styles.cardContent}>
               <h3 className={styles.cardTitle}>
-                Оптимальная продолжительность
+                Оборудованные классы
               </h3>
               <p className={styles.cardDescription}>
-                60 минут — достаточно для объяснения, практики и закрепления без
-                перегрузки внимания.
+                Для занятий не нужно приносить своё оборудование или материалы — всё необходимое мы предоставляем на уроках.
               </p>
             </div>
           </div>
@@ -74,9 +72,9 @@ export function OnlineClassesSection({
               />
             </div>
             <div className={styles.cardContent}>
-              <h3 className={styles.cardTitle}>Гибкое расписание</h3>
+              <h3 className={styles.cardTitle}>Финансовая грамотность</h3>
               <p className={styles.cardDescription}>
-                Время занятий подстраивается под Вас, а не наоборот.
+                Дети получают внутреннюю валюту за успехи в обучении, осваивают планирование бюджета и делают первые осознанные покупки в «Айтишопе».
               </p>
             </div>
           </div>
@@ -92,9 +90,9 @@ export function OnlineClassesSection({
               />
             </div>
             <div className={styles.cardContent}>
-              <h3 className={styles.cardTitle}>Обучение из любой точки мира</h3>
+              <h3 className={styles.cardTitle}>Геймификация</h3>
               <p className={styles.cardDescription}>
-                Нужен только интернет. География и переезды не имеют значения.
+                Успехи ученика влияют на его рейтинг в школе, что делает обучение программированию интереснее и мотивирует ребенка, а также формирует стремление к лидерству.
               </p>
             </div>
           </div>

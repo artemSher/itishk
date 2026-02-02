@@ -55,12 +55,14 @@ export default function OnlineProgrammingPage() {
       <SchoolSection
         title={["Онлайн-школа", "программирования", "для детей"]}
         imageSrc="/images/school/online-prog.png"
+        subtitle="Онлайн занятия по программированию Айтишкино – 
+это комплексное IT образование. Дети создают игры, мобильные приложения, сайты, изучают ИИ и VR, видят результат и получают полное представление о работе технологий в современном мире."
       />
 
       {/* Hero */}
       <section id="online-classes">
         <OnlineClassesSection
-          title="Онлайн-занятия"
+          title="Компьютерные курсы"
           subtitle="Индивидуальные занятия с преподавателем в удобное время"
         />
       </section>
@@ -86,10 +88,9 @@ export default function OnlineProgrammingPage() {
       {/* Онлайн курсы по программированию */}
       <section id="courses">
         <CoursesSection
-          title="Онлайн-курсы по программированию"
-          format="online"
+          title="Онлайн-курсы по программированию для детей"
+          format="online and offline"
           category="programming"
-          twoColumns
         />
       </section>
       <section id="reviews">

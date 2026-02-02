@@ -28,7 +28,7 @@ export const SchoolsMapSection = () => {
     <section className="w-full py-10 bg-white">
       <div className="max-w-[1100px] mx-auto px-5">
         <h2 className="text-3xl md:text-4xl font-semibold text-[#3A3F51] mb-10 text-center">
-          Школы программирования для детей на карте
+          Детские школы программирования на карте
         </h2>
       </div>
 

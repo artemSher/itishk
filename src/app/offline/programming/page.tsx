@@ -54,14 +54,15 @@ export default function OnlineProgrammingPage() {
     <PageLayout>
       <section id="school">
         <SchoolSection
-          title={["Школы", "программирования", "для детей"]}
+          title={["Школа", "программирования", "для детей"]}
           imageSrc="/images/school/offline-prog.png"
+          subtitle="Компьютерные курсы в школе Айтишкино – это комплексное IT образование. Дети создают игры, мобильные приложения, сайты, изучают ИИ и VR, видят результат и получают полное представление о работе технологий в современном мире."
         />
       </section>
 
       <section id="online-classes">
         <OnlineClassesSection
-          title="Очные занятия"
+          title="Компьютерная школа"
           subtitle="Обучение в классе с преподавателем, живое общение и практика на каждом уроке."
         />
       </section>
@@ -86,8 +87,8 @@ export default function OnlineProgrammingPage() {
 
       <section id="courses">
         <CoursesSection
-          title="Очные курсы по программированию"
-          format="offline"
+          title="Курсы по программированию для детей"
+          format="online and offline"
           category="programming"
         />
       </section>

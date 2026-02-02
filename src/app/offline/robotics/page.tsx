@@ -64,7 +64,7 @@ export default function OnlineProgrammingPage() {
 
       <section id="online-classes">
         <OnlineClassesSection
-          title="Очные занятия"
+          title="Занятия по робототехнике"
           subtitle="Обучение в классе с преподавателем, живое общение и практика на каждом уроке."
         />
       </section>
@@ -93,7 +93,7 @@ export default function OnlineProgrammingPage() {
       <section id="robotics" className="py-20">
         <div className="max-w-[1100px] mx-auto px-5 text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-semibold text-[#0F172A] mb-4">
-            Робототехника в «Айтишкино»:
+            Курсы робототехники для детей
           </h2>
           <p className="text-lg md:text-xl text-[#64748B]">
             от первых механизмов до умных гаджетов
