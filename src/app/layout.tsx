@@ -15,7 +15,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Айтишкино",
+  title: {
+    default: "Айтишкино — Школа программирования и робототехники для детей",
+    template: "%s | Айтишкино",
+  },
   description: "Школа программирования и робототехники.",
   metadataBase: new URL("https://itishkino.ru"),
   generator: "v0.app",
