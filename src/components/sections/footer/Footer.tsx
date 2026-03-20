@@ -146,7 +146,11 @@ export const Footer = () => {
             <a href="/terms" className={styles.legalLink}>
               Пользовательское соглашение
             </a>
-            <a href="/education-license" className={styles.legalLink}>
+            <a
+              href="/documents/education-license-extract.pdf"
+              download="education-license-extract.pdf"
+              className={styles.legalLink}
+            >
               Образовательная лицензия
             </a>
             <a href="/contract/offline" className={styles.legalLink}>
