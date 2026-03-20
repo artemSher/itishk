@@ -33,7 +33,7 @@ const galleryItems: GalleryItem[] = [
   {
     id: 5,
     imageUrl:
-      "https://sun9-4.userapi.com/s/v1/ig2/9DmJLRZ_p-IEypT5jFrQyg1hGAkALrizwbCNzrXjXNY7BFKUVZrMT22mvfXH2-Bwy1qmf4-j5d4VgVuJNERDLHaE.jpg?quality=95&as=32x21,48x32,72x48,108x72,160x107,240x160,360x240,480x320,540x360,640x427,720x480,1080x720,1280x853,1440x960,2560x1707&from=bu&cs=2560x0",
+      "https://raw.githubusercontent.com/artemSher/itishk/dev/repo-assets/5.jpg",
   },
   {
     id: 6,
@@ -69,7 +69,8 @@ const Gallery = () => {
 
         <div className={styles.paragraph}>
           <p className={styles.description}>
-            Фотоотчеты с очных занятий по программированию и робототехники в Айтишкино!
+            Фотоотчеты с очных занятий по программированию и робототехники в
+            Айтишкино!
           </p>
         </div>
 
